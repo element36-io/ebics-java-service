@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+
+<!--  10.4.21spring security,  tomcat, bouncy, xstream -->
+<suppress>
+   <notes><![CDATA[
+   file name: spring-security-core-5.2.8.RELEASE.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-core@.*$</packageUrl>
+   <cve>CVE-2021-22112</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: guava-29.0-jre.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/com\.google\.guava/guava@.*$</packageUrl>
+   <cve>CVE-2020-8908</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: spring-security-config-5.2.8.RELEASE.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-config@.*$</packageUrl>
+   <cpe>cpe:/a:pivotal_software:spring_security</cpe>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: spring-security-core-5.2.8.RELEASE.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-core@.*$</packageUrl>
+   <cpe>cpe:/a:pivotal_software:spring_security</cpe>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: spring-security-crypto-5.2.8.RELEASE.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-crypto@.*$</packageUrl>
+   <cpe>cpe:/a:pivotal_software:spring_security</cpe>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: tomcat-embed-core-9.0.41.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-core@.*$</packageUrl>
+   <cpe>cpe:/a:apache:tomcat</cpe>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: tomcat-embed-core-9.0.41.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-core@.*$</packageUrl>
+   <cve>CVE-2020-9484</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: tomcat-embed-core-9.0.41.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-core@.*$</packageUrl>
+   <cve>CVE-2021-25122</cve>
+</suppress>
+
+<suppress>
+   <notes><![CDATA[
+   file name: tomcat-embed-core-9.0.41.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-core@.*$</packageUrl>
+   <cve>CVE-2021-25329</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: tomcat-embed-core-9.0.41.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-core@.*$</packageUrl>
+   <cve>CVE-2021-25329</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: tomcat-embed-websocket-9.0.41.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-websocket@.*$</packageUrl>
+   <cve>CVE-2020-9484</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: tomcat-embed-websocket-9.0.41.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-websocket@.*$</packageUrl>
+   <cve>CVE-2021-25329</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: spring-security-web-5.2.8.RELEASE.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-web@.*$</packageUrl>
+   <cpe>cpe:/a:pivotal_software:spring_security</cpe>
+</suppress>
+<!--  kotlin  -->
+<suppress>
+   <notes><![CDATA[
+   file name: kotlin-reflect-1.3.72.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-reflect@.*$</packageUrl>
+   <cve>CVE-2020-29582</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: kotlin-stdlib-1.3.72.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib@.*$</packageUrl>
+   <cve>CVE-2020-29582</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: kotlin-stdlib-common-1.3.72.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib\-common@.*$</packageUrl>
+   <cve>CVE-2020-29582</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: kotlin-stdlib-jdk7-1.3.72.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib\-jdk7@.*$</packageUrl>
+   <cve>CVE-2020-29582</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: kotlin-stdlib-jdk8-1.3.72.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib\-jdk8@.*$</packageUrl>
+   <cve>CVE-2020-29582</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: mxparser-1.2.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/io\.github\.x\-stream/mxparser@.*$</packageUrl>
+   <cpe>cpe:/a:xstream_project:xstream</cpe>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: mxparser-1.2.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/io\.github\.x\-stream/mxparser@.*$</packageUrl>
+   <cve>CVE-2016-3674</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: mxparser-1.2.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/io\.github\.x\-stream/mxparser@.*$</packageUrl>
+   <cve>CVE-2017-7957</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: mxparser-1.2.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/io\.github\.x\-stream/mxparser@.*$</packageUrl>
+   <cve>CVE-2020-26258</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: mxparser-1.2.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/io\.github\.x\-stream/mxparser@.*$</packageUrl>
+   <cve>CVE-2020-26259</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: mxparser-1.2.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/io\.github\.x\-stream/mxparser@.*$</packageUrl>
+   <cve>CVE-2021-21341</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: tomcat-embed-websocket-9.0.41.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-websocket@.*$</packageUrl>
+   <cve>CVE-2021-25122</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: bcprov-jdk15on-1.65.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.bouncycastle/bcprov\-jdk15on@.*$</packageUrl>
+   <vulnerabilityName>CVE-2020-28052</vulnerabilityName>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: junit-4.12.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/junit/junit@.*$</packageUrl>
+   <vulnerabilityName>CVE-2020-15250</vulnerabilityName>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: mxparser-1.2.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/io\.github\.x\-stream/mxparser@.*$</packageUrl>
+   <cve>CVE-2010-1423</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: mxparser-1.2.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/io\.github\.x\-stream/mxparser@.*$</packageUrl>
+   <cve>CVE-2011-3546</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: mxparser-1.2.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/io\.github\.x\-stream/mxparser@.*$</packageUrl>
+   <cve>CVE-2011-3547</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: mxparser-1.2.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/io\.github\.x\-stream/mxparser@.*$</packageUrl>
+   <cpe>cpe:/a:oracle:jdk</cpe>
+</suppress>
+
+
+
+
+<!-- check form 14th June 2020 -->
+<!-- only spring data rest -->
+<suppress>
+   <notes><![CDATA[
+   file name: snakeyaml-1.25.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
+   <cve>CVE-2017-18640</cve>
+</suppress>
+
+
+<!-- check form 14th June 2020 -->
+<!-- only spring data rest -->
+<suppress>
+   <notes><![CDATA[
+   file name: snakeyaml-1.25.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
+   <cve>CVE-2017-18640</cve>
+</suppress>
+
+
+
+<!-- check form 14th June 2020 -->
+
+<!-- we dont use xml in external interfaces -->
+<suppress>
+   <notes><![CDATA[
+   file name: dom4j-2.1.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.dom4j/dom4j@.*$</packageUrl>
+   <cve>CVE-2020-10683</cve>
+</suppress>
+
+<!-- we dont use mail appender -->
+<suppress>
+   <notes><![CDATA[
+   file name: log4j-api-2.12.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.apache\.logging\.log4j/log4j\-api@.*$</packageUrl>
+   <cve>CVE-2020-9488</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: log4j-to-slf4j-2.12.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.apache\.logging\.log4j/log4j\-to\-slf4j@.*$</packageUrl>
+   <cve>CVE-2020-9488</cve>
+</suppress>
+
+<!-- we dont insert XML in DB -->
+
+<suppress>
+   <notes><![CDATA[
+   file name: postgresql-42.2.10.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.postgresql/postgresql@.*$</packageUrl>
+   <cve>CVE-2020-13692</cve>
+</suppress>
+
+<!-- used only in compile time  by web3codegen -->
+<suppress>
+   <notes><![CDATA[
+   file name: Java-WebSocket-1.3.8.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.java\-websocket/Java\-WebSocket@.*$</packageUrl>
+   <cve>CVE-2020-11050</cve>
+</suppress>
+
+<!-- xml not exposed -->
+<suppress>
+   <notes><![CDATA[
+   file name: dom4j-2.1.1.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.dom4j/dom4j@.*$</packageUrl>
+   <cve>CVE-2020-10683</cve>
+</suppress>
+
+
+
+<suppress>
+
+   <!-- added 5.3.2020  --> 
+   <notes><![CDATA[
+   file name: spring-cloud-starter-oauth2-2.2.0.RELEASE.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.springframework.*$</packageUrl>
+   <!-- implementation 'org.springframework.security.oauth:spring-security-oauth2:2.3.5.RELEASE'-->
+   <!-- implementation 'com.google.guava:guava:28.2-jre' -->
+   <cve>CVE-2018-1258</cve>
+   <cve>CVE-2018-15758</cve>
+   <cve>CVE-2018-11269</cve> 
+   <cve>CVE-2019-3778</cve>
+   <cve>CVE-2019-11269</cve>
+   <cve>CVE-2018-1260</cve>
+</suppress>
+
+
+<!-- jackson issues found until 2.9.8 but we have 2.10-->
+
+<suppress>
+   <notes><![CDATA[
+   file name: jackson-mapper-asl-1.9.13.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.codehaus\.jackson/jackson\-mapper\-asl@.*$</packageUrl>
+   <vulnerabilityName>CVE-2017-15095</vulnerabilityName>
+   <vulnerabilityName>CVE-2017-17485</vulnerabilityName>
+   <vulnerabilityName>CVE-2017-7525</vulnerabilityName>
+   <vulnerabilityName>CVE-2018-1000873</vulnerabilityName>
+   <vulnerabilityName>CVE-2018-14718</vulnerabilityName>
+   <vulnerabilityName>CVE-2018-5968</vulnerabilityName>
+   <vulnerabilityName>CVE-2018-7489</vulnerabilityName>
+   <vulnerabilityName>CVE-2019-14540</vulnerabilityName>
+   <vulnerabilityName>CVE-2019-16335</vulnerabilityName>
+   <vulnerabilityName>CVE-2019-17267</vulnerabilityName>
+   <vulnerabilityName>CVE-2019-10172</vulnerabilityName> <!-- covered in 4.2.13 org.springframework.security:spring-security-config:4.2.13.RELEASE -> 5.2.2.RELEASE -->
+</suppress>
+
+<!-- jquery: CVE-2015-9251  ... I guess does not apply do backend -->
+<suppress>
+   <notes><![CDATA[
+   file name: spring-cloud-netflix-eureka-server-2.2.2.RELEASE.jar: wro.js
+   ]]></notes>
+   <packageUrl regex="true">^pkg:javascript/jquery@.*$</packageUrl>
+   <cve>CVE-2015-9251</cve>
+   <cve>CVE-2019-11358</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: spring-cloud-netflix-eureka-server-2.2.2.RELEASE.jar: wro.js
+   ]]></notes>
+   <packageUrl regex="true">^pkg:javascript/jquery@.*$</packageUrl>
+   <cve>CVE-2019-11358</cve>
+</suppress>
+
+<!-- bouncy castle - we use 1.64 and this covers the latest issues -->
+
+<suppress>
+   <notes><![CDATA[
+   file name: bcprov-jdk15on-1.64.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.bouncycastle/bcprov\-jdk15on@.*$</packageUrl>
+   <cpe>cpe:/a:bouncycastle:legion-of-the-bouncy-castle-java-crytography-api</cpe>
+</suppress>
+
+
+</suppressions>

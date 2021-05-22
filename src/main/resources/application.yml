@@ -1,0 +1,45 @@
+#Name of the application
+spring:
+  application:
+    name: cash36-ebics
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  output: 
+    ansi: 
+      enabled: ${CASH36_ANSI:ALWAYS}
+      
+server:
+  port: ${CASH36_SERVER_PORT:8093}
+  servlet:
+    context-path: /ebics
+
+springdoc:
+   swagger-ui:
+#       path: "/ebics/v2/api-docs/"
+      url: '/ebics/v2/api-docs/'
+#       urls: 
+#          - name: localhost
+#            url: "/ebics/v2/api-docs/"
+#          - name: element36
+#            url: test2
+#       enabled: true
+      disable-swagger-default-url: true
+      
+
+ebics:
+  entrypoint: ${CASH36_EBICS_ENTRYPOINT:java -cp ./ebics-cli-1.1.jar org.kopi.ebics.client.EbicsClient}
+  mode: ${CASH36_EBICS_MODE:proxy}
+  outputDir: ${CASH36_EBICS_OUTPUTDIR:./out}
+  peggingAccount: 
+     iban: CH21 0830 7000 2895 3732 0
+     bic: HYPLCH2257B
+  ignoreAccounts:
+     #- "CH2108307000289537320"
+  proxy:
+     statement: ${CASH36_EBICS_STATEMENT:./src/test/resources/proxy-statements.zip}
+           
+logging:
+  level:
+     org.springframework: WARN
+     io.element36: TRACE
+     ROOT: WARN      

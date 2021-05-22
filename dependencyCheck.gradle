@@ -1,0 +1,24 @@
+dependencyCheck {
+  failBuildOnCVSS = 5
+  failOnError = true
+  suppressionFile = 'dependencyCheck-suppressions.xml'
+  analyzers {
+    experimentalEnabled = true
+    archiveEnabled = true
+    jarEnabled = true
+    centralEnabled = true
+    nexusEnabled = false
+    pyDistributionEnabled = false
+    pyPackageEnabled = false
+    rubygemsEnabled = false
+    opensslEnabled = false
+    nuspecEnabled = false
+    assemblyEnabled = false
+    cmakeEnabled = false
+    autoconfEnabled = true
+    composerEnabled = false
+    nodeEnabled = true
+    cocoapodsEnabled = false
+    swiftEnabled = false
+  }
+}

@@ -1,0 +1,12 @@
+# While testing ebics, we use prod profile with test values.
+#ebics:
+#  requireAuth: true
+#  tokenPubKey: public-prod.txt
+ebics:
+  requireAuth: true
+  tokenPubKey: "/etc/backend-secrets-files/public-prod.txt"
+  outputDir: ${CASH36_EBICS_OUTPUTDIR:/root/ebics/out}
+  mode: ${CASH36_EBICS_MODE:enabled}
+    
+spring.output.ansi.enabled: NEVER
+

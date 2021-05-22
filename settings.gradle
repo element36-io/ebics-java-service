@@ -1,0 +1,11 @@
+pluginManagement {
+	repositories {
+		gradlePluginPortal()
+	}
+    plugins {
+        id 'org.springframework.boot' version "$springVersion"
+        id "org.owasp.dependencycheck" version "$owaspVersion"
+    }	
+}
+
+

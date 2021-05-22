@@ -1,0 +1,39 @@
+HELP.md
+.gradle
+build
+lib
+!gradle/wrapper/gradle-wrapper.jar
+ebics-cli-*.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### YARN ###
+node_modules
+
+## MACOS ###
+.DS_Store
+/bin/

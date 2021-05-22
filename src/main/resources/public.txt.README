@@ -1,0 +1,2 @@
+This key is set for oauth - refer to docu how to generate a key for production (e.g. ssh-keygen)
+https://docs.spring.io/spring-security/oauth/apidocs/org/springframework/security/oauth2/provider/token/store/JwtAccessTokenConverter.html
