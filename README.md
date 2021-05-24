@@ -9,10 +9,10 @@ Setting it up successfully means, that you can
 - Read daily statements including account balance and transactions of multiple accounts
 - Trigger payments from your bank account(s)
 
-## Start the service & quickly take a look at the API
+## Start the service & take a look at the API
 
 
-    docker run -p 8093:8043 e36io/ebics-service 
+    docker run -p 8093:8093 e36io/ebics-service 
 
 
 Open [Swagger on localhost:8093](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/) in your 
@@ -53,9 +53,9 @@ represented by national changes of the original Ebics XML documents. For example
 
 A selection of test interfaces for Ebics and test environments in Switzerland: 
 
-| Bank  | URL for testing/validating | more info | 
-| SIX Group | [validation](https://validation.iso-payments.ch/)  | [Url](http://www.six-interbank-clearing.com/de/home/standardization/iso-payments/customer-bank/implementation-guidelines.html) |
+| Bank  | URL for testing/validating | more info |
 |---|---|---|
+| SIX Group | [validation](https://validation.iso-payments.ch/)  | [Url](http://www.six-interbank-clearing.com/de/home/standardization/iso-payments/customer-bank/implementation-guidelines.html) |
 | Credit Suisse  | [test-API](https://credit-suisse.com/iso20022test) | [help](https://iso20022test.credit-suisse.com/help) |
 | PostFinance | [register](https://isotest.postfinance.ch/corporates/) ||
 | Raiffeisen  | [test-API](http://raiffeisen.ch/testbank) ||
@@ -88,15 +88,14 @@ can be done in the `io.element36.cash36.ebics.strategy.*` package. Examples:
 mapping of daily statements to Json Response. 
 - Add new commands to ebics-java-cli: look for `org.kopi.ebics.interfaces.OrderType` which hold commands available at the command line but
  which are also directly transferred to the Ebics server as commands. Look for national mapping tables if you face this issue. E.g. 
+ [Switzerland](https://www.six-group.com/dam/download/banking-services/interbank-clearing/en/standardization/ebics/mapping-table.pdf)
+ and [Austria](https://www.stuzza.at/de/download/ebics/418-btf-mappingtabelle-at-v20210506.html)
 
-- [Switzerland](https://www.six-group.com/dam/download/banking-services/interbank-clearing/en/standardization/ebics/mapping-table.pdf)
-- [Austria](https://www.stuzza.at/de/download/ebics/418-btf-mappingtabelle-at-v20210506.html)
-
-You may check out www.ebics.ch, www.ebics.de. www.ebics.at, www.ebics.org
+You may check out www.ebics.ch, www.ebics.de. www.ebics.at, www.ebics.org. 
 
 ## Kudos and references: 
 
-The project is forked form [Ebics Java Client] (https://github.com/uwemaurer/ebics-java-client/), 
+The project is forked form [Ebics Java Client](https://github.com/uwemaurer/ebics-java-client/), 
 which was based on a [sourceforge project](https://sourceforge.net/p/ebics/). 
 
 Main differences with this fork from ebics-java-client form uwemaurrer: 
