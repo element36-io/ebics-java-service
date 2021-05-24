@@ -11,11 +11,13 @@ Setting it up successfully means, that you can
 
 ## Start the service & quickly take a look at the API
 
-```
-docker run XXX
-```
-Open [localhost:8093](http://localhost:8093/XXX in your Browser to access Swagger.
 
+    docker run -p 8093:8043 e36io/ebics-service 
+
+
+Open [Swagger on localhost:8093](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/) in your 
+browser and test the `simulate` service. For other APIs you need to set up and connect to your
+banks Ebics API. 
 
 ## Setup
  
@@ -33,9 +35,6 @@ A crucial part to understand of Ebics is the key-exchange- roughly it works like
 
  Check [ebics.org](https://www.ebics.org/en/home) for details. 
 
-![How Ebics works](https://miro.medium.com/max/984/1*0z3e_v3qErc4tF1a5JxhEg.png "How Ebics works")
-
-
 ## Supported banks and national flavours
 
 Ebics standard was initiated by banks German/French partnership later adopted by Austria and Switzerland
@@ -44,36 +43,30 @@ banks supporting Ebics was not found.
 
 There are national flavours regarding the data on bank transfers and bank statements, which are
 represented by national changes of the original Ebics XML documents. For example Switzerland: 
-- In Switzerland in addition to a reference field (e.g. invoice 1234) you may use a 
+
+- In addition to a reference field (e.g. invoice 1234) you may use a dedicated
   "reference number" on payment slips  which you don't find in other countries
-- Account statements, status reports are in a ZIP container (zipped).
-
-With the homogenization of European banking interfaces (SEPA, ISO20022) you may use a common and minimal 
-set information for working with bank interfaces which is reflected by the REST interface of this
-project. Anyway you might need to adapt to local flavour of your country or your bank, which is 
-can be done in the 'io.element36.cash36.ebics.strategy.*' package. 
-
-If you need to adapt the code,
-look for platforms which support testing your Ebics documents - there are national platforms, 
- banks and IT providers - see Tables and Links below or www.ebics.ch, www.ebics.de. www.ebics.at, www.ebics.org
+- Account statements, status reports are ZIP files available through separate Ebics commands. 
+  Generally it is easy to add new commands to the `ebics-java-client` library. 
 
 ### Switzerland
 
 A selection of test interfaces for Ebics and test environments in Switzerland: 
 
 | Bank  | URL for testing/validating | more info | 
-| SIX Group | https://validation.iso-payments.ch/  | http://www.six-interbank-clearing.com/de/home/standardization/iso-payments/customer-bank/implementation-guidelines.html |
-| Credit Suisse  | https://credit-suisse.com/iso20022test | https://iso20022test.credit-suisse.com/help |
-| PostFinance | https://isotest.postfinance.ch/corporates/ ||
-| Raiffeisen  | http://raiffeisen.ch/testbank ||
-| UBS  | https://ubs-paymentstandards.ch/login | https://www.ubs.com/ch/de/swissbank/unternehmen/zahlungsverkehr/harmonisierung/testplattform-iso-20022.html ||
-| ZKB  | https://testplattform.zkb.ch/ | https://testplattform.zkb.ch/help |
+| SIX Group | [validation](https://validation.iso-payments.ch/)  | [Url](http://www.six-interbank-clearing.com/de/home/standardization/iso-payments/customer-bank/implementation-guidelines.html) |
+|---|---|---|
+| Credit Suisse  | [test-API](https://credit-suisse.com/iso20022test) | [help](https://iso20022test.credit-suisse.com/help) |
+| PostFinance | [register](https://isotest.postfinance.ch/corporates/) ||
+| Raiffeisen  | [test-API](http://raiffeisen.ch/testbank) ||
+| UBS  | [register](https://ubs-paymentstandards.ch/login) | [info](https://www.ubs.com/ch/de/swissbank/unternehmen/zahlungsverkehr/harmonisierung/testplattform-iso-20022.html) ||
+| ZKB  | [test-platform](https://testplattform.zkb.ch/) | [help](https://testplattform.zkb.ch/help) |
 
 ### Other countries
 
 Besides France, Germany, Austria and Switzerland many other countries are covered with an Ebics- Service. 
 
-Non-exhaustive examples of European banks: 
+Non-exhaustive examples of European banks providing Ebics information:  
 
 - [BNP Paribas](https://cashmanagement.bnpparibas.com/our-solutions/solution/global-ebics)
 - [Santander Cash Nexus](https://www.santandercashnexus.com/information_en.html)
@@ -84,37 +77,33 @@ Non-exhaustive examples of European banks:
 
 ## Adapt to national flavours 
 
-The setup process does not need to be adapted. You may want to adapt 
-- the conversion between Ebics-XML documents: Adapt e.g. `io.element36.cash36.ebics.strategy.implStatementCamt53_001` for processing of daily statements.
-- add new commands to ebics-java-cli: look for `org.kopi.ebics.interfaces.OrderType` which hold commands available at the command line but
- which are also directly transferred to the Ebics server as commands. An quick start is to look for national mapping tables if you face this issue. 
+The setup process does not need to be adapted. With the homogenization of European 
+banking interfaces (SEPA, ISO20022) you may use a common and minimal 
+set information for working with bank interfaces which is reflected by the REST interface of this
+project. Anyway you might need to adapt to local flavour of your country or your bank, which is 
+can be done in the `io.element36.cash36.ebics.strategy.*` package. Examples: 
 
-Examples: 
+
+- Adapt conversion between Ebics-XML documents: E.g. `io.element36.cash36.ebics.strategy.implStatementCamt53_001` for 
+mapping of daily statements to Json Response. 
+- Add new commands to ebics-java-cli: look for `org.kopi.ebics.interfaces.OrderType` which hold commands available at the command line but
+ which are also directly transferred to the Ebics server as commands. Look for national mapping tables if you face this issue. E.g. 
 
 - [Switzerland](https://www.six-group.com/dam/download/banking-services/interbank-clearing/en/standardization/ebics/mapping-table.pdf)
 - [Austria](https://www.stuzza.at/de/download/ebics/418-btf-mappingtabelle-at-v20210506.html)
 
-## Run tests
-
-Run tests for the ebics-java-client on linux - it mounts sources into a docker container with java and the maven build tool:
-
-```
-git clone git@github.com:element36-io/ebics-java-client.git
-cd ebics-java-client
-docker run -it -v $PWD:/app -w /app  maven:3-jdk-8 mvn test surefire-report:report
-
-```
-See ./target for test results. `surefire-report:report` is optional but it creates test report here: ./target/site/surefire-report.html  
-
-
-See [here](https://github.com/element36-io/ebics-java-client/blob/master/README.md) how to run tests on ebics-java-client. 
-
-
+You may check out www.ebics.ch, www.ebics.de. www.ebics.at, www.ebics.org
 
 ## Kudos and references: 
 
-Ebics-java-client is based cloned from https://github.com/uwemaurer/ebics-java-client
+The project is forked form [Ebics Java Client] (https://github.com/uwemaurer/ebics-java-client/), 
+which was based on a [sourceforge project](https://sourceforge.net/p/ebics/). 
 
+Main differences with this fork from ebics-java-client form uwemaurrer: 
 
-
+- Fixed vulnerabilities of bouncycastle and log4j
+- Support for new commands used in Switzerland.
+- Jar file in maven central repository.
+- Docker image is automatically built from master branch on Dockerhub. 
+- Changed documentation for usage with docker
 
