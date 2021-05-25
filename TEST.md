@@ -3,12 +3,10 @@
 Run tests for the ebics-java-client on linux - it mounts sources into a docker container with java and the maven build tool
 
     git clone  https://github.com/element36-io/ebics-java-service.git
-    cd ebics-java-client; mkdir ./app;
-    docker run -it -v $PWD:/app -w /app  maven:3-jdk-8 mvn test surefire-report:report
-
-See `./target` for test results. `surefire-report:report` is optional but it creates test report here: `./target/site/surefire-report.html`
-
-With minimum Java 8 and Maven run tests directly with `mvn test surefire-report:report`
+    cd ebics-java-service; mkdir ./app;
+    docker run -it -v $PWD:/app -w /app  gradle:6-jdk8-hotspot gradle test
+    
+See `./build/reports/tests/test/index.html` for test results. With minimum Java 8 and Maven run tests directly with `gradle test`
 
 See [here](https://github.com/element36-io/ebics-java-client/blob/master/README.md) how to run tests on ebics-java-client. 
 
