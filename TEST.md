@@ -2,7 +2,7 @@
 
 Run tests for the ebics-java-client on linux - it mounts sources into a docker container with java and the maven build tool
 
-    git clone git@github.com:element36-io/ebics-java-client.git
+    git clone  https://github.com/element36-io/ebics-java-service.git
     cd ebics-java-client; mkdir ./app;
     docker run -it -v $PWD:/app -w /app  maven:3-jdk-8 mvn test surefire-report:report
 
