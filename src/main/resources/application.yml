@@ -34,12 +34,13 @@ ebics:
      iban: CH21 0830 7000 2895 3732 0
      bic: HYPLCH2257B
   ignoreAccounts:
+    # do not integrate information of these accounts into json responses
      #- "CH2108307000289537320"
   proxy:
      statement: ${CASH36_EBICS_STATEMENT:./src/test/resources/proxy-statements.zip}
            
 logging:
   level:
-     org.springframework: WARN
+     org.springframework: DEBUG
      io.element36: TRACE
      ROOT: WARN      
