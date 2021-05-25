@@ -16,9 +16,9 @@ See [here](https://github.com/element36-io/ebics-java-client/blob/master/README.
 
     docker run -p 8093:8093 e36io/ebics-service
 
-Open [Swagger on localhost:8093](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/) in your 
-browser and test the `simulate` service. For other APIs you need to set up and connect to your
-banks Ebics API. 
-
-
-
+Open [Swagger](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/) in your 
+browser and test the `simulate` service. You may check and download the payment document (ebics document) 
+which can be tested manually against your bank. Many banks offer an upload service for transations. 
+Other APIs need an online connection to your bank, but the default is set so simulate an banking 
+interface. To set up and connect to your banks Ebics API you need to [switch to productive spring boot
+profile](https://www.baeldung.com/spring-profiles) by using `export spring_profiles_active=prod`. 
