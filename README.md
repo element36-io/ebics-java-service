@@ -11,6 +11,7 @@ Setting it up successfully means, that you can
 
 ## Start the service & take a look at the API
 
+Start the ebics server to access Swagger API: 
 
     docker run -p 8093:8093 e36io/ebics-service 
 
@@ -18,6 +19,7 @@ Setting it up successfully means, that you can
 Open [Swagger on localhost:8093](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/) in your 
 browser and test the `simulate` service. For other APIs you need to set up and connect to your
 banks Ebics API. 
+
 
 ## Setup Ebics Configuration
  
@@ -89,6 +91,7 @@ mapping of daily statements to Json Response.
 
 You may check out www.ebics.ch, www.ebics.de. www.ebics.at, www.ebics.org. 
 
+
 ## Kudos and references: 
 
 The project is forked form [Ebics Java Client](https://github.com/uwemaurer/ebics-java-client/), 
@@ -102,3 +105,4 @@ Main differences with this fork from ebics-java-client form uwemaurrer:
 - Docker image is automatically built from master branch on Dockerhub.
 - Changed documentation for usage with docker
 
+Run & check tests [TEST.md](TEST.md). 

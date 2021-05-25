@@ -8,6 +8,7 @@ Run tests for the ebics-java-client on linux - it mounts sources into a docker c
 
 See `./target` for test results. `surefire-report:report` is optional but it creates test report here: `./target/site/surefire-report.html`
 
+With minimum Java 8 and Maven run tests directly with `mvn test surefire-report:report`
 
 See [here](https://github.com/element36-io/ebics-java-client/blob/master/README.md) how to run tests on ebics-java-client. 
 
