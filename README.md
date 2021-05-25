@@ -29,7 +29,7 @@ and commands get logged.
 Production mode (Spring `prod` profile) requires Ebics to be set up. 
 :warning: This may trigger real payments from your bank account!
 
-    docker run -v $HOME/ebics=/root/ebics --env spring.profiles.active=dev=prod -p 8093:8093 e36io/ebics-service 
+    docker run -v $HOME/ebics=/root/ebics --env spring.profiles.active=prod -p 8093:8093 e36io/ebics-service 
     
 Again, open Open [Swagger](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/)
 to test the API. All Ebics documents which are exchanged with the bank are stored in `HOME/ebics/client`. 
