@@ -59,3 +59,12 @@ or docker container.
 
 Daily statements can only be retrieved once - then you get an error if you request again. 
 This Ebics "error" sticks, until you have a new transaction on your accounts. 
+
+### ERROR - Command not supported
+
+Not all banks support the full set of commands, or you need to configure a differnt command to retrieve your
+daily statement. For example your bank does not support Zipping the daily statements (Z53 vs C53) -
+please see 
+[`OrderType.java`](https://github.com/element36-io/ebics-java-client/blob/master/src/main/java/org/kopi/ebics/session/OrderType.java) for supported commands and compare that with the list of supported commands of 
+your bank. 
+
