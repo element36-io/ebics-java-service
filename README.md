@@ -1,9 +1,9 @@
 ## Overview
 
-This project wraps a [java-based command-line tool](https://github.com/element36-io/ebics-java-client)
-into a REST service. It can connect with your bank using 
+This project connects with your bank account using 
 [Ebics](https://en.wikipedia.org/wiki/Electronic_Banking_Internet_Communication_Standard) 
-standard.
+standard. The project wraps a [java-based command-line tool](https://github.com/element36-io/ebics-java-client)
+into a REST service and add features like cron and webhooks. 
 
 Setting it up successfully means, that you can 
 - Read daily statements including account balance and transactions of multiple accounts
@@ -11,15 +11,13 @@ Setting it up successfully means, that you can
 
 ## Start the service & take a look at the API
 
-Start the ebics server to access Swagger API: 
 
     docker run -p 8093:8093 e36io/ebics-service 
 
 
-Open [Swagger on localhost:8093](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/) in your 
-browser and test the `simulate` service. For other APIs you need to set up and connect to your
+Open [Swagger](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/) in your 
+browser and test the `simulate` service.  For other APIs you need to set up and connect to your
 banks Ebics API. 
-
 
 ## Setup Ebics Configuration
  
