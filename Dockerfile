@@ -1,6 +1,8 @@
 # Local build and debugging commands - you might want to remove sudo if not needed
 # sudo docker build . -t ebics; 
-# sudo docker run ebics -p 8093
+# sudo docker run  -p 8093:8093 ebics
+# sudo docker run  -p 8093:8093 -v $HOME/ebics:/root/ebics ebics 
+# sudo docker run  -p 8093:8093 -v $HOME/ebics:/root/ebics -env spring.profiles.active=prod ebics
 # sudo docker run ebics -cp "ebics-cli.jar:lib/*" org.kopi.ebics.client.EbicsClient --help
 # sudo docker run -it --entrypoint sh ebics
 # sudo docker run -v $HOME/ebics:/root/ebics ebics -cp "ebics-cli.jar:lib/*" org.kopi.ebics.client.EbicsClient --sta -o /root/ebics/out sta.txt

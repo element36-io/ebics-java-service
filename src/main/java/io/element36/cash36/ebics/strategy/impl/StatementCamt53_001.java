@@ -17,6 +17,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 
 import io.element36.cash36.EbicsTools;
 import io.element36.cash36.ebics.config.AppConfig;
@@ -44,16 +45,17 @@ public class StatementCamt53_001 implements Statement {
 
 	@Value("${ebics.proxy.statement}")
 	String proxyStatementFile;
-	
-	//@Value("${ebics.ignoreAccounts}")
-	//String[] ignoreAccounts;
-	//List<Object> ignoreAccounts;
+
+    public List<StatementDTO> process(String z53OutRessource) throws IOException {
+        return this.process(new File(z53OutRessource));
+    }
 
     public List<StatementDTO> process(File z53OutFile) throws IOException {
+        // TODO: check for zipped and non-zipped files
         // Unzip Output File
-    	log.debug(" unzipping #{'${arrayOfStrings}'.split(',')}"+z53OutFile);
+    	log.debug(" unzipping "+z53OutFile);
         List<File> statements;
-        if (z53OutFile.getParentFile().getName().equals("error")) {
+        if (z53OutFile.exists() && z53OutFile.getParentFile().getName().equals("error")) {
             statements = new EbicsTools().unzip(z53OutFile, appConfig.outputDir + "/error/" + FilenameUtils.removeExtension(z53OutFile.getName()));
         } else {
         	String unzipDir=appConfig.outputDir + "/" + FilenameUtils.removeExtension(z53OutFile.getName());

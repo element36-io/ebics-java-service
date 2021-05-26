@@ -9,5 +9,7 @@ import io.element36.cash36.ebics.dto.StatementDTO;
 public interface Statement {
 
     public List<StatementDTO> process(File z53OutFile) throws IOException;
+
+    public List<StatementDTO> process(String z53OutRessource) throws IOException;
     
 }

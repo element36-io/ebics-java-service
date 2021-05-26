@@ -32,7 +32,7 @@ ebics:
     #- "CH2108307000289537320"
   proxy:
      # sends this ebics file when simulate is called
-     statement: ${CASH36_EBICS_STATEMENT:./simulate/simulated-account-statements.zip}
+     statement: ${CASH36_EBICS_STATEMENT:simulated-account-statements.zip}
            
 logging:
   level:
