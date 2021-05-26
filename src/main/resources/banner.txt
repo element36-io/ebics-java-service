@@ -25,14 +25,11 @@ ${Ansi.BLUE} &&&&&&ooooooooooooooooooooooooooo
 ${Ansi.BLUE} &&&&&&&&&&ooooooooooooooooooooooo
 ${Ansi.BLUE}  &&&&&&&&&&&&ooooooooooooooooooo
 
-${AnsiColor.BRIGHT_WHITE}---------------------------------------------------------------
-${Ansi.BLUE}                _     _____  __  ${AnsiColor.CYAN}            _     _
-${Ansi.BLUE}   ___ __ _ ___| |__ |___ / / /_ ${AnsiColor.CYAN}        ___| |__ (_) ___ ___
-${Ansi.BLUE}  / __/ _` / __| '_ \  |_ \| '_ \${AnsiColor.CYAN} _____ / _ \ '_ \| |/ __/ __|
-${Ansi.BLUE} | (_| (_| \__ \ | | |___) | (_) ${AnsiColor.CYAN}|_____|  __/ |_) | | (__\__ \
-${Ansi.BLUE}  \___\__,_|___/_| |_|____/ \___/${AnsiColor.CYAN}       \___|_.__/|_|\___|___/
-${Ansi.BLUE}                                 ${AnsiColor.CYAN}
-${AnsiColor.BRIGHT_WHITE}---------------------------------------------------------------
-${Ansi.DEFAULT} Application Name : ${spring.application.name}
-${Ansi.DEFAULT} Spring Boot Version : Spring Boot${spring-boot.formatted-version}
-${AnsiColor.BRIGHT_WHITE}---------------------------------------------------------------
+
+         |      _)                                                      _)               
+   _ \   __ \    |    __|    __|            __|    _ \    __|  \ \   /   |    __|    _ \ 
+   __/   |   |   |   (     \__ \  _____|  \__ \    __/   |      \ \ /    |   (       __/ 
+ \___|  _.__/   _|  \___|  ____/          ____/  \___|  _|       \_/    _|  \___|  \___| 
+                                                                                         
+${application.title} ${application.version}
+Powered by Spring Boot ${spring-boot.version}

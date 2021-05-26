@@ -49,31 +49,17 @@ dependencies {
 	implementation 'javax.xml.bind:jaxb-api:'+jaxbVersion
 	implementation 'javax.activation:activation:1.1.1'
 	implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.4'
-	execebics 'io.github.element36-io:ebics-cli:1.2'
+	execebics 'io.github.element36-io:ebics-cli'
 	
-
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	testImplementation 'junit:junit'
 	implementation 'org.springdoc:springdoc-openapi-ui:1.5.8'
 
-	//implementation 'org.kopi:ebics:1.1'
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	implementation 'org.springframework.boot:spring-boot-starter-parent:2.4.0'
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
-
-	// vulns 10.4.21
-	//implementation 'com.thoughtworks.xstream:xstream:1.4.16' // added due to vuln
-    //implementation 'org.bouncycastle:bcprov-jdk15on:1.68' // vuln
-    // for vulnerabilities 05.03.2020
-	//implementation 'org.springframework.security.oauth:spring-security-oauth2:2.5.1.RELEASE'
 	
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    //implementation ( 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client' ) {
-     // 	exclude module: 'org.springframework.cloud:spring-cloud-starter-ribbon'
-      //	exclude module: 'om.netflix.ribbon:ribbon-eureka'
-//	}
-    
-  //  implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
     implementation 'org.apache.commons:commons-lang3:3.6'
     implementation 'org.apache.commons:commons-exec:1.3'
     implementation 'commons-io:commons-io:2.6'

@@ -1,9 +1,9 @@
 # Local build and debugging commands - you might want to remove sudo if not needed
 # sudo docker build . -t ebics; 
 # sudo docker run ebics -p 8093
-# sudo docker run ebics -cp "ebics-cli-1.2.jar:lib/*" org.kopi.ebics.client.EbicsClient --help
+# sudo docker run ebics -cp "ebics-cli.jar:lib/*" org.kopi.ebics.client.EbicsClient --help
 # sudo docker run -it --entrypoint sh ebics
-# sudo docker run -v $HOME/ebics:/root/ebics ebics -cp "ebics-cli-1.2.jar:lib/*" org.kopi.ebics.client.EbicsClient --sta -o /root/ebics/out sta.txt
+# sudo docker run -v $HOME/ebics:/root/ebics ebics -cp "ebics-cli.jar:lib/*" org.kopi.ebics.client.EbicsClient --sta -o /root/ebics/out sta.txt
 
 FROM gradle:6-jdk8-hotspot as build
 
@@ -26,9 +26,9 @@ COPY --from=build /app/*.jar /app/
 COPY --from=build /app/lib/*.jar /app/lib/
 COPY --from=build /app/build/libs/app-1.0.0.jar /app
 #remove version form jar files in container and note the used version
-RUN FN=`(ls app-*.jar | head -1)`;  echo $FN; mv $FN ebics-service.jar; touch $FN.version
-RUN FN=`(ls ebics-*.jar | head -1)`;  echo $FN;  mv $FN ebics-cli.jar;  touch $FN.version
-#see application.yml
+RUN FN=`(ls app-*.jar   | head -1)`;  echo $FN; mv $FN ebics-service.jar;  touch $FN.version
+RUN FN=`(ls ebics-*.jar | head -1)`;  echo $FN;  mv $FN ebics-cli.jar;     touch $FN.version
+#see application*.yml or spring boot spring.active.profiles for port and other configs
 EXPOSE 8093
 ENTRYPOINT ["java"]
 CMD ["-jar", "ebics-service.jar" ]

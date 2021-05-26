@@ -29,7 +29,7 @@ and commands get logged.
 Production mode (Spring `prod` profile) requires Ebics to be set up. 
 :warning: This may trigger real payments from your bank account!
 
-    docker run -v $HOME/ebics=/root/ebics --env spring.profiles.active=prod -p 8093:8093 e36io/ebics-service 
+    docker run -v $HOME/ebics:/root/ebics --env spring.profiles.active=prod -p 8093:8093 e36io/ebics-service 
     
 Again, open Open [Swagger](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/)
 to test the API. All Ebics documents which are exchanged with the bank are stored in `HOME/ebics/client`. 
@@ -101,11 +101,12 @@ mapping of daily statements to Json Response.
  which are also directly transferred to the Ebics server as commands. Look for national mapping tables if you face this issue. E.g. 
  [Switzerland](https://www.six-group.com/dam/download/banking-services/interbank-clearing/en/standardization/ebics/mapping-table.pdf)
  and [Austria](https://www.stuzza.at/de/download/ebics/418-btf-mappingtabelle-at-v20210506.html)
+- Genereate new ebics documents based on XSD specifications in `build.gradle` and `generateSourcesForXsd`. 
 
 You may check out www.ebics.ch, www.ebics.de. www.ebics.at, www.ebics.org. 
 
 
-## Kudos and references: 
+## Kudos and references
 
 The project is forked form [Ebics Java Client](https://github.com/uwemaurer/ebics-java-client/), 
 which was based on a [sourceforge project](https://sourceforge.net/p/ebics/). 
