@@ -1,7 +1,6 @@
 package io.element36.cash36.ebics.service.impl;
 
 import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import io.element36.cash36.ebics.config.AppConfig;
 import io.element36.cash36.ebics.config.EbicsMode;
 import io.element36.cash36.ebics.service.EbicsPaymentService;
 import io.element36.cash36.ebics.service.GeneratePainService;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -34,8 +32,7 @@ public class EbicsPaymentServiceImpl implements EbicsPaymentService {
     @Override
     public String makePayment(String msgId, String pmtInfId, String sourceIban, String sourceBic, BigDecimal amount,
                               String currency, String receipientIban, String receipientBankName, String recipientBankPostAccount,
-                              String receipientName, String purpose,
-                              String ourReference, String receipientStreet, String receipientStreetNr,
+                              String receipientName, String purpose, String ourReference, String receipientStreet, String receipientStreetNr,
                               String receipientZip, String receipientCity, String receipientCountry, String clearingSystemMemberId,
                               boolean nationalPayment) throws Exception {
         {
@@ -44,10 +41,12 @@ public class EbicsPaymentServiceImpl implements EbicsPaymentService {
             File painFile = painService.generatePainFile(msgId, pmtInfId, sourceIban, sourceBic, amount, currency, receipientIban,
                     receipientBankName, recipientBankPostAccount, receipientName, purpose, ourReference, receipientStreet,
                     receipientStreetNr, receipientZip, receipientCity, receipientCountry, clearingSystemMemberId, nationalPayment);
+            
+           
+            String command=appConfig.entryPoint+" --xe2 -i "+ painFile.getAbsolutePath();
+            log.debug(" makePayment - command {}, file {} ",command,painFile);
 
-            new EbicsTools().printContent(painFile);
-
-            return "DEV -  Payment generated but not sent:"+painFile.getCanonicalPath();
+            return "DEV -  Payment generated but not sent:"+painFile.getCanonicalPath()+"; command: "+command;
         }
     }
     
@@ -55,9 +54,8 @@ public class EbicsPaymentServiceImpl implements EbicsPaymentService {
 	@Override
     public String simulatePayment(String msgId, String pmtInfId, String sourceIban, String sourceBic, BigDecimal amount,
                               String currency, String receipientIban, String receipientBankName, String recipientBankPostAccount,
-                              String receipientName, String purpose, String ourReference, String receipientStreet,
-                              String receipientStreetNr, String receipientZip, String receipientCity,
-                              String receipientCountry, String clearingSystemMemberId,
+                              String receipientName, String purpose, String ourReference, String receipientStreet,  String receipientStreetNr, 
+                              String receipientZip, String receipientCity, String receipientCountry, String clearingSystemMemberId,
                               boolean nationalPayment) throws Exception {
 
 		String result="simulatePayment - generate pain file:\n";

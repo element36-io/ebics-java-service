@@ -32,7 +32,12 @@ public class EbicsTools {
 	
     public void printContent(File file) {
     	try {
-			log.debug("ebics - content of file {} is:\n{}",file.getName(),new String(Files.readAllBytes(file.toPath())));
+
+			if (file.exists()) 
+				log.debug("ebics - content of file {} is:\n{}",file.getName(),new String(Files.readAllBytes(file.toPath())));
+			else	
+				log.debug("ebics - not a file - do not print "+file.getName());
+
 		} catch (IOException e) {
 			log.error("ERROR Utils.printContent ",e);
 		}

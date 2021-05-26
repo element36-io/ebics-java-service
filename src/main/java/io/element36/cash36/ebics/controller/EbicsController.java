@@ -65,18 +65,18 @@ public class EbicsController {
     @Autowired
     EbicsPaymentStatusService ebicsPaymentStatusService;
 
-    @Value("$ebics.peggingAcccount.iban")
+    @Value("${ebics.peggingAccount.iban}")
     private String peggingSourceIban;
     
-    @Value("$ebics.peggingAcccount.bic")
+    @Value("${ebics.peggingAccount.bic}")
     private String peggingSourceBic;
     
     
 	@ApiOperation("Create a tarnsaction with your pegging account configured in `ebics.pegging.account`. "+
                 "WARNING: In prod mode it sends real money - in dev mode it shows the command and the Ebics document in the result. ")
-    @PostMapping("/create")
+    @PostMapping("/unpeg")
     public ResponseEntity<String> createUnpegOrder(@RequestBody @Valid UnpegPayment payment,HttpServletRequest servletRequest ) {
-    	log.debug("unpeg {}",payment);
+    	log.debug("unpeg {} from {} ",payment, peggingSourceIban);
 
         String result;
        
