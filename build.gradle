@@ -85,9 +85,22 @@ task copyEbicsJar(type: Copy) {
     from ("$projectDir/lib") {
     	include "ebics-cli-*.jar"
     }
+
     into "$projectDir"
+
+}
+String stripVersion(String fileNameWithVersion) {
+		String ext = fileNameWithVersion.substring(fileNameWithVersion.lastIndexOf("."),fileNameWithVersion.length())
+		int end = fileNameWithVersion.lastIndexOf("-"); //assumes that: name-version.ext. Will not work with name-version-SNAPSHOT.ext
+		String fileNameWithoutVersion = fileNameWithVersion.substring(0, end) + ext
+		return fileNameWithoutVersion
 }
 build.finalizedBy(copyToLib,copyEbicsJar)
+
+// then gradle -Dkey=value works
+bootRun {
+    systemProperties System.properties
+}
 
 dependencies {
     jaxb 'javax.xml.bind:jaxb-api:'+jaxbVersion

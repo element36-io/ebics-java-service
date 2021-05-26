@@ -30,12 +30,13 @@ ebics:
   ignoreAccounts:
     # do not integrate information of these accounts into json responses
     #- "CH2108307000289537320"
+
   proxy:
      # sends this ebics file when simulate is called
      statement: ${CASH36_EBICS_STATEMENT:simulated-account-statements.zip}
            
 logging:
   level:
-     org.springframework: WARN
+     org.springframework: DEBUG
      io.element36: TRACE
      ROOT: WARN      

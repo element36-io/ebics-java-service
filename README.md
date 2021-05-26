@@ -14,7 +14,6 @@ Setting it up successfully means, that you can
 
     docker run -p 8093:8093 e36io/ebics-service 
 
-
 Open [Swagger](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/) in your 
 browser and test the `simulate` service.  For other APIs you need to set up and connect to your
 banks Ebics API. 
@@ -59,7 +58,11 @@ There are national flavours regarding the data on bank transfers and bank statem
 represented by national changes of the original Ebics XML documents. For example Switzerland: 
 
 - In addition to a reference field (e.g. invoice 1234) you may use a dedicated
+<<<<<<< HEAD
   "reference number" on payment slips which you don't find on the payment slips of other countries
+=======
+  "reference number" on payment slips  which you don't find in other countries
+>>>>>>> main
 - Account statements, status reports are ZIP files available through separate Ebics commands. 
   Generally it is easy to add new commands to the `ebics-java-client` library. 
 
@@ -78,6 +81,11 @@ A selection of test interfaces for Ebics and test environments in Switzerland:
 
 ### Other countries
 
+<<<<<<< HEAD
+=======
+Besides France, Germany, Austria and Switzerland many other countries are covered with an Ebics- Service. 
+
+>>>>>>> main
 Non-exhaustive examples of European banks providing Ebics information:  
 
 - [BNP Paribas](https://cashmanagement.bnpparibas.com/our-solutions/solution/global-ebics)
@@ -89,9 +97,16 @@ Non-exhaustive examples of European banks providing Ebics information:
 
 ## Adapt to national flavours 
 
+<<<<<<< HEAD
 The setup process does not need to be adapted.  Anyway you might need to adapt to local flavour of your 
 country or your bank if they support different Ebics commands or have national modifications of their 
 Ebics XML documents. This  
+=======
+The setup process does not need to be adapted. With the homogenization of European 
+banking interfaces (SEPA, ISO20022) you may use a common and minimal 
+set information for working with bank interfaces which is reflected by the REST interface of this
+project. Anyway you might need to adapt to local flavour of your country or your bank, which is 
+>>>>>>> main
 can be done in the `io.element36.cash36.ebics.strategy.*` package. Examples: 
 
 
@@ -101,22 +116,34 @@ mapping of daily statements to Json Response.
  which are also directly transferred to the Ebics server as commands. Look for national mapping tables if you face this issue. E.g. 
  [Switzerland](https://www.six-group.com/dam/download/banking-services/interbank-clearing/en/standardization/ebics/mapping-table.pdf)
  and [Austria](https://www.stuzza.at/de/download/ebics/418-btf-mappingtabelle-at-v20210506.html)
+<<<<<<< HEAD
 - Genereate new ebics documents based on XSD specifications in `build.gradle` and `generateSourcesForXsd`. 
+=======
+>>>>>>> main
 
 You may check out www.ebics.ch, www.ebics.de. www.ebics.at, www.ebics.org. 
 
 
+<<<<<<< HEAD
 ## Kudos and references
 
+=======
+>>>>>>> main
 The project is forked form [Ebics Java Client](https://github.com/uwemaurer/ebics-java-client/), 
 which was based on a [sourceforge project](https://sourceforge.net/p/ebics/). 
 
 Main differences with this fork from ebics-java-client form uwemaurrer: 
 
 - Fixed vulnerabilities of bouncycastle and log4j
+<<<<<<< HEAD
 - Support for new commands used in Switzerland
 - Jar file in maven central repository
 - Docker image is automatically built from master branch on Dockerhub.
+=======
+- Support for new commands used in Switzerland.
+- Jar file in maven central repository.
+- Docker image is automatically built from master branch on Dockerhub. 
+>>>>>>> main
 - Changed documentation for usage with docker
 
 Run & check tests [TEST.md](TEST.md). 

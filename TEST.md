@@ -1,5 +1,6 @@
 ## Run unit tests
 
+<<<<<<< HEAD
 Run tests for the ebics-java-client on linux - it mounts sources into a docker container with java and the maven build tool
 
     git clone  https://github.com/element36-io/ebics-java-service.git
