@@ -36,7 +36,7 @@ public class SpringFoxConfig {
 	  return new ApiInfo(
 	    "Rest Wrapper for ebics-java-client", 
 	    "Access your bank account based on EBICS inface over a simple REST-API.", 
-	    "API term so service - see Apache 2.0", 
+	    "API terms of service - see Apache 2.0 licence", 
 	    "https://www.apache.org/licenses/LICENSE-2.0", 
 	    new Contact("element36", "element36.io", "ask@element36.io"), 
 	    "Apache 2.0", "https://www.apache.org/licenses/LICENSE-2.0", Collections.emptyList());
