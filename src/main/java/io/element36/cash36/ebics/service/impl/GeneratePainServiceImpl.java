@@ -44,10 +44,11 @@ public class GeneratePainServiceImpl implements GeneratePainService {
                                         boolean nationalPayment) throws DatatypeConfigurationException, IOException {
 
 
-        JAXBElement<Document> jaxbElement = painStrategy.generatePainFile(msgId, pmtInfId, sourceIban, sourceBic, amount, currency, 
-                receipientIban, receipientBankName, recipientBankPostAccount, receipientName, 
+         
+        JAXBElement<Document> jaxbElement = painStrategy.generatePainFile(msgId, pmtInfId, sourceIban.replaceAll("\\s+",""), sourceBic.replaceAll("\\s+",""), amount, currency.replaceAll("\\s+",""), 
+                receipientIban.replaceAll("\\s+",""), receipientBankName, recipientBankPostAccount.replaceAll("\\s+",""), receipientName, 
                 purpose, ourReference, receipientStreet, receipientStreetNr, receipientZip, receipientCity, 
-                receipientCountry, clearingSystemMemberId, nationalPayment);
+                receipientCountry, clearingSystemMemberId.replaceAll("\\s+",""), nationalPayment);
 
         // Create new file
         File painFile = new File(appConfig.outputDir+"/pain001-" + new Date().toInstant().getEpochSecond() + ".xml");
@@ -64,6 +65,7 @@ public class GeneratePainServiceImpl implements GeneratePainService {
         } catch (JAXBException e) {
         	log.error("genPainFile ",e);
         }
+        // TODO: do a XSD check
         return painFile;
     }
 

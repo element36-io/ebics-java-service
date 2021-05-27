@@ -1,7 +1,7 @@
 ## Run unit tests
 
-<<<<<<< HEAD
-Run tests for the ebics-java-client on linux - it mounts sources into a docker container with java and the maven build tool
+Run tests for the ebics-java-client on linux - it mounts sources into a docker container with java and the maven build tool - 
+so you do not need to install java or gradle on your local machine: 
 
     git clone  https://github.com/element36-io/ebics-java-service.git
     cd ebics-java-service; mkdir ./app;
@@ -59,6 +59,9 @@ Check status of a transaction with command Z01. In dev mode you see the command 
 
 ### Test  `/ebics/api-v1/create'
 
+At your bank you can have more than one bank account. The Ebics interface allows you to access all of them at once: 
+Daily statements will cover transactions of all accounts - and you can create new transactions from any bank account 
+from the Ebics interface. 
 
-## Further notes
+
 

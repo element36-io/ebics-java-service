@@ -21,11 +21,11 @@ springdoc:
 ebics:
   # for different java version, you can use ebics-cli as docker in docker- see 
   # https://hub.docker.com/repository/docker/e36io/ebics-cli
-  entrypoint: ${CASH36_EBICS_ENTRYPOINT:java -cp ./ebics-cli.jar org.kopi.ebics.client.EbicsClient}
+  entrypoint: ${CASH36_EBICS_ENTRYPOINT:java -cp "ebics-cli-*.jar:lib/*" org.kopi.ebics.client.EbicsClient}
   mode: ${CASH36_EBICS_MODE:proxy}
   outputDir: ${CASH36_EBICS_OUTPUTDIR:./out}
   peggingAccount: 
-     iban: CH21 0830 7000 2895 3732 0
+     iban: CH2108307000289537320
      bic: HYPLCH2257B
   ignoreAccounts:
     # do not integrate information of these accounts into json responses
@@ -37,6 +37,6 @@ ebics:
            
 logging:
   level:
-     org.springframework: DEBUG
+     org.springframework: WARN
      io.element36: TRACE
      ROOT: WARN      

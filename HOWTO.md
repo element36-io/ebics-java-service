@@ -59,7 +59,7 @@ or docker container.
 
 Daily statements can only be retrieved once - then you get an error if you request again. 
 This Ebics "error" sticks, until you have a new transaction on your accounts. 
-<<<<<<< HEAD:HOWTO.md
+
 
 ### ERROR - Command not supported
 
@@ -69,4 +69,8 @@ please see
 [`OrderType.java`](https://github.com/element36-io/ebics-java-client/blob/master/src/main/java/org/kopi/ebics/session/OrderType.java) for supported commands and compare that with the list of supported commands of 
 your bank. 
 
+### XML Validation Errors & Debugging ebics XML files
 
+Put the XSD files (Schema) in the same directory as your generated files. Now open the generated files with
+VS Code using the XML Plugin from RedHat - it will help you if your Ebics interface just quits with a
+validation error and without further details. 
