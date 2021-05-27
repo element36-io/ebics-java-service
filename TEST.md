@@ -7,7 +7,7 @@ so you do not need to install java or gradle on your local machine:
     cd ebics-java-service; mkdir ./app;
     docker run -it -v $PWD:/app -w /app  gradle:6-jdk8-hotspot gradle test
     
-See `./build/reports/tests/test/index.html` for test results. With minimum Java 8 and Maven run tests directly with `gradle test`
+On your host machine, test results are stored `./build/reports/tests/test/index.html`, test documents are stored in `./out`. With minimum Java 8 and Maven run tests on your host machine with `gradle test`, again see `./build/reports/tests/test/index.html` for test results.
 
 See [here](https://github.com/element36-io/ebics-java-client/blob/master/README.md) how to run tests on ebics-java-client. 
 
