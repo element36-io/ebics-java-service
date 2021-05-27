@@ -15,32 +15,28 @@ server:
 
 springdoc:
    swagger-ui:
-#       path: "/ebics/v2/api-docs/"
-      url: '/ebics/v2/api-docs/'
-#       urls: 
-#          - name: localhost
-#            url: "/ebics/v2/api-docs/"
-#          - name: element36
-#            url: test2
-#       enabled: true
       disable-swagger-default-url: true
       
 
 ebics:
-  entrypoint: ${CASH36_EBICS_ENTRYPOINT:java -cp ./ebics-cli-1.1.jar org.kopi.ebics.client.EbicsClient}
+  # for different java version, you can use ebics-cli as docker in docker- see 
+  # https://hub.docker.com/repository/docker/e36io/ebics-cli
+  entrypoint: ${CASH36_EBICS_ENTRYPOINT:java -cp "ebics-cli-*.jar:lib/*" org.kopi.ebics.client.EbicsClient}
   mode: ${CASH36_EBICS_MODE:proxy}
   outputDir: ${CASH36_EBICS_OUTPUTDIR:./out}
   peggingAccount: 
-     iban: CH21 0830 7000 2895 3732 0
+     iban: CH2108307000289537320
      bic: HYPLCH2257B
   ignoreAccounts:
     # do not integrate information of these accounts into json responses
-     #- "CH2108307000289537320"
+    #- "CH2108307000289537320"
+
   proxy:
-     statement: ${CASH36_EBICS_STATEMENT:./src/test/resources/proxy-statements.zip}
+     # sends this ebics file when simulate is called
+     statement: ${CASH36_EBICS_STATEMENT:simulated-account-statements.zip}
            
 logging:
   level:
-     org.springframework: DEBUG
+     org.springframework: WARN
      io.element36: TRACE
      ROOT: WARN      

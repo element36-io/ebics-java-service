@@ -96,7 +96,7 @@ public class EbicsStatementServiceImpl  implements EbicsStatementService {
 	        }
         } else if (ebicsMode==EbicsMode.proxy)  {
         	log.info(" ebics proxy mode, taking static file {}",this.proxyStatementFile);
-        	statements.addAll(statementStrategy.process(new File(proxyStatementFile))); 
+        	statements.addAll(statementStrategy.process(proxyStatementFile)); 
         } else {
         	log.debug(" ebics disabled, cmd not executed "+this.ebicsMode);
         }

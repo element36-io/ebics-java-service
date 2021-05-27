@@ -56,6 +56,7 @@ public class EbicsPaymentServiceProdImpl extends EbicsPaymentServiceImpl impleme
         CommandLine commandLine = CommandLine.parse(command);
         
         if(ebicsMode==EbicsMode.enabled) {
+			
 	        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
 	            PumpStreamHandler streamHandler = new PumpStreamHandler(outputStream);
 	            ExecuteWatchdog watchdog = new ExecuteWatchdog(120 * 1000);
@@ -69,6 +70,7 @@ public class EbicsPaymentServiceProdImpl extends EbicsPaymentServiceImpl impleme
 	
 	            return "PROD: Payment generated and triggered - "+ output;
 	        } catch (IOException e) {
+				
 	            log.error("IOException",e);
 	            throw new Exception("Something went wrong: "+ e.getMessage());
 	        }

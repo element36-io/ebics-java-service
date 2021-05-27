@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,6 +21,8 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.springframework.core.io.ClassPathResource;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -29,7 +32,12 @@ public class EbicsTools {
 	
     public void printContent(File file) {
     	try {
-			log.debug("ebics - content of file {} is:\n{}",file.getName(),Files.readAllBytes(file.toPath()).toString());
+
+			if (file.exists()) 
+				log.debug("ebics - content of file {} is:\n{}",file.getName(),new String(Files.readAllBytes(file.toPath())));
+			else	
+				log.debug("ebics - not a file - do not print "+file.getName());
+
 		} catch (IOException e) {
 			log.error("ERROR Utils.printContent ",e);
 		}
@@ -39,13 +47,21 @@ public class EbicsTools {
 		return new String(Files.readAllBytes(file.toPath()));
     }
     
-	
+
+		
 	
 	public List<File> unzip(File pathToZip, String destDirStr) throws IOException {
 		File destDir = new File(destDirStr);
 		destDir.mkdirs();
 		byte[] buffer = new byte[1024];
-		ZipInputStream zis = new ZipInputStream(new FileInputStream(pathToZip));
+		InputStream zip; 
+		if (pathToZip.exists()) {
+			zip=new FileInputStream(pathToZip);
+		} else {
+			zip=new ClassPathResource(pathToZip.getName()).getInputStream();
+		}
+		
+		ZipInputStream zis = new ZipInputStream(zip);
 		ZipEntry zipEntry = zis.getNextEntry();
 		List<File> newFiles = new ArrayList<>();
 		while (zipEntry != null) {
