@@ -46,7 +46,8 @@ A crucial part to understand of Ebics is the key-exchange- roughly it works like
 - You send client specific keys via a physically printed letter to the bank
 - All configurations for the setup are done in one specific file: `$HOME/ebics/client/ebics.txt` see [`ebics-template.txt`](ebics-template.txt) 
 
- Check [ebics.org](https://www.ebics.org/en/home) for details. 
+
+Check [HOWTO](HOWTO.md) for technical instructions how to set up the Ebics interface with your bank.  
 
 ## Supported banks and national flavours
 
