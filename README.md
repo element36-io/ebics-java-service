@@ -105,17 +105,7 @@ mapping of daily statements to Json Response.
 
 You may check out www.ebics.ch, www.ebics.de. www.ebics.at, www.ebics.org. 
 
-## Kudos and references
+## Run tests
 
-The project is forked form [Ebics Java Client](https://github.com/uwemaurer/ebics-java-client/), 
-which was based on a [sourceforge project](https://sourceforge.net/p/ebics/). 
-
-Main differences with this fork from ebics-java-client form uwemaurrer: 
-
-- Fixed vulnerabilities of bouncycastle and log4j
-- Support for new commands used in Switzerland
-- Jar file in maven central repository
-- Docker image is automatically built from master branch on Dockerhub.
-- Changed documentation for usage with docker
 
 Run & check tests [TEST.md](TEST.md). 
