@@ -9,6 +9,8 @@ plugins {
     id 'java'
 	id "com.gorylenko.gradle-git-properties"  version "2.3.1"	
 	id "org.owasp.dependencycheck" 
+	id "jacoco"
+
 }
 //apply from: "dependencyCheck.gradle"
 apply plugin: 'io.spring.dependency-management'
@@ -144,3 +146,16 @@ task generateSourcesForXsd() {
 	     }	
 	}
 }
+
+test {
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+	    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: 'io/element36/cash36/ebics/generated/**')
+        }))
+    }
+}
+
