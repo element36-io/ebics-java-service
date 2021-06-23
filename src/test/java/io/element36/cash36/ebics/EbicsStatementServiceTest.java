@@ -14,6 +14,7 @@ import io.element36.cash36.ebics.dto.StatementDTO;
 import io.element36.cash36.ebics.dto.TransactionDTO;
 import io.element36.cash36.ebics.service.EbicsStatementService;
 
+import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,17 +28,24 @@ public class EbicsStatementServiceTest {
 	public void testReadBankStatement() throws Exception {
 		List <StatementDTO> statement=ebicsStatementService.getBankStatement();
 		pp("no. statements: ",statement.size());
-		
+	
+		assertThat(statement.size()).isBetween(1, 100000);
+		boolean reachedIn=false;
+		boolean reachedOut=false;
 		for (StatementDTO account:statement) {
 			pp("account: ",account.getBalanceCL(),account.getBalanceCLCurrency(),account.getBookingDate());
 			
 			for (TransactionDTO in:account.getIncomingTransactions()) {
 				pp("in: ",in.getAmount(), in.getCurrency(),in.getAddrLine(),in.getIban(),in.getReference());
+				reachedIn=true;
 			}
 			for (TransactionDTO out:account.getOutgoingTransactions()) {
 				pp("outgoing: ",out.getAmount(), out.getCurrency(),out.getAddrLine(),out.getIban(),out.getReference());
+				reachedOut=true;
 			}
 		}
+		assertThat(reachedIn).isTrue();
+		assertThat(reachedOut).isTrue();
 	}
 	
 }
