@@ -22,10 +22,11 @@ import io.element36.cash36.ebics.strategy.PaymentStatus;
 import lombok.extern.slf4j.Slf4j;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(properties = {"ebics.mode=proxy"})
 @Slf4j
 public class PaymentStatusTest {
 	
+	private final static String TMP_DIR=System.getProperty("java.io.tmpdir")+"/";
 	
 	@Autowired
 	PaymentStatus paymentStatus;
@@ -33,17 +34,13 @@ public class PaymentStatusTest {
 	@Test
 	public void testLoad() throws Exception {
 
-		File tempFile = File.createTempFile("test", ".xml"); 
+		File tempFile = File.createTempFile(TMP_DIR+"test", ".xml"); 
 
   		// Writes a string to the above temporary file
 
   		Files.write(tempFile.toPath(), MSG.getBytes(StandardCharsets.UTF_8));		
-
 		// zip it
-
-
-		String zipFileName = tempFile.getName().concat(".z01");
-		File zipFile=new File(zipFileName);
+		File zipFile=File.createTempFile(TMP_DIR+"test",".zip");
 
 		FileOutputStream fos = new FileOutputStream(zipFile);
 		ZipOutputStream zos = new ZipOutputStream(fos);
@@ -62,9 +59,8 @@ public class PaymentStatusTest {
 
 		
 	}
-	
 	final static String MSG=  "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
-								+ "  <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.002.001.03\">\n"
+								+ "  <Document xmlns=\"http://www.six-interbank-clearing.com/de/pain.002.001.03.ch.02.xsd\">\n"
 								+ "  <CstmrPmtStsRpt>\n"
 								+ "  <GrpHdr>\n"
 								+ "<MsgId>XML990920150717170814238</MsgId>\n"
@@ -91,6 +87,7 @@ public class PaymentStatusTest {
 								+ "  <OrgnlGrpInfAndSts>\n"
 								+ "<OrgnlMsgId>MSGID-COM-SCE25-1707-01</OrgnlMsgId>\n"
 								+ "<OrgnlMsgNmId>pain.001.001.03</OrgnlMsgNmId>\n"
+								+ "<GrpSts>ACCP</GrpSts>\n"
 								+ "</OrgnlGrpInfAndSts>\n"
 								+ "  <OrgnlPmtInfAndSts>\n"
 								+ "<OrgnlPmtInfId>PMTINFID-COM-SCE25-1707-01</OrgnlPmtInfId>\n"

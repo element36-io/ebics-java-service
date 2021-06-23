@@ -154,8 +154,12 @@ jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
 	    afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: 'io/element36/cash36/ebics/generated/**')
+            fileTree(dir: it, excludes: ['io/element36/cash36/ebics/generated/**','io/element36/cash36/ebics/controller/**']) //no http tests and tests for generatd code
         }))
+    }
+	reports {
+        xml.required = false
+        csv.required = true
     }
 }
 
