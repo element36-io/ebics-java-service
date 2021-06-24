@@ -1,5 +1,7 @@
 ## Run unit tests
 
+![Coverage](.github/badges/jacoco.svg)
+
 Run tests for the ebics-java-client on linux - it mounts sources into a docker container with java and the maven build tool - 
 so you do not need to install java or gradle on your local machine: 
 
@@ -8,6 +10,10 @@ so you do not need to install java or gradle on your local machine:
     docker run -it -v $PWD:/app -w /app  gradle:6-jdk8-hotspot gradle test
     
 On your host machine, test results are stored `./build/reports/tests/test/index.html`, test documents are stored in `./out`. With minimum Java 8 and Maven run tests on your host machine with `gradle test`, again see `./build/reports/tests/test/index.html` for test results.
+
+For test coverage: `./build/reports/jacoco/test/html/index.html`. 
+Test for vulnerabilities `gradle dependencyCheckAggregate`- see report in `./build/reports`. 
+
 
 See [here](https://github.com/element36-io/ebics-java-client/blob/master/README.md) how to run tests on ebics-java-client. 
 

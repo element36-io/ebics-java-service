@@ -27,11 +27,9 @@ public class GeneratePaymentIdsImpl implements GeneratePaymentIds {
 	}
 	
     private String getid(UnpegPayment r, HttpServletRequest req) {
-    	String ip=req.getRemoteAddr();
+    	String ip=req==null?null:req.getRemoteAddr();
     	int paymentNo=this.getNextPaymentNo();
-    	//InetAddress i= InetAddress.getByName(ip);
-    	//int intRepresentation= ByteBuffer.wrap(i.getAddress()).getInt();
-    	String id= "UP-"+paymentNo+"-"+ip+"-"+new Date().getTime()+"-"+new Random().nextInt(10000);
+    	String id= "UP-"+paymentNo+"-"+(ip==null?"":ip+"-")+new Date().getTime()+"-"+new Random().nextInt(99999);
     	log.info("generated payment id "+id);
     	return id;
     }

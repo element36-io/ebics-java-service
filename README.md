@@ -107,5 +107,7 @@ You may check out www.ebics.ch, www.ebics.de. www.ebics.at, www.ebics.org.
 
 ## Run tests
 
+![Coverage](.github/badges/jacoco.svg)
 
 Run & check tests [TEST.md](TEST.md). 
+

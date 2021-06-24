@@ -1,20 +1,20 @@
 package io.element36.cash36.ebics;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.math.BigDecimal;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import io.element36.cash36.ebics.service.EbicsPaymentService;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-public class EbicsPaymentServiceTests {
+@SpringBootTest(properties = {"ebics.mode=disabled","ebics.outputDir=./out"})
+@ActiveProfiles("prod")
+public class EbicsPaymentServiceProdTests {
 	
     @Autowired
     EbicsPaymentService ebicsPaymentService;
@@ -36,10 +36,7 @@ public class EbicsPaymentServiceTests {
 				"clearingSystemMemberId", false);
 		
 		System.out.println(statusMessage);
-		String fileName=statusMessage.split(":")[1];
 
-		String content=TestTool.readLineByLineJava8(fileName);
-		System.out.println("Payment File content:\n:"+content);
 		
 	}
 	

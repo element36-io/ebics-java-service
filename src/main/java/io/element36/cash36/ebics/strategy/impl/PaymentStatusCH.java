@@ -53,14 +53,14 @@ public class PaymentStatusCH implements PaymentStatus {
                 if (documents == null) {
                     documents = new ArrayList<>();
                 }
-                log.trace(" add doc" );
+                log.trace(" add doc , msgid:"+document.getCstmrPmtStsRpt().getOrgnlGrpInfAndSts().getOrgnlMsgId() );
                 documents.add(document);
                 processedFiles.put(document.getCstmrPmtStsRpt().getOrgnlGrpInfAndSts().getOrgnlMsgId(), documents);
             } catch (JAXBException e) {
             	log.error("ERROR processZipFile",e);
             }
         });
-        log.trace(" done; make DTOs" );
+        log.trace(" done; make DTOs "+processedFiles.size() );
         List<PaymentStatusReportDTO> result = new ArrayList<>();
 
         processedFiles.keySet().stream().forEach(msgId -> {
@@ -99,6 +99,7 @@ public class PaymentStatusCH implements PaymentStatus {
                         builder.errorCodesCLevel(errorCLevel);
                     }
                 });
+                log.trace("build and add dto ");
                 result.add(builder.build());
             }
         });
