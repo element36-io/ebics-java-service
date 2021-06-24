@@ -1,3 +1,5 @@
+![Coverage](.github/badges/jacoco.svg)
+
 ## Overview
 
 This project connects with your bank account using 
