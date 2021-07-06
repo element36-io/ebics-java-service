@@ -8,6 +8,5 @@ import io.element36.cash36.ebics.dto.PaymentStatusReportDTO;
 
 public interface PaymentStatus {
 
-    public  List<PaymentStatusReportDTO> process(File z01OutFile) throws IOException;
-    
+  public List<PaymentStatusReportDTO> process(File z01OutFile) throws IOException;
 }

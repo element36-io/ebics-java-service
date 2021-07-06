@@ -8,10 +8,10 @@ import lombok.Data;
 @Data
 @Builder
 public class PaymentStatusReportDTO {
-    private String msgId;
-    private boolean paymentAccepted; // ACCP
-    private boolean paymentValid; //ACTC
-    private List<String> errorCodesALevel;
-    private List<String> errorCodesBLevel;
-    private List<String> errorCodesCLevel;
+  private String msgId;
+  private boolean paymentAccepted; // ACCP
+  private boolean paymentValid; // ACTC
+  private List<String> errorCodesALevel;
+  private List<String> errorCodesBLevel;
+  private List<String> errorCodesCLevel;
 }

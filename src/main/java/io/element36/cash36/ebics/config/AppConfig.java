@@ -17,48 +17,45 @@ import io.element36.cash36.ebics.strategy.impl.StatementCamt53_001;
 @Configuration
 @ConfigurationProperties(prefix = "ebics")
 public class AppConfig {
-	
-	public static final String API_PATH="api-v1";
-	
-	@Value("${ebics.entrypoint}")
-	public String entryPoint;  
 
-    @Value("${ebics.mode}")
-	EbicsMode ebicsMode;
+  public static final String API_PATH = "api-v1";
 
-    List<String> ignoreAccounts;
-    
-    public List<String> getIgnoreAccounts() {
-    	return this.ignoreAccounts;
-    }
-    
-    public void setIgnoreAccounts(List<String> p) {
-    	 this.ignoreAccounts=p;
-    }
-    
-    
-	@Value("${ebics.outputDir}")
-	public String outputDir;
+  @Value("${ebics.entrypoint}")
+  public String entryPoint;
 
-    @Bean
-    public EbicsMode ebicsMode() {
-        return ebicsMode;
-    }
+  @Value("${ebics.mode}")
+  EbicsMode ebicsMode;
 
-    @Bean
-    public PaymentStatus paymentStrategy() {
-        return new PaymentStatusCH();
-    }
-    
-    @Bean
-    public Statement statementStrategy() {
-        return new StatementCamt53_001();
-    }
+  List<String> ignoreAccounts;
 
-    @Bean
-    public Pain painStrategy() {
-        return new PainCH();
-    }
-    
+  public List<String> getIgnoreAccounts() {
+    return this.ignoreAccounts;
+  }
 
+  public void setIgnoreAccounts(List<String> p) {
+    this.ignoreAccounts = p;
+  }
+
+  @Value("${ebics.outputDir}")
+  public String outputDir;
+
+  @Bean
+  public EbicsMode ebicsMode() {
+    return ebicsMode;
+  }
+
+  @Bean
+  public PaymentStatus paymentStrategy() {
+    return new PaymentStatusCH();
+  }
+
+  @Bean
+  public Statement statementStrategy() {
+    return new StatementCamt53_001();
+  }
+
+  @Bean
+  public Pain painStrategy() {
+    return new PainCH();
+  }
 }
