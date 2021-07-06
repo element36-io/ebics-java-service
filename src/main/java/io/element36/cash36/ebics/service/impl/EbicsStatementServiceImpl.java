@@ -87,15 +87,19 @@ public class EbicsStatementServiceImpl  implements EbicsStatementService {
 	            String outputAsString = outputStream.toString("UTF-8");
 	            log.trace(" z53 output of cmd: {}",outputAsString);
 	
-	            if (!outputAsString.contains("No download data available") && !outputAsString.contains("ERROR")) {
+	            if (outputAsString!=null && !outputAsString.contains("No download data available") && !outputAsString.contains("ERROR")) {
 	                statements.addAll(statementStrategy.process(z53OutFile));
+                } else if (outputAsString!=null && outputAsString.contains("ebics.exception.NoDownloadDataAvailableException")) {
+                    log.warn("Warn - no z53 data available");
 	            } else {
-	            	log.error(" Error downloading data");
+	            	log.error(" Error downloading data, throwing exception");
                     throw innerException;
 	            }
 	        } catch (Exception e) {
-	        	log.error("Exception in getBankStatement",e);
-	            new EbicsTools().moveFile(z53OutFile.getAbsolutePath(), appConfig.outputDir + "/error/" + z53OutFile.getName());
+	        	log.error("Unhandled exception in getBankStatement, move z53 file if present",e);
+                if (z53OutFile!=null && z53OutFile.exists()) {
+	                new EbicsTools().moveFile(z53OutFile.getAbsolutePath(), appConfig.outputDir + "/error/" + z53OutFile.getName());
+                }
 	        } finally {
 	            // FileUtils.deleteDirectory(new File(OUTPUT_DIR + "/" + FilenameUtils.removeExtension(z53OutFile.getName())));
 	        }
