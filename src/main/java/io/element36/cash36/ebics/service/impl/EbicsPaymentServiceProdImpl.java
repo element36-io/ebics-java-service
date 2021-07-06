@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-import javax.xml.datatype.DatatypeConfigurationException;
-
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.ExecuteWatchdog;
@@ -19,14 +17,13 @@ import org.springframework.stereotype.Service;
 import io.element36.cash36.EbicsTools;
 import io.element36.cash36.ebics.config.AppConfig;
 import io.element36.cash36.ebics.config.EbicsMode;
-import io.element36.cash36.ebics.service.EbicsPaymentService;
 import io.element36.cash36.ebics.service.GeneratePainService;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Profile("prod")
 @Slf4j
-public class EbicsPaymentServiceProdImpl extends EbicsPaymentServiceImpl implements EbicsPaymentService {
+public class EbicsPaymentServiceProdImpl extends EbicsPaymentServiceImpl {
 
 	@Autowired
 	AppConfig appConfig;

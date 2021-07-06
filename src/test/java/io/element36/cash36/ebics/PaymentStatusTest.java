@@ -1,16 +1,15 @@
 package io.element36.cash36.ebics;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +18,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import io.element36.cash36.ebics.dto.PaymentStatusReportDTO;
 import io.element36.cash36.ebics.strategy.PaymentStatus;
-import lombok.extern.slf4j.Slf4j;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(properties = {"ebics.mode=proxy"})
-@Slf4j
 public class PaymentStatusTest {
 	
 	private final static String TMP_DIR=System.getProperty("java.io.tmpdir")+"/";

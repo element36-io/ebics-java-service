@@ -1,6 +1,7 @@
 package io.element36.cash36.ebics;
 
 import static io.element36.cash36.ebics.TestTool.pp;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
@@ -13,8 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import io.element36.cash36.ebics.dto.StatementDTO;
 import io.element36.cash36.ebics.dto.TransactionDTO;
 import io.element36.cash36.ebics.service.EbicsStatementService;
-
-import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

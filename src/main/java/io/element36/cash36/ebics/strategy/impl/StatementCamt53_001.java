@@ -17,7 +17,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 
 import io.element36.cash36.EbicsTools;
 import io.element36.cash36.ebics.config.AppConfig;
