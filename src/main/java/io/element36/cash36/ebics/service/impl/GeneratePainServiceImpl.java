@@ -23,46 +23,74 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class GeneratePainServiceImpl implements GeneratePainService {
-	
-	@Autowired
-	AppConfig appConfig; 
 
-    @Autowired
-	Pain painStrategy; 
-	
-	@Override
-    public File generatePainFile(String msgId, String pmtInfId, String sourceIban, String sourceBic,
-                                        BigDecimal amount, String currency, String receipientIban,
-                                        String receipientBankName, String recipientBankPostAccount,
-                                        String receipientName, String purpose, String ourReference,
-                                        String receipientStreet, String receipientStreetNr, String receipientZip,
-                                        String receipientCity, String receipientCountry, String clearingSystemMemberId,
-                                        boolean nationalPayment) throws DatatypeConfigurationException, IOException {
+  @Autowired AppConfig appConfig;
 
+  @Autowired Pain painStrategy;
 
-         
-        JAXBElement<Document> jaxbElement = painStrategy.generatePainFile(msgId, pmtInfId, sourceIban.replaceAll("\\s+",""), sourceBic.replaceAll("\\s+",""), amount, currency.replaceAll("\\s+",""), 
-                receipientIban.replaceAll("\\s+",""), receipientBankName, recipientBankPostAccount.replaceAll("\\s+",""), receipientName, 
-                purpose, ourReference, receipientStreet, receipientStreetNr, receipientZip, receipientCity, 
-                receipientCountry, clearingSystemMemberId.replaceAll("\\s+",""), nationalPayment);
+  @Override
+  public File generatePainFile(
+      String msgId,
+      String pmtInfId,
+      String sourceIban,
+      String sourceBic,
+      BigDecimal amount,
+      String currency,
+      String receipientIban,
+      String receipientBankName,
+      String recipientBankPostAccount,
+      String receipientName,
+      String purpose,
+      String ourReference,
+      String receipientStreet,
+      String receipientStreetNr,
+      String receipientZip,
+      String receipientCity,
+      String receipientCountry,
+      String clearingSystemMemberId,
+      boolean nationalPayment)
+      throws DatatypeConfigurationException, IOException {
 
-        // Create new file
-        File painFile = new File(appConfig.outputDir+"/pain001-" + new Date().toInstant().getEpochSecond() + ".xml");
-        painFile.getParentFile().mkdirs();
-        painFile.createNewFile();
+    JAXBElement<Document> jaxbElement =
+        painStrategy.generatePainFile(
+            msgId,
+            pmtInfId,
+            sourceIban.replaceAll("\\s+", ""),
+            sourceBic.replaceAll("\\s+", ""),
+            amount,
+            currency.replaceAll("\\s+", ""),
+            receipientIban.replaceAll("\\s+", ""),
+            receipientBankName,
+            recipientBankPostAccount.replaceAll("\\s+", ""),
+            receipientName,
+            purpose,
+            ourReference,
+            receipientStreet,
+            receipientStreetNr,
+            receipientZip,
+            receipientCity,
+            receipientCountry,
+            clearingSystemMemberId.replaceAll("\\s+", ""),
+            nationalPayment);
 
-        JAXBContext context;
-        try {
-            context = JAXBContext.newInstance(Document.class);
-            Marshaller mar = context.createMarshaller();
-            mar.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, this.painStrategy.getSchemaLocation());
-            mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            mar.marshal(jaxbElement, painFile);
-        } catch (JAXBException e) {
-        	log.error("genPainFile ",e);
-        }
-        // TODO: do a XSD check
-        return painFile;
+    // Create new file
+    File painFile =
+        new File(
+            appConfig.outputDir + "/pain001-" + new Date().toInstant().getEpochSecond() + ".xml");
+    painFile.getParentFile().mkdirs();
+    painFile.createNewFile();
+
+    JAXBContext context;
+    try {
+      context = JAXBContext.newInstance(Document.class);
+      Marshaller mar = context.createMarshaller();
+      mar.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, this.painStrategy.getSchemaLocation());
+      mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+      mar.marshal(jaxbElement, painFile);
+    } catch (JAXBException e) {
+      log.error("genPainFile ", e);
     }
-
+    // TODO: do a XSD check
+    return painFile;
+  }
 }

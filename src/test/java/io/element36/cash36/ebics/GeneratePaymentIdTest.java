@@ -15,23 +15,21 @@ import io.element36.cash36.ebics.strategy.GeneratePaymentIds;
 @SpringBootTest
 public class GeneratePaymentIdTest {
 
-    @Autowired
-	GeneratePaymentIds paymentIds;
+  @Autowired GeneratePaymentIds paymentIds;
 
-    @Test
-	public void testMsgId() throws Exception {
-       String id= paymentIds.getMsgId(null, null);
-       pp("tx-id"+id);
-       assertThat(id).isNotNull();
-       assertThat(id.length()).isBetween(10,250);
-    }
+  @Test
+  public void testMsgId() throws Exception {
+    String id = paymentIds.getMsgId(null, null);
+    pp("tx-id" + id);
+    assertThat(id).isNotNull();
+    assertThat(id.length()).isBetween(10, 250);
+  }
 
-    @Test
-	public void testPmtInfId() throws Exception {
-       String id= paymentIds.getPmtInfId(null, null);
-       pp("tx-id"+id);
-       assertThat(id).isNotNull();
-       assertThat(id.length()).isBetween(1,250);
-    }
- 
+  @Test
+  public void testPmtInfId() throws Exception {
+    String id = paymentIds.getPmtInfId(null, null);
+    pp("tx-id" + id);
+    assertThat(id).isNotNull();
+    assertThat(id.length()).isBetween(1, 250);
+  }
 }
