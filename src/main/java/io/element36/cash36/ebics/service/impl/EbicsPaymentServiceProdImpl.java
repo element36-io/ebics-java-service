@@ -60,12 +60,20 @@ public class EbicsPaymentServiceProdImpl extends EbicsPaymentServiceImpl {
 	            Executor executor = new DefaultExecutor();
 	            executor.setWatchdog(watchdog);
 	            executor.setStreamHandler(streamHandler);
-	            executor.execute(commandLine);
+
+				Exception innerException=null;
+                try {
+	           		executor.execute(commandLine);
+				} catch (Exception e) {
+                    innerException=e;
+                }
+                
+	            String outputAsString = outputStream.toString("UTF-8");
+	            log.trace(" xe2 output of cmd: {}",outputAsString);
 	
-	            String output = outputStream.toString();
-	            log.debug("ebics exec outout: "+output);
-	
-	            return "PROD: Payment generated and triggered - "+ output;
+				if (innerException!=null) throw innerException;
+
+	            return "PROD: Payment generated and triggered - "+ outputAsString;
 	        } catch (IOException e) {
 				
 	            log.error("IOException",e);
