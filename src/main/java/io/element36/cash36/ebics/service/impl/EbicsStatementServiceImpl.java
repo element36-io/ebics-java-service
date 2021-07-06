@@ -77,16 +77,21 @@ public class EbicsStatementServiceImpl  implements EbicsStatementService {
 	            Executor executor = new DefaultExecutor();
 	            executor.setWatchdog(watchdog);
 	            executor.setStreamHandler(streamHandler);
-	
-	            executor.execute(commandLine);
-	
+                Exception innerException=null;
+                try {
+	                executor.execute(commandLine);
+                } catch (Exception e) {
+                    innerException=e;
+                }
+                
 	            String outputAsString = outputStream.toString("UTF-8");
 	            log.trace(" z53 output of cmd: {}",outputAsString);
 	
 	            if (!outputAsString.contains("No download data available") && !outputAsString.contains("ERROR")) {
 	                statements.addAll(statementStrategy.process(z53OutFile));
 	            } else {
-	            	log.warn(" Warn or no data from download");
+	            	log.error(" Error downloading data");
+                    throw innerException;
 	            }
 	        } catch (Exception e) {
 	        	log.error("Exception in getBankStatement",e);

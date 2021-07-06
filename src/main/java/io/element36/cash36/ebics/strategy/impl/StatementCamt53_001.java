@@ -193,7 +193,7 @@ public class StatementCamt53_001 implements Statement {
                                     builderOut.amount(transaction.getAmt().getValue());
                                     builderOut.currency(transaction.getAmt().getCcy());
                                     if (transaction.getRmtInf() != null) {
-                                        if (transaction.getRmtInf().getUstrd() != null) {
+                                        if (transaction.getRmtInf().getUstrd() != null &&  transaction.getRmtInf().getUstrd().size()>0 ) {
                                             builderOut.reference(transaction.getRmtInf().getUstrd().get(0));
                                         }
                                     }

@@ -100,7 +100,7 @@ public class EbicsTools {
 		try {
 			result = Files.move(Paths.get(src), Paths.get(dest), StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
-			System.out.println("Exception while moving file: " + e.getMessage());
+			log.error("Exception while moving file {} to {} msg:{} ",src,dest, e);
 		}
 		if (result != null) {
 			return true;
