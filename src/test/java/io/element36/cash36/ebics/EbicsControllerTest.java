@@ -14,11 +14,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import io.element36.cash36.ebics.controller.EbicsController;
 import io.element36.cash36.ebics.dto.PaymentStatusReportDTO;
 import io.element36.cash36.ebics.dto.StatementDTO;
-import lombok.extern.slf4j.Slf4j;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Slf4j
 public class EbicsControllerTest {
 	
 

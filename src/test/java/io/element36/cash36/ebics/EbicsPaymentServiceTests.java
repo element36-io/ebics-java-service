@@ -1,7 +1,5 @@
 package io.element36.cash36.ebics;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.math.BigDecimal;
 
 import org.junit.Test;
