@@ -32,6 +32,8 @@ jobs:
         jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
     - name: Run java checkstyle
       uses: nikitasavinov/checkstyle-action@0.4.0
+      with: 
+        checkstyle_version: 8.44
     - name: Commit and push the badge (if it changed)
       uses: EndBug/add-and-commit@v7
       with:
