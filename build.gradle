@@ -38,7 +38,8 @@ ext.generateGitProps=System.getProperty('GENERATE_GIT_PROPERTIES')
 ext.generateGitProps=ext.generateGitProps==null?"true":ext.generateGitProps
 println "generateGitProps:"+ext.generateGitProps
 tasks.withType(com.gorylenko.GenerateGitPropertiesTask).all { enabled = new Boolean(rootProject.ext.generateGitProps) }
-
+// disable checkstyle on generated source
+checkstyleMain.exclude '**/io/element36/cash36/ebics/generated/**'
 
 configurations {
     jaxb // Only for generation purpose
