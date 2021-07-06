@@ -51,7 +51,7 @@ checkstyle {
     toolVersion = '8.44'
 	project.ext.checkstyleVersion = '8.44'
     configFile = file("${projectDir}/google_checks.xml")
-    showViolations = false
+    showViolations = true
     ignoreFailures = false
 }
 dependencies {

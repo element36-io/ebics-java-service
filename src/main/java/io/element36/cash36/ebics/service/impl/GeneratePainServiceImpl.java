@@ -1,4 +1,4 @@
-package io.element36.cash36.ebics.service.impl;
+ package io.element36.cash36.ebics.service.impl;
 
 import java.io.File;
 import java.io.IOException;
