@@ -73,7 +73,7 @@ public class EbicsPaymentServiceProdImpl extends EbicsPaymentServiceImpl {
 	        }
         } else {
         	log.debug("makePayment ignored - ebics is not enabled "+ebicsMode);
-        	return "Payment not enabled";
+        	return "Payment not enabled. Ebics-File:"+painFile.getAbsolutePath()+"; command:"+command;
         }
     }
     

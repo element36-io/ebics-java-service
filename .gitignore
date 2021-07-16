@@ -37,3 +37,4 @@ node_modules
 ## MACOS ###
 .DS_Store
 /bin/
+src/main/resources/simulated-account-statements.zip-10

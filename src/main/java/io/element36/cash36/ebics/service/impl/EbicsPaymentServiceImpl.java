@@ -73,7 +73,7 @@ public class EbicsPaymentServiceImpl implements EbicsPaymentService {
         }
         result+="\nEbics file generated:"+painFile.getAbsolutePath();
         log.debug(result); 
-        result+="\nContent of file which will be sent to the bank:\n"+pain.toString();
+        result+=";\nContent of file which will be sent to the bank:\n"+pain.toString();
        
         return result.toString();
 	}
