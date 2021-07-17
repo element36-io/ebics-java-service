@@ -98,7 +98,7 @@ public class EbicsPaymentServiceTests {
 
     System.out.println(statusMessage);
     String fileName=statusMessage.split(":")[4];
-    fileName=fileName.split(";")[0];
+    fileName=fileName.split(";")[0].trim();
     
     String content=TestTool.readLineByLineJava8(fileName);
     System.out.println("Payment File content:\n:"+content);

@@ -30,9 +30,7 @@ public class TestTool {
 
 
   public static String readLineByLineJava8(String filePath) throws IOException {
-	String content = "";
-	content = new String(Files.readAllBytes(Paths.get(filePath)));
-	return content;
+	return new String(Files.readAllBytes(Paths.get(filePath)));
   }
 
   public static void testProxyStatements(List<StatementDTO> statements) {
