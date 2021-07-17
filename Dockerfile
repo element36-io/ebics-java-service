@@ -15,6 +15,7 @@ RUN ls -la; mkdir /app;
 COPY build.gradle /app
 COPY gradle.properties /app
 COPY settings.gradle /app
+COPY google_checks.xml /app
 COPY ./src /app/src
 # disable git info
 ENV GENERATE_GIT_PROPERTIES="false"

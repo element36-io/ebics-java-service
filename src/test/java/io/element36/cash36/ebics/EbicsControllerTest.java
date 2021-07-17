@@ -22,39 +22,30 @@ import io.element36.cash36.ebics.dto.StatementDTO;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class EbicsControllerTest {
-	
 
+  @Autowired EbicsController controller;
 
-	@Autowired
-	EbicsController controller;
+  @Test
+  public void testGetStatusReport() throws Exception {
 
+    ResponseEntity<List<PaymentStatusReportDTO>> statusReport = controller.getStatusReport();
+    assertThat(statusReport).isNotNull();
+    assertThat(statusReport.getBody()).isNotNull();
+  }
 
-	@Test
-	public void testGetStatusReport() throws Exception {
+  @Test
+  public void testGetPayments() throws Exception {
 
-		ResponseEntity<List<PaymentStatusReportDTO>> statusReport=controller.getStatusReport();
-		assertThat(statusReport).isNotNull();
-		assertThat(statusReport.getBody()).isNotNull();
-		List<PaymentStatusReportDTO> paymentStatus=statusReport.getBody();
-		assertThat(paymentStatus.size()).isEqualTo(0);// add proxy for status
-	
-	}
-   
+    ResponseEntity<List<StatementDTO>> payments = controller.getPayments();
+    assertThat(payments).isNotNull();
+    assertThat(payments.getBody()).isNotNull();
 
-	@Test
-	public void testGetPayments() throws Exception {
-
-		ResponseEntity<List<StatementDTO>> payments=controller.getPayments();
-		assertThat(payments).isNotNull();
-		assertThat(payments.getBody()).isNotNull();
-
-		assertThat(payments.getBody().size()).isEqualTo(2);
-		for (StatementDTO item:payments.getBody()) {
-			System.out.println("-----------------------");
-			TestTool.pp(item);
-		} 
-		// test content
+    assertThat(payments.getBody().size()).isGreaterThan(0);
+    for (StatementDTO item : payments.getBody()) {
+      System.out.println("-----------------------");
+      TestTool.pp(item);
+    }
+    		// test content
 		TestTool.testProxyStatements(payments.getBody());
-	
-	}
+  }
 }

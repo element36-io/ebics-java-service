@@ -8,12 +8,25 @@ import javax.xml.datatype.DatatypeConfigurationException;
 
 public interface GeneratePainService {
 
-	File generatePainFile(String msgId, String pmtInfId, String sourceIban, String sourceBic, BigDecimal amount,
-			String currency, String receipientIban, String receipientBankName, String recipientBankPostAccount,
-			String receipientName, String purpose, String ourReference, String receipientStreet,
-			String receipientStreetNr, String receipientZip, String receipientCity, String receipientCountry,
-			String clearingSystemMemberId, boolean nationalPayment) throws DatatypeConfigurationException, IOException;
-
-
-
+  File generatePainFile(
+      String msgId,
+      String pmtInfId,
+      String sourceIban,
+      String sourceBic,
+      BigDecimal amount,
+      String currency,
+      String receipientIban,
+      String receipientBankName,
+      String recipientBankPostAccount,
+      String receipientName,
+      String purpose,
+      String ourReference,
+      String receipientStreet,
+      String receipientStreetNr,
+      String receipientZip,
+      String receipientCity,
+      String receipientCountry,
+      String clearingSystemMemberId,
+      boolean nationalPayment)
+      throws DatatypeConfigurationException, IOException;
 }

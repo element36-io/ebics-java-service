@@ -25,56 +25,93 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EbicsPaymentServiceProdImpl extends EbicsPaymentServiceImpl {
 
-	@Autowired
-	AppConfig appConfig;
-	
-	@Autowired
-	GeneratePainService painService;
+  @Autowired AppConfig appConfig;
 
-	@Autowired
-	EbicsMode ebicsMode;
-	
-    @Override
-    public String makePayment(String msgId, String pmtInfId, String sourceIban, String sourceBic, BigDecimal amount,
-                              String currency, String receipientIban, String receipientBankName, String recipientBankPostAccount,
-                              String receipientName, String purpose, String ourReference, String receipientStreet,
-                              String receipientStreetNr, String receipientZip, String receipientCity,
-                              String receipientCountry, String clearingSystemMemberId,
-                              boolean nationalPayment) throws Exception {
+  @Autowired GeneratePainService painService;
 
-        File painFile = painService.generatePainFile(msgId, pmtInfId, sourceIban, sourceBic, amount, currency, receipientIban,
-                receipientBankName, recipientBankPostAccount, receipientName, purpose, ourReference, receipientStreet,
-                receipientStreetNr, receipientZip, receipientCity, receipientCountry, clearingSystemMemberId, nationalPayment);
+  @Autowired EbicsMode ebicsMode;
 
-        new EbicsTools().printContent(painFile);
-        
-        String command=appConfig.entryPoint+" --xe2 -i "+ painFile.getAbsolutePath();
-        log.debug("calling ebics via cmd {} ",command);
-        CommandLine commandLine = CommandLine.parse(command);
-        
-        if(ebicsMode==EbicsMode.enabled) {
-			
-	        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
-	            PumpStreamHandler streamHandler = new PumpStreamHandler(outputStream);
-	            ExecuteWatchdog watchdog = new ExecuteWatchdog(120 * 1000);
-	            Executor executor = new DefaultExecutor();
-	            executor.setWatchdog(watchdog);
-	            executor.setStreamHandler(streamHandler);
-	            executor.execute(commandLine);
-	
-	            String output = outputStream.toString();
-	            log.debug("ebics exec outout: "+output);
-	
-	            return "PROD: Payment generated and triggered - "+ output;
-	        } catch (IOException e) {
-				
-	            log.error("IOException",e);
-	            throw new Exception("Something went wrong: "+ e.getMessage());
-	        }
-        } else {
-        	log.debug("makePayment ignored - ebics is not enabled "+ebicsMode);
-        	return "Payment not enabled. Ebics-File:"+painFile.getAbsolutePath()+"; command:"+command;
+  @Override
+  public String makePayment(
+      String msgId,
+      String pmtInfId,
+      String sourceIban,
+      String sourceBic,
+      BigDecimal amount,
+      String currency,
+      String receipientIban,
+      String receipientBankName,
+      String recipientBankPostAccount,
+      String receipientName,
+      String purpose,
+      String ourReference,
+      String receipientStreet,
+      String receipientStreetNr,
+      String receipientZip,
+      String receipientCity,
+      String receipientCountry,
+      String clearingSystemMemberId,
+      boolean nationalPayment)
+      throws Exception {
+
+    File painFile =
+        painService.generatePainFile(
+            msgId,
+            pmtInfId,
+            sourceIban,
+            sourceBic,
+            amount,
+            currency,
+            receipientIban,
+            receipientBankName,
+            recipientBankPostAccount,
+            receipientName,
+            purpose,
+            ourReference,
+            receipientStreet,
+            receipientStreetNr,
+            receipientZip,
+            receipientCity,
+            receipientCountry,
+            clearingSystemMemberId,
+            nationalPayment);
+
+    new EbicsTools().printContent(painFile);
+
+    String command = appConfig.entryPoint + " --xe2 -i " + painFile.getAbsolutePath();
+    log.debug("calling ebics via cmd {} ", command);
+    CommandLine commandLine = CommandLine.parse(command);
+
+    if (ebicsMode == EbicsMode.enabled) {
+
+      try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+        PumpStreamHandler streamHandler = new PumpStreamHandler(outputStream);
+        ExecuteWatchdog watchdog = new ExecuteWatchdog(120 * 1000);
+        Executor executor = new DefaultExecutor();
+        executor.setWatchdog(watchdog);
+        executor.setStreamHandler(streamHandler);
+
+        Exception innerException = null;
+        try {
+          executor.execute(commandLine);
+        } catch (Exception e) {
+          innerException = e;
         }
+
+        String outputAsString = outputStream.toString("UTF-8");
+        log.trace(" xe2 output of cmd: {}", outputAsString);
+
+        if (innerException != null) throw innerException;
+
+        return "PROD: Payment generated and triggered - " + outputAsString;
+      } catch (IOException e) {
+
+        log.error("IOException", e);
+        throw new Exception("Something went wrong: " + e.getMessage());
+      }
+    } else {
+      log.debug("makePayment ignored - ebics is not enabled " + ebicsMode);
+      return "Payment not enabled. Ebics-File:"+painFile.getAbsolutePath()+"; command:"+command;
     }
-    
+  }
 }

@@ -28,61 +28,56 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EbicsPaymentStatusServiceImpl implements EbicsPaymentStatusService {
 
-	@Autowired
-	AppConfig appConfig;
-	
-	@Autowired
-	GeneratePainService painService;
-	
-	@Autowired
-	EbicsMode ebicsMode;
+  @Autowired AppConfig appConfig;
 
-    @Autowired
-	PaymentStatus ebicsStrategy;
+  @Autowired GeneratePainService painService;
 
-    
-	
-    @Override
-    public List<PaymentStatusReportDTO> getStatusReport() {
-    	log.debug("getStatusReport");
-    	
-        File z01OutFile = new File(String.format("%s%s%s%s", appConfig.outputDir, "/z01-", new Date().toInstant().getEpochSecond(), ".zip"));
-        new EbicsTools().printContent(z01OutFile);
-        
-        String command= appConfig.entryPoint+" --z01 -o " + z01OutFile.getAbsolutePath(); 
-        log.debug("ebics exec command {}",command);
-        CommandLine commandLine = CommandLine.parse(command);
+  @Autowired EbicsMode ebicsMode;
 
-        if (ebicsMode==EbicsMode.enabled) {
-	        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
-	            PumpStreamHandler streamHandler = new PumpStreamHandler(outputStream);
-	            ExecuteWatchdog watchdog = new ExecuteWatchdog(120 * 1000);
-	            Executor executor = new DefaultExecutor();
-	            executor.setWatchdog(watchdog);
-	            executor.setStreamHandler(streamHandler);
-	
-	            executor.execute(commandLine);
-	            //TODO: wasa public String toString(String enc) Gets the curent contents of this byte stream as a string using the specified encoding.
-	            String output = outputStream.toString("UTF-8");
-	            log.debug("z01 outpout {}",output);
-	
-	            if (!output.contains("No download data available") && !output.contains("ERROR")) {
-	                return ebicsStrategy.process(z01OutFile);
-	            } else {
-	            	log.warn(" ebics no data available");
-	                return Collections.emptyList();
-	            }
-	        } catch (IOException e) {
-	            log.error("ERROR ebics ",e );
-	            return Collections.emptyList();
-	        }
+  @Autowired PaymentStatus ebicsStrategy;
+
+  @Override
+  public List<PaymentStatusReportDTO> getStatusReport() {
+    log.debug("getStatusReport");
+
+    File z01OutFile =
+        new File(
+            String.format(
+                "%s%s%s%s",
+                appConfig.outputDir, "/z01-", new Date().toInstant().getEpochSecond(), ".zip"));
+    new EbicsTools().printContent(z01OutFile);
+
+    String command = appConfig.entryPoint + " --z01 -o " + z01OutFile.getAbsolutePath();
+    log.debug("ebics exec command {}", command);
+    CommandLine commandLine = CommandLine.parse(command);
+
+    if (ebicsMode == EbicsMode.enabled) {
+      try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+        PumpStreamHandler streamHandler = new PumpStreamHandler(outputStream);
+        ExecuteWatchdog watchdog = new ExecuteWatchdog(120 * 1000);
+        Executor executor = new DefaultExecutor();
+        executor.setWatchdog(watchdog);
+        executor.setStreamHandler(streamHandler);
+
+        executor.execute(commandLine);
+        // TODO: wasa public String toString(String enc) Gets the curent contents of this byte
+        // stream as a string using the specified encoding.
+        String output = outputStream.toString("UTF-8");
+        log.debug("z01 outpout {}", output);
+
+        if (!output.contains("No download data available") && !output.contains("ERROR")) {
+          return ebicsStrategy.process(z01OutFile);
         } else {
-        	log.debug("ebics not enabled, command not executed "+ebicsMode);
-        	return Collections.emptyList();
+          log.warn(" ebics no data available");
+          return Collections.emptyList();
         }
+      } catch (IOException e) {
+        log.error("ERROR ebics ", e);
+        return Collections.emptyList();
+      }
+    } else {
+      log.debug("ebics not enabled, command not executed " + ebicsMode);
+      return Collections.emptyList();
     }
-
-    
-
- 
+  }
 }

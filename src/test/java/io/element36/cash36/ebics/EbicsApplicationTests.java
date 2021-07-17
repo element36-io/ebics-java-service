@@ -8,12 +8,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class EbicsApplicationTests {
-	
-	
-	@Test
-	public void contextLoads() {
-		//log.debug("ebics.textproxy:{}",TESTPROXY);
-	}
-	
 
+  @Test
+  public void contextLoads() {
+    // log.debug("ebics.textproxy:{}",TESTPROXY);
+  }
 }

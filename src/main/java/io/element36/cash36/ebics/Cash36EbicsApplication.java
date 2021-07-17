@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Cash36EbicsApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(Cash36EbicsApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(Cash36EbicsApplication.class, args);
+  }
 }

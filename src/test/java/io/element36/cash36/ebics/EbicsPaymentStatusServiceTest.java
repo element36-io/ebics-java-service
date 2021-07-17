@@ -13,17 +13,15 @@ import io.element36.cash36.ebics.service.EbicsPaymentStatusService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-
 public class EbicsPaymentStatusServiceTest {
 
-	@Autowired
-	EbicsPaymentStatusService ebicsPaymentStatusService;
-	
-	@Test
-	public void getStatus() {
-		List<PaymentStatusReportDTO> transactions=ebicsPaymentStatusService.getStatusReport();
-		for (PaymentStatusReportDTO tx:transactions) {
-			System.out.println("msg-id: "+tx.getMsgId());
-		}
-	}
+  @Autowired EbicsPaymentStatusService ebicsPaymentStatusService;
+
+  @Test
+  public void getStatus() {
+    List<PaymentStatusReportDTO> transactions = ebicsPaymentStatusService.getStatusReport();
+    for (PaymentStatusReportDTO tx : transactions) {
+      System.out.println("msg-id: " + tx.getMsgId());
+    }
+  }
 }
