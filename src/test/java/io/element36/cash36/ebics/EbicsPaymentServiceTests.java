@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import io.element36.cash36.ebics.dto.TxResponse;
 import io.element36.cash36.ebics.service.EbicsPaymentService;
 
 @RunWith(SpringRunner.class)
@@ -29,7 +30,7 @@ public class EbicsPaymentServiceTests {
     // values taken from
     // https://www.iban.com/structure
 
-    String statusMessage =
+    TxResponse txResponse =
         ebicsPaymentService.makePayment(
             "4711",
             "abc",
@@ -51,9 +52,8 @@ public class EbicsPaymentServiceTests {
             "clearingSystemMemberId",
             false);
 
-    System.out.println(statusMessage);
-    String fileName=statusMessage.split(":")[1];
-    fileName=fileName.split(";")[0];
+    System.out.println(txResponse);
+    String fileName=txResponse.getEbicsDocumentPath().trim();
     String content=TestTool.readLineByLineJava8(fileName);
     //System.out.println("Payment File content:\n:"+content);
     content=TestTool.findAndReplaceTagContent("CreDtTm", "2021-07-16T14:43:03", content);
@@ -74,7 +74,7 @@ public class EbicsPaymentServiceTests {
     // values taken from
     // https://www.iban.com/structure
 
-    String statusMessage =
+    TxResponse txResponse =
         ebicsPaymentService.simulatePayment(
             "4711",
             "abc",
@@ -96,10 +96,8 @@ public class EbicsPaymentServiceTests {
             "clearingSystemMemberId",
             false);
 
-    System.out.println(statusMessage);
-    String fileName=statusMessage.split(":")[4];
-    fileName=fileName.split(";")[0].trim();
-    
+    System.out.println(txResponse);
+    String fileName=txResponse.getEbicsDocumentPath();
     String content=TestTool.readLineByLineJava8(fileName);
     System.out.println("Payment File content:\n:"+content);
     content=TestTool.findAndReplaceTagContent("CreDtTm", "2021-07-16T15:12:31", content);
