@@ -59,15 +59,8 @@ In dev mode you see the command which is issued to query the daily statement.
 Create a tarnsaction with your pegging account configured in `ebics.pegging.account`. 
 :warning: In prod mode it sends real money - in dev mode it shows the command and the Ebics document in the result. 
 
-### Test  `/ebics/api-v1/paymentstatus'
-
-Check status of a transaction with command Z01. In dev mode you see the command which is issued to query the status of the transaction.
-
-### Test  `/ebics/api-v1/create'
+### Test  `/ebics/api-v1/createOrder'
 
 At your bank you can have more than one bank account. The Ebics interface allows you to access all of them at once: 
 Daily statements will cover transactions of all accounts - and you can create new transactions from any bank account 
-from the Ebics interface. 
-
-
-
+from the Ebics interface.
