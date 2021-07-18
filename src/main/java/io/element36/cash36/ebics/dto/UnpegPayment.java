@@ -39,7 +39,8 @@ public class UnpegPayment {
   // @NotBlank(message = "receipientBankName cannot be null") - only for nationalPayment
   private String receipientBankName;
 
-  @ApiModelProperty(value = "Optional post account as used in Switzerland", example = " ")
+  @ApiModelProperty(value = "Optional (legacy) post account as used in Switzerland - "+
+            " using Iban instead ", example = "")
   // @NotBlank(message = "recipientBankPostAccount cannot be null") - only for nationalPayment
   private String recipientBankPostAccount;
 
@@ -69,7 +70,8 @@ public class UnpegPayment {
   @NotBlank(message = "receipientCountry cannot be null")
   private String receipientCountry;
 
-  @ApiModelProperty(value = "Optional clearing no", example = " ")
+  @ApiModelProperty(value = "Optional clearing number may be required for some international  "+
+            "payments, see  https://wiki.xmldation.com/Support/ISO20022/General_Rules/Clearing_codes", example = " ")
   // @NotBlank(message = "clearingSystemMemberId cannot be null") - only for
   // nationalPayment
   private String clearingSystemMemberId;
