@@ -26,14 +26,6 @@ public class EbicsControllerTest {
   @Autowired EbicsController controller;
 
   @Test
-  public void testGetStatusReport() throws Exception {
-
-    ResponseEntity<List<PaymentStatusReportDTO>> statusReport = controller.getStatusReport();
-    assertThat(statusReport).isNotNull();
-    assertThat(statusReport.getBody()).isNotNull();
-  }
-
-  @Test
   public void testGetPayments() throws Exception {
 
     ResponseEntity<List<StatementDTO>> payments = controller.getPayments();
