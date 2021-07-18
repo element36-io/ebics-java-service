@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import io.element36.cash36.EbicsTools;
 import io.element36.cash36.ebics.config.AppConfig;
 import io.element36.cash36.ebics.config.EbicsMode;
+import io.element36.cash36.ebics.dto.TxResponse;
+import io.element36.cash36.ebics.dto.TxStatusEnum;
 import io.element36.cash36.ebics.service.EbicsPaymentService;
 import io.element36.cash36.ebics.service.GeneratePainService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +28,7 @@ public class EbicsPaymentServiceImpl implements EbicsPaymentService {
   @Autowired EbicsMode ebicsMode;
 
   @Override
-  public String makePayment(
+  public TxResponse makePayment(
       String msgId,
       String pmtInfId,
       String sourceIban,
@@ -75,15 +77,18 @@ public class EbicsPaymentServiceImpl implements EbicsPaymentService {
       String command = appConfig.entryPoint + " --xe2 -i " + painFile.getAbsolutePath();
       log.debug(" makePayment - command {}, file {} ", command, painFile);
 
-      return "DEV -  Payment generated but not sent:"
-          + painFile.getCanonicalPath()
-          + "; command: "
-          + command;
+      return TxResponse.builder()
+        .command("makePayment")
+        .ebicsDocumentPath(painFile.getAbsolutePath())
+        .ebicsMode(ebicsMode)
+        .status(TxStatusEnum.OK)
+        .message("DEV -  Payment generated but not sent")
+        .msgId(msgId).build();
     }
   }
 
   @Override
-  public String simulatePayment(
+  public TxResponse simulatePayment(
       String msgId,
       String pmtInfId,
       String sourceIban,
@@ -105,7 +110,7 @@ public class EbicsPaymentServiceImpl implements EbicsPaymentService {
       boolean nationalPayment)
       throws Exception {
 
-    String result = "simulatePayment - generate pain file:\n";
+    String message = "simulatePayment - generate pain file:\n";
     File painFile =
         painService.generatePainFile(
             msgId,
@@ -130,16 +135,24 @@ public class EbicsPaymentServiceImpl implements EbicsPaymentService {
 
     String pain = new EbicsTools().getContent(painFile);
     String command = appConfig.entryPoint + " --xe2 -i " + painFile.getAbsolutePath();
+    
 
     if (ebicsMode == EbicsMode.enabled) {
-      result += "would issue following command: " + command;
+      message += "would issue following command: " + command;
     } else {
-      result += "would NOT issue this command because EbicsMode is not set to enabled: " + command;
+      message += "would NOT issue this command because EbicsMode is not set to enabled: " + command;
     }
-    result += "\nEbics file generated:" + painFile.getAbsolutePath();
-    log.debug(result);
-    result += "\n;Content of file which will be sent to the bank:\n" + pain.toString();
+    message += "\nEbics file generated:" + painFile.getAbsolutePath();
+    log.debug(message);
+    message += "\n;Content of file which will be sent to the bank:\n" + pain.toString();
 
-    return result.toString();
+    return TxResponse.builder()
+            .command("simulatePayment")
+            .message(message)
+            .ebicsDocumentPath(painFile.getAbsolutePath())
+            .ebicsMode(ebicsMode)
+            .status(TxStatusEnum.OK)
+            .msgId(msgId)
+            .build();
   }
 }

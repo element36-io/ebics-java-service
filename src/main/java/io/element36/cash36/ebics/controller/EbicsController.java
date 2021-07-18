@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import io.element36.cash36.ebics.config.AppConfig;
+import io.element36.cash36.ebics.config.EbicsMode;
 import io.element36.cash36.ebics.dto.Payment;
-import io.element36.cash36.ebics.dto.PaymentStatusReportDTO;
 import io.element36.cash36.ebics.dto.StatementDTO;
+import io.element36.cash36.ebics.dto.TxResponse;
+import io.element36.cash36.ebics.dto.TxStatusEnum;
 import io.element36.cash36.ebics.dto.UnpegPayment;
 import io.element36.cash36.ebics.service.EbicsPaymentService;
 import io.element36.cash36.ebics.service.EbicsPaymentStatusService;
@@ -66,6 +68,8 @@ public class EbicsController {
   @Value("${ebics.peggingAccount.bic}")
   private String peggingSourceBic;
 
+  @Autowired EbicsMode ebicsMode;
+
   @ApiOperation("Create a tarnsaction with your pegging account configured in `ebics.pegging.account`. "
   + "The service call will create a XML document (pain-file) which will be sent to the bank using "
   + "Ebics protocoll. For development purposes you can use the dev-mode (spring.profiles.active) "
@@ -76,11 +80,11 @@ public class EbicsController {
   + "See https://wiki.xmldation.com/General_Information/Payment_Standards/ISO_20022/pain.001 "
   + "for more information about the standard. ")  
   @PostMapping("/unpeg")
-  public ResponseEntity<String> createUnpegOrder(
+  public ResponseEntity<TxResponse> createUnpegOrder(
       @RequestBody @Valid UnpegPayment payment, HttpServletRequest servletRequest) {
     log.debug("unpeg {} from {} ", payment, peggingSourceIban);
 
-    String result;
+    TxResponse result;
 
     String msgId =
         this.generatePaymentIds.getMsgId(payment, servletRequest); // Maximal 35 der SEPA Datei.
@@ -97,7 +101,7 @@ public class EbicsController {
         payment.getReceipientIban());
 
     try {
-      result =
+       result =
           ebicsPaymentService.makePayment(
               msgId,
               pmtInfId,
@@ -121,7 +125,14 @@ public class EbicsController {
       return ResponseEntity.ok(result);
     } catch (DatatypeConfigurationException e) {
       log.error("ERROR in makePayment ", e);
-      return ResponseEntity.badRequest().body(e.getMessage());
+      return ResponseEntity.badRequest().body(
+          TxResponse.builder()
+              .message(e.getMessage())
+              .status(TxStatusEnum.OK)
+              .msgId(msgId)
+              .ebicsMode(ebicsMode)
+              .build()
+          );
     } catch (IOException e) {
       log.error("ERROR in makePayment ", e);
       throw new ResponseStatusException(
@@ -150,7 +161,7 @@ public class EbicsController {
   + "See https://wiki.xmldation.com/General_Information/Payment_Standards/ISO_20022/pain.001 "
   + "for more information about the standard. ")  
   @PostMapping("/createOrder")
-  public ResponseEntity<String> createPaymentOrder(@RequestBody @Valid Payment payment) {
+  public ResponseEntity<TxResponse> createPaymentOrder(@RequestBody @Valid Payment payment) {
     log.debug("makePayment {}", payment);
     log.info(
         " createUnpegOrder {}, {},{},{},{},{}",
@@ -161,7 +172,7 @@ public class EbicsController {
         payment.getAmount(),
         payment.getReceipientIban());
 
-    String result;
+    TxResponse result;
     try {
       result =
           ebicsPaymentService.makePayment(
@@ -188,7 +199,14 @@ public class EbicsController {
       return ResponseEntity.ok(result);
     } catch (DatatypeConfigurationException e) {
       log.error("ERROR in makePayment ", e);
-      return ResponseEntity.badRequest().body(e.getMessage());
+      return ResponseEntity.badRequest().body(
+        TxResponse.builder()
+            .message(e.getMessage())
+            .status(TxStatusEnum.OK)
+            .msgId(payment.getMsgId())
+            .ebicsMode(ebicsMode)
+            .build()
+        );
     } catch (IOException e) {
       log.error("ERROR in makePayment ", e);
       throw new ResponseStatusException(
@@ -205,10 +223,9 @@ public class EbicsController {
   + "You may test this file with your bank prior to activating Ebics: Many "
   + "banks offer buld-upload function which read Camt.053 format via web-interface.")
   @PostMapping("/simulate")
-  public ResponseEntity<String> simulate(@RequestBody @Valid Payment request) {
+  public ResponseEntity<TxResponse> simulate(@RequestBody @Valid Payment request) {
     log.debug("makePayment {}", request);
-
-    String result;
+    TxResponse result;
     try {
       result =
           ebicsPaymentService.simulatePayment(
@@ -234,7 +251,15 @@ public class EbicsController {
 
     } catch (DatatypeConfigurationException e) {
       log.error("ERROR in makePayment ", e);
-      return ResponseEntity.badRequest().body(e.getMessage());
+      
+      return ResponseEntity.badRequest().body(
+        TxResponse.builder()
+            .message(e.getMessage())
+            .status(TxStatusEnum.OK)
+            .msgId(request.getMsgId())
+            .ebicsMode(ebicsMode)
+            .build()
+        );
     } catch (IOException e) {
       log.error("ERROR in makePayment ", e);
       throw new ResponseStatusException(

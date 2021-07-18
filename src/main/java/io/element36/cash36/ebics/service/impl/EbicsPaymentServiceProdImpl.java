@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import io.element36.cash36.EbicsTools;
 import io.element36.cash36.ebics.config.AppConfig;
 import io.element36.cash36.ebics.config.EbicsMode;
+import io.element36.cash36.ebics.dto.TxResponse;
+import io.element36.cash36.ebics.dto.TxStatusEnum;
 import io.element36.cash36.ebics.service.GeneratePainService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,7 +34,7 @@ public class EbicsPaymentServiceProdImpl extends EbicsPaymentServiceImpl {
   @Autowired EbicsMode ebicsMode;
 
   @Override
-  public String makePayment(
+  public TxResponse makePayment(
       String msgId,
       String pmtInfId,
       String sourceIban,
@@ -81,6 +83,8 @@ public class EbicsPaymentServiceProdImpl extends EbicsPaymentServiceImpl {
     String command = appConfig.entryPoint + " --xe2 -i " + painFile.getAbsolutePath();
     log.debug("calling ebics via cmd {} ", command);
     CommandLine commandLine = CommandLine.parse(command);
+    String message="not set";
+    TxStatusEnum status=TxStatusEnum.ERROR;
 
     if (ebicsMode == EbicsMode.enabled) {
 
@@ -94,6 +98,7 @@ public class EbicsPaymentServiceProdImpl extends EbicsPaymentServiceImpl {
         Exception innerException = null;
         try {
           executor.execute(commandLine);
+          status=TxStatusEnum.OK;
         } catch (Exception e) {
           innerException = e;
         }
@@ -103,7 +108,7 @@ public class EbicsPaymentServiceProdImpl extends EbicsPaymentServiceImpl {
 
         if (innerException != null) throw innerException;
 
-        return "PROD: Payment generated and triggered - " + outputAsString;
+        message= "PROD: Payment generated and triggered - " + outputAsString;
       } catch (IOException e) {
 
         log.error("IOException", e);
@@ -111,7 +116,16 @@ public class EbicsPaymentServiceProdImpl extends EbicsPaymentServiceImpl {
       }
     } else {
       log.debug("makePayment ignored - ebics is not enabled " + ebicsMode);
-      return "Payment not enabled. Ebics-File:"+painFile.getAbsolutePath()+"; command:"+command;
+      message= "Payment not enabled. Ebics-File:"+painFile.getAbsolutePath()+"; command:"+command;
     }
+
+    return TxResponse.builder()
+            .command("makePayment")
+            .message(message)
+            .ebicsMode(ebicsMode)
+            .ebicsDocumentPath(painFile==null?"no file":painFile.getAbsolutePath())
+            .msgId(msgId)
+            .status(status)
+            .build();
   }
 }

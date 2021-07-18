@@ -2,8 +2,10 @@ package io.element36.cash36.ebics.service;
 
 import java.math.BigDecimal;
 
+import io.element36.cash36.ebics.dto.TxResponse;
+
 public interface EbicsPaymentService {
-  String makePayment(
+  TxResponse makePayment(
       String msgId,
       String pmtInfId,
       String sourceIban,
@@ -25,7 +27,7 @@ public interface EbicsPaymentService {
       boolean nationalPayment)
       throws Exception;
 
-  String simulatePayment(
+  TxResponse simulatePayment(
       String msgId,
       String pmtInfId,
       String sourceIban,
