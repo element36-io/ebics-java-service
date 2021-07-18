@@ -15,6 +15,10 @@ import io.element36.cash36.ebics.controller.EbicsController;
 import io.element36.cash36.ebics.dto.PaymentStatusReportDTO;
 import io.element36.cash36.ebics.dto.StatementDTO;
 
+/**
+ *  gradle -x checkstyleMain test --tests io.element36.cash36.ebics.EbicsControllerTest.testGetStatusReport
+ */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class EbicsControllerTest {
@@ -27,13 +31,6 @@ public class EbicsControllerTest {
     ResponseEntity<List<PaymentStatusReportDTO>> statusReport = controller.getStatusReport();
     assertThat(statusReport).isNotNull();
     assertThat(statusReport.getBody()).isNotNull();
-    /*
-    add proxy here?
-    assertThat(statusReport.getBody().size()).isGreaterThan(0);
-    for (PaymentStatusReportDTO item:statusReport.getBody()) {
-    	TestTool.pp(item);
-
-    } */
   }
 
   @Test
@@ -45,7 +42,10 @@ public class EbicsControllerTest {
 
     assertThat(payments.getBody().size()).isGreaterThan(0);
     for (StatementDTO item : payments.getBody()) {
+      System.out.println("-----------------------");
       TestTool.pp(item);
     }
+    		// test content
+		TestTool.testProxyStatements(payments.getBody());
   }
 }

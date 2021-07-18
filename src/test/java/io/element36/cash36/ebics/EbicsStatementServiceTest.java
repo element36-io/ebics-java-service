@@ -26,7 +26,7 @@ public class EbicsStatementServiceTest {
     List<StatementDTO> statement = ebicsStatementService.getBankStatement();
     pp("no. statements: ", statement.size());
 
-    assertThat(statement.size()).isBetween(1, 100000);
+    assertThat(statement.size()).isBetween(1, 3);
     boolean reachedIn = false;
     boolean reachedOut = false;
     for (StatementDTO account : statement) {
@@ -59,5 +59,9 @@ public class EbicsStatementServiceTest {
     }
     assertThat(reachedIn).isTrue();
     assertThat(reachedOut).isTrue();
+
+    // test content (fields) of single transactions
+    TestTool.testProxyStatements(statement);
+
   }
 }

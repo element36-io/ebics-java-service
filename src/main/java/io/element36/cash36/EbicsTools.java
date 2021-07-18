@@ -69,12 +69,12 @@ public class EbicsTools {
         fos.write(buffer, 0, len);
       }
       fos.close();
+      zis.closeEntry();
       zipEntry = zis.getNextEntry();
-
       // Add file to collection
       newFiles.add(newFile);
     }
-    zis.closeEntry();
+    
     zis.close();
     return newFiles;
   }

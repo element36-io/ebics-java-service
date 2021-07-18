@@ -54,6 +54,13 @@ public class EbicsPaymentServiceProdTests {
             false);
 
     System.out.println(statusMessage);
+    String fileName=statusMessage.split(":")[1];
+    fileName=fileName.split(";")[0].trim();
+    String content=TestTool.readLineByLineJava8(fileName);
+    //System.out.println("Payment File content:\n:"+content);
+    content=TestTool.findAndReplaceTagContent("CreDtTm", "2021-07-16T14:43:03", content);
+    content=TestTool.findAndReplaceTagContent("ReqdExctnDt", "2021-07-16", content);		
+    org.assertj.core.api.Assertions.assertThat(content).isEqualTo(TestTool.PAIN1);
   }
 
   @Test
@@ -92,9 +99,13 @@ public class EbicsPaymentServiceProdTests {
             false);
 
     System.out.println(statusMessage);
-    String fileName = statusMessage.split(":")[1];
-
-    String content = TestTool.readLineByLineJava8(fileName);
-    System.out.println("Payment File content:\n:" + content);
+    String fileName=statusMessage.split(":")[4];
+    fileName=fileName.split(";")[0].trim();
+    
+    String content=TestTool.readLineByLineJava8(fileName);
+    System.out.println("Payment File content:\n:"+content);
+    content=TestTool.findAndReplaceTagContent("CreDtTm", "2021-07-16T15:12:31", content);
+    content=TestTool.findAndReplaceTagContent("ReqdExctnDt", "2021-07-16", content);
+    org.assertj.core.api.Assertions.assertThat(content).isEqualTo(TestTool.PAIN2);
   }
 }

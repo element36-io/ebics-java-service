@@ -1,9 +1,9 @@
 ## Setup
 
-- The docker image contains jar file and dependencies of [java-ebics-client] (https://github.com/element36-io/ebics-java-client).  
+- The docker image contains jar file and dependencies of [java-ebics-client](https://github.com/element36-io/ebics-java-client).  
 - First step is to contact your bank to request EBICS access and sign the needed documents.
 - They might ask for an IP address and only allow requests from this address.
-- Find your banks EBICS parameters, eg [EBICS parameters for Zürcher Kantonalbank ](https://www.zkb.ch/media/dok/efinance/ebics-verbindungsparameter.pdf) (in German) 
+- Find your banks EBICS parameters, eg [EBICS parameters for Zürcher Kantonalbank](https://www.zkb.ch/media/dok/efinance/ebics-verbindungsparameter.pdf) (in German) 
 - In addition your bank will provide you with more parameters such as user id.
 - Put those parameters in the `$HOME/ebics/client/ebics.txt` properties file.
 
