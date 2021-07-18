@@ -275,23 +275,4 @@ public class EbicsController {
     return ResponseEntity.ok(result);
   }
 
-  @ApiOperation(
-      "Check status of a transaction with command Z01. "
-          + "In dev mode you see the command which is issued to query the status of the transaction.")
-  @GetMapping("/paymentstatus")
-  public ResponseEntity<List<PaymentStatusReportDTO>> getStatusReport() {
-    log.debug("getStatement ");
-
-    List<PaymentStatusReportDTO> result;
-    try {
-      result = ebicsPaymentStatusService.getStatusReport();
-    } catch (Exception e) {
-      log.error("ERROR in getStatusReport ", e);
-      throw new ResponseStatusException(
-          HttpStatus.INTERNAL_SERVER_ERROR,
-          "Error getStatusReport - Exception: " + e.toString(),
-          e);
-    }
-    return ResponseEntity.ok(result);
-  }
 }

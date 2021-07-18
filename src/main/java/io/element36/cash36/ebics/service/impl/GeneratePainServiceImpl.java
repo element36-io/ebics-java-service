@@ -1,4 +1,4 @@
- package io.element36.cash36.ebics.service.impl;
+package io.element36.cash36.ebics.service.impl;
 
 import java.io.File;
 import java.io.IOException;
@@ -50,7 +50,10 @@ public class GeneratePainServiceImpl implements GeneratePainService {
       String clearingSystemMemberId,
       boolean nationalPayment)
       throws DatatypeConfigurationException, IOException {
-
+      
+    String postAccount="";
+    if (recipientBankPostAccount!=null) postAccount=recipientBankPostAccount.replaceAll("\\s+", "");
+    
     JAXBElement<Document> jaxbElement =
         painStrategy.generatePainFile(
             msgId,
@@ -61,7 +64,7 @@ public class GeneratePainServiceImpl implements GeneratePainService {
             currency.replaceAll("\\s+", ""),
             receipientIban.replaceAll("\\s+", ""),
             receipientBankName,
-            recipientBankPostAccount.replaceAll("\\s+", ""),
+            postAccount,
             receipientName,
             purpose,
             ourReference,
