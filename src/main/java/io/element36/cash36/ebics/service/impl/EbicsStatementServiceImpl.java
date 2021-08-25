@@ -16,6 +16,7 @@ import org.apache.commons.exec.PumpStreamHandler;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import io.element36.cash36.EbicsTools;
@@ -27,6 +28,7 @@ import io.element36.cash36.ebics.strategy.Statement;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Profile({"!sandbox"})
 @Slf4j
 public class EbicsStatementServiceImpl implements EbicsStatementService {
   @Autowired EbicsMode ebicsMode;

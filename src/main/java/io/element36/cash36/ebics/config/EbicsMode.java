@@ -12,5 +12,8 @@ public enum EbicsMode {
   disabled,
   @ApiModelProperty(
     value ="getBankStatements (/bankstatements) will return a static/fake file for testing purposes")
-  proxy;
+  proxy,
+  @ApiModelProperty(
+	    value ="works with libeufin as a backend - which simulates the banking interface")
+  sandbox;
 }

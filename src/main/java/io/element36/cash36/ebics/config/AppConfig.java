@@ -15,9 +15,9 @@ import io.element36.cash36.ebics.strategy.impl.PaymentStatusCH;
 import io.element36.cash36.ebics.strategy.impl.StatementCamt53_001;
 
 @Configuration
-@ConfigurationProperties(prefix = "ebics")
+@ConfigurationProperties(prefix = "ebics.libeufin")
 public class AppConfig {
-
+    
   public static final String API_PATH = "api-v1";
 
   @Value("${ebics.entrypoint}")

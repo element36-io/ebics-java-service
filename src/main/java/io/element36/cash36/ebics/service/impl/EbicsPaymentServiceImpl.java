@@ -17,7 +17,7 @@ import io.element36.cash36.ebics.service.GeneratePainService;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Profile("!prod")
+@Profile({"!prod & !sandbox"})
 @Slf4j
 public class EbicsPaymentServiceImpl implements EbicsPaymentService {
 
