@@ -3,7 +3,7 @@
 This project connects with your bank account using 
 [Ebics](https://en.wikipedia.org/wiki/Electronic_Banking_Internet_Communication_Standard) 
 standard. The project wraps a [java-based command-line tool](https://github.com/element36-io/ebics-java-client)
-into a REST service and add features like cron and webhooks. 
+into a REST service and add features like cron and webhooks.
 
 Setting it up successfully means, that you can 
 - Read daily statements including account balance and transactions of multiple accounts
