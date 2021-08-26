@@ -1,0 +1,12 @@
+
+
+ebics:
+  libeufin:
+     # sends this ebics file when simulate is called
+     nexus_url: ${LIBEUFIN_NEXUS_URL:http://localhost:5000}
+     nexus_username: ${LIBEUFIN_NEXUS_USERNAME:foo}
+     nexus_password: ${LIBEUFIN_NEXUS_PASSWORD:superpassword}
+     nexus_account_name: ${LOCAL_ACCOUNT_NAME:accountname1}
+     nexus_account_currency: ${ACCOUNT_CURRENCY:EUR}
+     nexus_account_balance: ${ACCOUNT_BALANCE:100}
+                
