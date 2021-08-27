@@ -1,0 +1,39 @@
+version: "3.2"
+
+services:
+  postgres:
+    image: postgres:11
+    restart: always
+    environment:
+      - POSTGRES_USER=pgrootuser
+      - POSTGRES_PASSWORD=pgrootpassword
+      - POSTGRES_DB=libeufindb
+      - POSTGRES_NON_ROOT_USER=pguser
+      - POSTGRES_NON_ROOT_PASSWORD=pgpassword
+      # - PGDATA="/var/lib/postgresql/data/pgdata"
+      # ports:
+      # - "5432:5432"
+      #volumes:
+      #- ./init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
+      # GCP: - /mnt/stateful_partition/APP/postgres/db:/var/lib/postgresql/data/pgdata
+      # local dir: - ${DATADIR:?}/postgres:/var/lib/postgresql/data
+
+  libeufin:
+    image: e36io/libeufin:main
+    #image: libeufin
+    environment:
+      - LIBEUFIN_SANDBOX_URL=http://localhost:5016/
+      - LIBEUFIN_SANDBOX_DB_CONNECTION=jdbc:postgresql://postgres:5432/libeufindb?user=pgrootuser&password=pgrootpassword
+      - LIBEUFIN_NEXUS_DB_CONNECTION=jdbc:postgresql://postgres:5432/libeufindb?user=pgrootuser&password=pgrootpassword
+      - LIBEUFIN_NEXUS_URL=http://localhost:5000/
+      - EBICS_BASE_URL=http://localhost:5016/ebicsweb
+
+    command: /app/scripts/init_libeufin_sandbox.sh
+    tty: true
+    stdin_open: true # without this node doesn't start; https://stackoverflow.com/questions/61857267/how-to-make-yarn-start-work-inside-docker-image-with-react-scripts-3-4-and-babel
+    ports:
+      - "5016:5016" # sandbox
+      - "5000:5000" # nexus
+      - "3000:3000" # ui
+    volumes:
+      - ./scripts:/app/scripts

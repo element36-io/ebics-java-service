@@ -3,6 +3,7 @@ package io.element36.cash36.ebics.service.impl;
 import java.math.BigDecimal;
 import java.net.URI;
 
+import io.element36.cash36.ebics.dto.TxResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
@@ -32,7 +33,7 @@ public class EbicsPaymentServiceLibeufin implements EbicsPaymentService {
 
 
   @Override
-  public String makePayment(
+  public TxResponse makePayment(
       String msgId,
       String pmtInfId,
       String sourceIban,
@@ -54,7 +55,7 @@ public class EbicsPaymentServiceLibeufin implements EbicsPaymentService {
       boolean nationalPayment)
       throws Exception {
 
-    String result = "OK";
+    TxResponse result = null;
 
     RestTemplate restTemplate = new RestTemplate();
     restTemplate
@@ -105,7 +106,7 @@ public class EbicsPaymentServiceLibeufin implements EbicsPaymentService {
   }
 
   @Override
-  public String simulatePayment(
+  public TxResponse simulatePayment(
       String msgId,
       String pmtInfId,
       String sourceIban,

@@ -15,16 +15,19 @@ public class BatchedTransactionDetails {
   Name creditorAgent;
 
   @NoArgsConstructor
+  @Data
   public class Name {
     String name;
   }
 
   @NoArgsConstructor
+  @Data
   public class Iban {
     String iban;
   }
 
   @NoArgsConstructor
+  @Data
   public class Bic {
     String bic;
   }

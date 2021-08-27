@@ -26,6 +26,12 @@ public class AppConfig {
   @Value("${ebics.mode}")
   EbicsMode ebicsMode;
 
+  @Value("${ebics.peggingAccount.iban}")
+  public String peggingIban;
+
+  @Value("${ebics.peggingAccount.bic}")
+  public String peggingBic;
+
   List<String> ignoreAccounts;
 
   public List<String> getIgnoreAccounts() {
