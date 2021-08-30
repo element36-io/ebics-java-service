@@ -40,7 +40,7 @@ After start, you should be able to open
 [Swagger](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/#/ebics-controller/getPaymentsUsingGET) 
 and get the latest bank statements. Expect `[]` to be the result if you did 
 not make any transactions.
-Also log into [Nexus](http://localhost:3000/home) with foo/superpassword to 
+Also you my log into [Nexus](http://localhost:3000/home) with foo/superpassword to 
 see transactions initiated via the API.
 
 ### Change the setup of bank accounts
