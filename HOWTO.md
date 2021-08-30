@@ -60,7 +60,6 @@ or docker container.
 Daily statements can only be retrieved once - then you get an error if you request again. 
 This Ebics "error" sticks, until you have a new transaction on your accounts. 
 
-
 ### ERROR - Command not supported
 
 Not all banks support the full set of commands, or you need to configure a differnt command to retrieve your

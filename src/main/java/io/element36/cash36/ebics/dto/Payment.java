@@ -11,21 +11,21 @@ public class Payment extends UnpegPayment {
 
   @ApiModelProperty(
       value =
-          "Maximum 35 characters, Reference SEPA file creator for the purpose of clearer Identification of the SEPA/payment file")
+          "Maximum 35 characters, Reference SEPA file creator for the purpose of clearer Identification of the SEPA/payment file", example="emtpy")
   @Size(max = 35, message = "max 35 chars")
   @NotBlank(message = "msgId cannot be null")
   private String msgId;
 
   @ApiModelProperty(
       value =
-          "Maximum of 35 characters reference for the clear identification of a collector in the account statement (= DTA field A10)")
+          "Maximum of 35 characters reference for the clear identification of a collector in the account statement (= DTA field A10)", example="empty")
   @Size(max = 35, message = "max 35 chars")
   @NotBlank(message = "pmtInfId cannot be null")
   private String pmtInfId;
 
   @ApiModelProperty(
       value = "IBAN account number of source (your) account",
-      example = "CH21 0830 7000 2895 3732 0")
+      example = "CH2108307000289537320")
   @NotBlank(message = "sourceIban cannot be null")
   private String sourceIban;
 

@@ -17,7 +17,6 @@ public interface GeneratePainService {
       String currency,
       String receipientIban,
       String receipientBankName,
-      String recipientBankPostAccount,
       String receipientName,
       String purpose,
       String ourReference,

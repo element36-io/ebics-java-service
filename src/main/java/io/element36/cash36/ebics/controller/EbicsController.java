@@ -1,6 +1,6 @@
 package io.element36.cash36.ebics.controller;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import io.element36.cash36.EbicsTools;
 import io.element36.cash36.ebics.config.AppConfig;
 import io.element36.cash36.ebics.config.EbicsMode;
 import io.element36.cash36.ebics.dto.Payment;
@@ -83,6 +84,8 @@ public class EbicsController {
   public ResponseEntity<TxResponse> createUnpegOrder(
       @RequestBody @Valid UnpegPayment payment, HttpServletRequest servletRequest) {
     log.debug("unpeg {} from {} ", payment, peggingSourceIban);
+    
+    if (EbicsTools.sameIban(payment.getReceipientIban(),peggingSourceIban)) throw new IllegalArgumentException(" receiving account is same as pegging account");
 
     TxResponse result;
 
@@ -90,6 +93,8 @@ public class EbicsController {
         this.generatePaymentIds.getMsgId(payment, servletRequest); // Maximal 35 der SEPA Datei.
     String pmtInfId =
         this.generatePaymentIds.getPmtInfId(payment, servletRequest); // Max 35, Id of Sammler
+    
+    
 
     log.info(
         " createUnpegOrder {}, {},{},{},{},{}",
@@ -111,7 +116,6 @@ public class EbicsController {
               payment.getCurrency(),
               payment.getReceipientIban(),
               payment.getReceipientBankName(),
-              payment.getRecipientBankPostAccount(),
               payment.getReceipientName(),
               payment.getPurpose(),
               payment.getOurReference(),
@@ -184,7 +188,6 @@ public class EbicsController {
               payment.getCurrency(),
               payment.getReceipientIban(),
               payment.getReceipientBankName(),
-              payment.getRecipientBankPostAccount(),
               payment.getReceipientName(),
               payment.getPurpose(),
               payment.getOurReference(),
@@ -237,7 +240,6 @@ public class EbicsController {
               request.getCurrency(),
               request.getReceipientIban(),
               request.getReceipientBankName(),
-              request.getRecipientBankPostAccount(),
               request.getReceipientName(),
               request.getPurpose(),
               request.getOurReference(),

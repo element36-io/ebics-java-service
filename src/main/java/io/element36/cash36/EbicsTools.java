@@ -28,6 +28,21 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EbicsTools {
 
+  public static String prettyIban(String iban) {
+    if (iban == null) return "";
+    return iban.toUpperCase().replaceAll("\\W", "");
+  }
+
+  public static boolean sameIban(String iban1, String iban2) {
+    if (iban1 == null || iban2 == null) return false;
+    if (iban1.isEmpty() || iban2.isEmpty()) return false;
+    ;
+    return iban1
+        .toUpperCase()
+        .replaceAll("\\W", "")
+        .equals(iban2.toUpperCase().replaceAll("\\W", ""));
+  }
+
   public void printContent(File file) {
     try {
 
@@ -74,7 +89,7 @@ public class EbicsTools {
       // Add file to collection
       newFiles.add(newFile);
     }
-    
+
     zis.close();
     return newFiles;
   }

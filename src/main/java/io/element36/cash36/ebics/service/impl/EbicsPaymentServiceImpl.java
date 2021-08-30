@@ -17,7 +17,7 @@ import io.element36.cash36.ebics.service.GeneratePainService;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Profile("!prod")
+@Profile({"!prod & !sandbox"})
 @Slf4j
 public class EbicsPaymentServiceImpl implements EbicsPaymentService {
 
@@ -37,7 +37,6 @@ public class EbicsPaymentServiceImpl implements EbicsPaymentService {
       String currency,
       String receipientIban,
       String receipientBankName,
-      String recipientBankPostAccount,
       String receipientName,
       String purpose,
       String ourReference,
@@ -62,7 +61,6 @@ public class EbicsPaymentServiceImpl implements EbicsPaymentService {
               currency,
               receipientIban,
               receipientBankName,
-              recipientBankPostAccount,
               receipientName,
               purpose,
               ourReference,
@@ -97,7 +95,6 @@ public class EbicsPaymentServiceImpl implements EbicsPaymentService {
       String currency,
       String receipientIban,
       String receipientBankName,
-      String recipientBankPostAccount,
       String receipientName,
       String purpose,
       String ourReference,
@@ -121,7 +118,6 @@ public class EbicsPaymentServiceImpl implements EbicsPaymentService {
             currency,
             receipientIban,
             receipientBankName,
-            recipientBankPostAccount,
             receipientName,
             purpose,
             ourReference,

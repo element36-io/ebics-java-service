@@ -17,7 +17,7 @@ import io.element36.cash36.ebics.strategy.impl.StatementCamt53_001;
 @Configuration
 @ConfigurationProperties(prefix = "ebics")
 public class AppConfig {
-
+    
   public static final String API_PATH = "api-v1";
 
   @Value("${ebics.entrypoint}")
@@ -25,6 +25,12 @@ public class AppConfig {
 
   @Value("${ebics.mode}")
   EbicsMode ebicsMode;
+
+  @Value("${ebics.peggingAccount.iban}")
+  public String peggingIban;
+
+  @Value("${ebics.peggingAccount.bic}")
+  public String peggingBic;
 
   List<String> ignoreAccounts;
 
