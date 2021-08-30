@@ -3,6 +3,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+    
 jobs:
   push_to_dockerhub:
     name: build image and push to dockerhub
