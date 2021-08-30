@@ -105,6 +105,11 @@ mapping of daily statements to Json Response.
 
 You may check out www.ebics.ch, www.ebics.de. www.ebics.at, www.ebics.org. 
 
+## Use the sandbox
+
+You can use a fake banking backend by starting the sandbox as a backend, see
+[SANDBOX.md](docs/SANDBOX.md). 
+
 ## Run tests
 
 ![Coverage](.github/badges/jacoco.svg)

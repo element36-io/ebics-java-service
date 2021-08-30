@@ -5,7 +5,7 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ testcoverage,checkstyle ]
+    branches: [ main,testcoverage,checkstyle ]
   pull_request:
     branches: [ main ]
 

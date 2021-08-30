@@ -41,7 +41,7 @@ services:
       - ./scripts:/app/scripts
   
   ebics-service: 
-    image: e36io/ebics-service
+    image: e36io/ebics-service:main
     environment:
        - spring_profiles_active=sandbox
     ports:

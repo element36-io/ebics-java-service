@@ -9,5 +9,5 @@ ebics:
      nexus_username: ${LIBEUFIN_NEXUS_USERNAME:foo}
      nexus_password: ${LIBEUFIN_NEXUS_PASSWORD:superpassword}
      nexus_account_currency: ${ACCOUNT_CURRENCY:EUR}
-     nexus_account_balance: ${ACCOUNT_BALANCE:1345}
+     nexus_account_balance: ${ACCOUNT_BALANCE:0}
                 
