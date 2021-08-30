@@ -105,6 +105,10 @@ mapping of daily statements to Json Response.
 
 You may check out www.ebics.ch, www.ebics.de. www.ebics.at, www.ebics.org. 
 
+## Use the sandbox-backend
+
+See [SANDBOX.md](docs/TEST.md). 
+
 ## Run tests
 
 ![Coverage](.github/badges/jacoco.svg)
