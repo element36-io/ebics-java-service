@@ -15,8 +15,6 @@ the sandbox with a real bank.
 Now you can use the ebics-java-service to trigger transaction which are reflected 
 in the bank statements you can retrieve with the ebics-java-service. 
 
-You can log into [Nexus](http://localhost:3000/home) with foo/superpassword to see transactions initiated via the API.
-
 
 ### Notes on the balance of the account
 
@@ -40,6 +38,8 @@ In the project root of ebics-java-service:
 
 After start, you should be able to open 
 [Swagger](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/#/ebics-controller/getPaymentsUsingGET) and get the latest bank statements. Expect `[]` to be the result if you did not make any transactions. 
+or log into [Nexus](http://localhost:3000/home) with foo/superpassword to 
+see transactions initiated via the API.
 
 ### Change the setup of bank accounts
 
