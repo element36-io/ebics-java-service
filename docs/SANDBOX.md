@@ -15,14 +15,14 @@ the sandbox with a real bank.
 Now you can use the ebics-java-service to trigger transaction which are reflected 
 in the bank statements you can retrieve with the ebics-java-service. 
 
-You can log into (Nexus)[http://localhost:3000/home] to see transactions. 
+You can log into [Nexus](http://localhost:3000/home) with foo/superpassword to see transactions initiated via the API.
 
 ### Notes on the balance of the account
 
 The sandbox is not able to keep balances, so this is done in 
 ebics-java-client. But after a restart of the service, the balance is reset 
-to the value configured (default: 0) in the  environment 'ACCOUNT_BALANCE'
-or in the 'application-sandbox.yml' config file. 
+to the value configured (default: 0) in the  environment `ACCOUNT_BALANCE`
+or in the `application-sandbox.yml` config file. 
 
 
 ## Docker
@@ -38,11 +38,11 @@ In the project root of ebics-java-service:
 	docker-compose -f docker-compose-sandbox.yml up
 
 After start, you should be able to open 
-[Swagger](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/#/ebics-controller/getPaymentsUsingGET) and get the latest bank statements. Expect '[]' to be the result if you did not make any transactions. 
+[Swagger](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/#/ebics-controller/getPaymentsUsingGET) and get the latest bank statements. Expect `[]` to be the result if you did not make any transactions. 
 
 ### Change the setup of bank accounts
 
-Change the setup script './scripts/init_libeuin_sandbox.sh' according to the documentation of libeufin. 
+Change the setup script `./scripts/init_libeuin_sandbox.sh` according to the documentation of libeufin. 
 
 Purge the backend and restart from scratch using: 
 
