@@ -38,7 +38,6 @@ public class GeneratePainServiceImpl implements GeneratePainService {
       String currency,
       String receipientIban,
       String receipientBankName,
-      String recipientBankPostAccount,
       String receipientName,
       String purpose,
       String ourReference,
@@ -52,8 +51,6 @@ public class GeneratePainServiceImpl implements GeneratePainService {
       throws DatatypeConfigurationException, IOException {
       
     String postAccount="";
-    if (recipientBankPostAccount!=null) postAccount=recipientBankPostAccount.replaceAll("\\s+", "");
-    
     JAXBElement<Document> jaxbElement =
         painStrategy.generatePainFile(
             msgId,

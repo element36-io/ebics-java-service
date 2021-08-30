@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "ebics")
 public class AppConfigLibeufin {
+    
+  @Value("${ebics.libeufin.sandbox_url}")
+  public String sandbox_url;
 
   @Value("${ebics.libeufin.nexus_url}")
   public String nexus_url;
@@ -18,9 +21,6 @@ public class AppConfigLibeufin {
 
   @Value("${ebics.libeufin.nexus_password}")
   public String password;
-
-  @Value("${ebics.libeufin.nexus_account_name}")
-  public String accountName;
 
   @Value("${ebics.libeufin.nexus_account_balance}")
   public BigDecimal accountBalance;

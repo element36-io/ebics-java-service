@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BatchedTransactionDetails {
   Name debtor;
-  Iban dectorAccount;
+  Iban debtorAccount;
   Bic debtorAgent;
   Name creditor;
   Iban creditorAccount;
@@ -31,4 +31,8 @@ public class BatchedTransactionDetails {
   public class Bic {
     String bic;
   }
+  
+  String endToEndId; 
+  String paymentInformationId; 
+  String unstructuredRemittanceInformation; 
 }

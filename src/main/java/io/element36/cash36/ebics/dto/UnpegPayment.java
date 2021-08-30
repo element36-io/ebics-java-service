@@ -11,11 +11,11 @@ import lombok.Getter;
 @Getter
 public class UnpegPayment {
 
-  @ApiModelProperty(value = "Amount - 1,1", example = "")
+  @ApiModelProperty(value = "Amount - 1,1", example = "1.1")
   @NotNull(message = "amount cannot be null")
   private BigDecimal amount;
 
-  @ApiModelProperty(value = "Currency in CHF or EUR", example = "CHF")
+  @ApiModelProperty(value = "Currency in CHF or EUR", example = "EUR")
   @NotBlank(message = "currency cannot be null")
   private String currency;
 
@@ -25,13 +25,13 @@ public class UnpegPayment {
   @NotBlank(message = "purpose cannot be null")
   private String purpose;
 
-  @ApiModelProperty(value = "Private reference, eg transaction-id", example = "txId")
+  @ApiModelProperty(value = "Private reference, eg invoice-id", example = "empty")
   @NotBlank(message = "ourReference cannot be null")
   private String ourReference;
 
   @ApiModelProperty(
       value = "IBAN account number of destination account",
-      example = "CH12 3011 6000 2895 3731 2")
+      example = "CH1230116000289537313")
   @NotBlank(message = "receipientIban cannot be null")
   private String receipientIban;
 
@@ -39,10 +39,6 @@ public class UnpegPayment {
   // @NotBlank(message = "receipientBankName cannot be null") - only for nationalPayment
   private String receipientBankName;
 
-  @ApiModelProperty(value = "Optional (legacy) post account as used in Switzerland - "+
-            " using Iban instead ", example = "")
-  // @NotBlank(message = "recipientBankPostAccount cannot be null") - only for nationalPayment
-  private String recipientBankPostAccount;
 
   @ApiModelProperty(value = "Receipient name", example = "element36 AG")
   @NotBlank(message = "receipientName cannot be null")
@@ -59,6 +55,7 @@ public class UnpegPayment {
   @ApiModelProperty(
       value = "Zip code - 4 digits in Switzerland, more in other countries",
       example = "6340")
+  
   @NotBlank(message = "receipientZip cannot be null")
   private String receipientZip;
 
@@ -71,7 +68,7 @@ public class UnpegPayment {
   private String receipientCountry;
 
   @ApiModelProperty(value = "Optional clearing number may be required for some international  "+
-            "payments, see  https://wiki.xmldation.com/Support/ISO20022/General_Rules/Clearing_codes", example = " ")
+            "payments, see  https://wiki.xmldation.com/Support/ISO20022/General_Rules/Clearing_codes", example = "HYPLCH22")
   // @NotBlank(message = "clearingSystemMemberId cannot be null") - only for
   // nationalPayment
   private String clearingSystemMemberId;

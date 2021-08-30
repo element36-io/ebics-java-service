@@ -9,9 +9,6 @@ public class BatchedTransaction {
     
      String amount;
      String creditDebitIndicator;
-     String endToEndId;
-     String unstructuredRemittanceInformation;
-    
      BatchedTransactionDetails details;
 
 }
