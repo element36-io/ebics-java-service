@@ -181,6 +181,4 @@ node --version
 cd /app/frontend/ 
 #serve -s build
 yarn start
-echo ...  done 
-sleep infinity
 
