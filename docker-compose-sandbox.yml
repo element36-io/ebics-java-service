@@ -44,6 +44,8 @@ services:
     image: e36io/ebics-service:main
     environment:
        - spring_profiles_active=sandbox
+       - LIBEUFIN_SANDBOX_URL=http://libeufin:5016 # overwrite localhost in configs
+       - LIBEUFIN_NEXUS_URL=http://libeufin:5000
     ports:
       - "8093:8093"
 

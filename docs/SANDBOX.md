@@ -21,14 +21,14 @@ in the bank statements you can retrieve with the ebics-java-service.
 The sandbox is not able to keep balances, so this is done in 
 ebics-java-client. But after a restart of the service, the balance is reset 
 to the value configured (default: 0) in the  environment `ACCOUNT_BALANCE`
-or in the `application-sandbox.yml` config file. 
+or in the `application-sandbox.yml` config file.
 
 
 ## Docker
 
 ### Start the backend
 
-Get latest images: 
+Get latest images:
 
 	docker-compose -f docker-compose-sandbox.yml pull
 
