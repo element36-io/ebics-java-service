@@ -12,6 +12,7 @@ export REGISTERED_IBAN=CH1230116000289537313
 export REGISTERED_BIC=HYPLCH22573
 
 export LIBEUFIN_SANDBOX_URL=http://localhost:5016/
+export LIBEUFIN_NEXUS_URL=http://localhost:5000
 export CONNECTION_NAME=testconnection
 export SECRET=backupsecret
 export BACKUP_FILE=/app/backupfile
@@ -168,6 +169,7 @@ if [ ! -f "/app/initdone" ]; then
         list-offered-bank-accounts \
             $CONNECTION_NAME            
 
+    read -t 10 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  LIBEUFIN_NEXUS_USERNAME LIBEUFIN_NEXUS_PASSWORD "
 fi
 
 touch /app/initdone
