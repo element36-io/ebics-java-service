@@ -75,7 +75,7 @@ public class EbicsPaymentServiceLibeufin implements EbicsPaymentService {
             .bic(clearingSystemMemberId)
             .iban(receipientIban)
             .name(receipientName)
-            .subject(purpose + " ref: " + ourReference)
+            .subject("Purp:"+purpose + "; ourRef:" + ourReference)
             .build();
 
     this.log.debug(" json payload--> " + input.toString());

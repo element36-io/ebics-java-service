@@ -113,7 +113,7 @@ public class EbicsPaymentServiceProdImpl extends EbicsPaymentServiceImpl {
         throw new Exception("Something went wrong: " + e.getMessage());
       }
     } else {
-      log.debug("makePayment ignored - ebics is not enabled " + ebicsMode);
+      log.debug("makePayment ignored - ebics is not enabled, safed file to store " + ebicsMode);
       message= "Payment not enabled. Ebics-File:"+painFile.getAbsolutePath()+"; command:"+command;
     }
 
