@@ -22,7 +22,7 @@ services:
       # local dir: - ${DATADIR:?}/postgres:/var/lib/postgresql/data
 
   libeufin: 
-    image: e36io/libeufin:updateLibeufin
+    image: e36io/libeufin:main
     depends_on: 
       - postgres
     environment:
