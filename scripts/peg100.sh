@@ -12,15 +12,19 @@ curl -X 'POST' \
   "nationalPayment": true,
   "ourReference": "empty",
   "pmtInfId": "empty",
-  "purpose": "5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty",
+
+  "purpose": "0x9A0cab4250613cb8437F06ecdEc64F4644Df4D87",
   "receipientBankName": "Hypi Lenzburg AG",
   "receipientCity": "Baar",
   "receipientCountry": "CH",
-  "receipientIban": "CH2108307000289537320",
+  "receipientIban": "CH1230116000289537313",
+
   "receipientName": "element36 AG",
   "receipientStreet": "Bahnmatt",
   "receipientStreetNr": "25",
   "receipientZip": "6340",
   "sourceBic": "HYPLCH22",
-  "sourceIban": "CH1230116000289537313"
+
+  "sourceIban": "CH2108307000289537320"
+
 }'
