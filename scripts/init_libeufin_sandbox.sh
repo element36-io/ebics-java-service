@@ -2,17 +2,16 @@
 # Commands taken from
 # https://docs.taler.net/libeufin/nexus-tutorial.html#installing-libeufin
 
+# exit on error
+set -e
+
 export IBAN=CH2108307000289537320
 export BIC=HYPLCH22570
-
 export EXTERNAL_IBAN=CH1230116000289537312
 export EXTERNAL_BIC=HYPLCH22572
-
 export REGISTERED_IBAN=CH1230116000289537313
 export REGISTERED_BIC=HYPLCH22573
 
-export LIBEUFIN_SANDBOX_URL=http://localhost:5016/
-export LIBEUFIN_NEXUS_URL=http://localhost:5000
 export CONNECTION_NAME=testconnection
 export SECRET=backupsecret
 export BACKUP_FILE=/app/backupfile
@@ -24,11 +23,22 @@ export EBICS_PARTNER_ID=e36
 export LIBEUFIN_NEXUS_USERNAME=foo
 export LIBEUFIN_NEXUS_PASSWORD=superpassword
 
+
+
+# wait for DB to be initialized
+until PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -c'\q'; do
+  >&2 echo "Postgres is unavailable - sleeping"
+  sleep 1
+done
+
+echo starting sandbox
 libeufin-sandbox serve --port 5016 &
 
-echo check ...
-sleep 3
-libeufin-cli sandbox check
+echo check if sandbox is up
+until libeufin-cli sandbox check; do
+  >&2 echo "Sandbox is unavailable - sleeping"
+  sleep 1
+done
 
 if [ ! -f "/app/initdone" ]; then
     echo ... create hostid
@@ -70,7 +80,7 @@ if [ ! -f "/app/initdone" ]; then
             --ebics-user-id $EBICS_USER_ID \
             $CONNECTION_NAME
 
-    echo ... backupt
+    echo ... backup
     #  libeufin-cli  connections  export-backup--passphrase $SECRET   --output-file $BACKUP_FILE  $CONNECTION_NAME        
 
     # This syncronization happens through the INI, HIA, and finally, HPB message types
@@ -181,6 +191,8 @@ yarn --version
 npm --version 
 node --version
 cd /app/frontend/ 
+
+# read -t 10 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  $LIBEUFIN_NEXUS_USERNAME $LIBEUFIN_NEXUS_PASSWORD "
 #serve -s build
 yarn start
 

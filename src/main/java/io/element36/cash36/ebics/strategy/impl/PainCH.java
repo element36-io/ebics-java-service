@@ -216,6 +216,7 @@ public class PainCH implements Pain {
     }
 
     // Remittance Information - For Art 2.2 and Art 5 we use unstructured format -
+    // ISO 20022 “Remittance Information”
     // Max 140 chars
     RemittanceInformation5CH remittanceInformation5CH = new RemittanceInformation5CH();
     remittanceInformation5CH.setUstrd(purpose);
