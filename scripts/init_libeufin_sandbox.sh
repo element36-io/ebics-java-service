@@ -179,7 +179,6 @@ if [ ! -f "/app/initdone" ]; then
         list-offered-bank-accounts \
             $CONNECTION_NAME            
 
-    read -t 10 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  LIBEUFIN_NEXUS_USERNAME LIBEUFIN_NEXUS_PASSWORD "
 fi
 
 touch /app/initdone
