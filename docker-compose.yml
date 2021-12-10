@@ -42,7 +42,8 @@ services:
     ports:
       - "5016:5016" # sandbox 
       - "5000:5000" # nexus
-      - "3000:3000" # ui
+      - "3000:3000" # ui - login: foo/superpassword
+
     volumes:
       - ./scripts:/app/scripts
   
