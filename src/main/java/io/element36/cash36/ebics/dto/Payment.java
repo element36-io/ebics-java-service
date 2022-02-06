@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 
 @Getter
-public class Payment extends UnpegPayment {
+public class Payment extends PeggingPayment {
 
   @ApiModelProperty(
       value =

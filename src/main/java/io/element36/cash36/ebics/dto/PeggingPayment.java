@@ -9,7 +9,11 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 
 @Getter
-public class UnpegPayment {
+public class PeggingPayment {
+
+  @ApiModelProperty(value = "Amount - 1,1", example = "1.1")
+  @NotNull(message = "Is it a or unpeg?")
+  private PeggingPaymentType peggingType;
 
   @ApiModelProperty(value = "Amount - 1,1", example = "1.1")
   @NotNull(message = "amount cannot be null")

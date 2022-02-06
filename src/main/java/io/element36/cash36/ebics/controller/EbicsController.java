@@ -26,7 +26,7 @@ import io.element36.cash36.ebics.dto.Payment;
 import io.element36.cash36.ebics.dto.StatementDTO;
 import io.element36.cash36.ebics.dto.TxResponse;
 import io.element36.cash36.ebics.dto.TxStatusEnum;
-import io.element36.cash36.ebics.dto.UnpegPayment;
+import io.element36.cash36.ebics.dto.PeggingPayment;
 import io.element36.cash36.ebics.service.EbicsPaymentService;
 import io.element36.cash36.ebics.service.EbicsPaymentStatusService;
 import io.element36.cash36.ebics.service.EbicsStatementService;
@@ -82,7 +82,7 @@ public class EbicsController {
   + "for more information about the standard. ")  
   @PostMapping("/unpeg")
   public ResponseEntity<TxResponse> createUnpegOrder(
-      @RequestBody @Valid UnpegPayment payment, HttpServletRequest servletRequest) {
+      @RequestBody @Valid PeggingPayment payment, HttpServletRequest servletRequest) {
     log.debug("unpeg {} from {} ", payment, peggingSourceIban);
     
     if (EbicsTools.sameIban(payment.getReceipientIban(),peggingSourceIban)) throw new IllegalArgumentException(" receiving account is same as pegging account");
@@ -148,6 +148,81 @@ public class EbicsController {
     }
   }
 
+
+  /**
+   * Refer to standards
+   * https://www.hettwer-beratung.de/sepa-spezialwissen/sepa-technische-anforderungen/pain-format-sepa-pain-001-sct/
+   *
+   * @param payment
+   * @return
+   */
+  @ApiOperation("Initiate a payment - works with multiple source accounts in case you have more than one account at your bank. "
+  + "The service call will create a XML document (pain-file) which will be sent to the bank using "
+  + "Ebics protocoll. For development purposes you can use the dev-mode (spring.profiles.active) "
+  + "to generate a pain-file. Most banks also offer a service where you can manually"
+  + "upload (and debug) pain-files - you find them in the configured ebics.outputDir folder. "
+  + "HINT: In prod mode it sends real money - in dev mode it shows the command and the Ebics document in the result. "
+  + "The prod-mode only makes sense, if you have set up the connectivity with your bank successfully as described in HOWTO.md."
+  + "See https://wiki.xmldation.com/General_Information/Payment_Standards/ISO_20022/pain.001 "
+  + "for more information about the standard. ")  
+  @PostMapping("/peg")
+  public ResponseEntity<TxResponse> peg(@RequestBody @Valid Payment payment) {
+    log.debug("makePayment {}", payment);
+    log.info(
+        " peg {}, {},{},{},{},{}",
+        payment.getSourceBic(),
+        payment.getSourceIban(),
+        payment.getMsgId(),
+        payment.getPmtInfId(),
+        payment.getAmount(),
+        payment.getReceipientIban());
+
+    TxResponse result;
+    try {
+      result =
+          ebicsPaymentService.makePayment(
+              payment.getMsgId(),
+              payment.getPmtInfId(),
+              payment.getSourceIban(),
+              payment.getSourceBic(),
+              payment.getAmount(),
+              payment.getCurrency(),
+              payment.getReceipientIban(),
+              payment.getReceipientBankName(),
+              payment.getReceipientName(),
+              payment.getPurpose(),
+              payment.getOurReference(),
+              payment.getReceipientStreet(),
+              payment.getReceipientStreetNr(),
+              payment.getReceipientZip(),
+              payment.getReceipientCity(),
+              payment.getReceipientCountry(),
+              payment.getClearingSystemMemberId(),
+              payment.isNationalPayment());
+
+      return ResponseEntity.ok(result);
+    } catch (DatatypeConfigurationException e) {
+      log.error("ERROR in makePayment ", e);
+      return ResponseEntity.badRequest().body(
+        TxResponse.builder()
+            .message(e.getMessage())
+            .status(TxStatusEnum.OK)
+            .msgId(payment.getMsgId())
+            .ebicsMode(ebicsMode)
+            .build()
+        );
+    } catch (IOException e) {
+      log.error("ERROR in makePayment ", e);
+      throw new ResponseStatusException(
+          HttpStatus.INTERNAL_SERVER_ERROR, "Error makePayment - IOException: " + e.toString(), e);
+    } catch (Exception e) {
+      log.error("ERROR in makePayment ", e);
+      throw new ResponseStatusException(
+          HttpStatus.INTERNAL_SERVER_ERROR, "Error makePayment - Exception: " + e.toString(), e);
+    }
+  }
+
+
   /**
    * Refer to standards
    * https://www.hettwer-beratung.de/sepa-spezialwissen/sepa-technische-anforderungen/pain-format-sepa-pain-001-sct/
@@ -166,9 +241,9 @@ public class EbicsController {
   + "for more information about the standard. ")  
   @PostMapping("/createOrder")
   public ResponseEntity<TxResponse> createPaymentOrder(@RequestBody @Valid Payment payment) {
-    log.debug("makePayment {}", payment);
+    log.debug("createOrder {}", payment);
     log.info(
-        " createUnpegOrder {}, {},{},{},{},{}",
+        " createOrder {}, {},{},{},{},{}",
         payment.getSourceBic(),
         payment.getSourceIban(),
         payment.getMsgId(),

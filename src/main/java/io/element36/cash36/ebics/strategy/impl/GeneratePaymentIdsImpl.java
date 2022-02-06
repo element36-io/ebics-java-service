@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Component;
 
-import io.element36.cash36.ebics.dto.UnpegPayment;
+import io.element36.cash36.ebics.dto.PeggingPayment;
 import io.element36.cash36.ebics.strategy.GeneratePaymentIds;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,16 +16,16 @@ import lombok.extern.slf4j.Slf4j;
 public class GeneratePaymentIdsImpl implements GeneratePaymentIds {
 
   @Override
-  public String getMsgId(UnpegPayment r, HttpServletRequest req) {
+  public String getMsgId(PeggingPayment r, HttpServletRequest req) {
     return this.getid(r, req);
   }
 
   @Override
-  public String getPmtInfId(UnpegPayment r, HttpServletRequest req) {
+  public String getPmtInfId(PeggingPayment r, HttpServletRequest req) {
     return this.getid(r, req);
   }
 
-  private String getid(UnpegPayment r, HttpServletRequest req) {
+  private String getid(PeggingPayment r, HttpServletRequest req) {
     int paymentNo = this.getNextPaymentNo();
     String id = "UP-" + paymentNo + "-" + new Date().getTime() + "-" + new Random().nextInt(99999);
     log.info("generated payment id " + id);
