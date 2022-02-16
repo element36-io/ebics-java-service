@@ -22,6 +22,8 @@ export EBICS_HOST_ID=testhost
 export EBICS_PARTNER_ID=e36
 export LIBEUFIN_NEXUS_USERNAME=foo
 export LIBEUFIN_NEXUS_PASSWORD=superpassword
+export LIBEUFIN_SANDBOX_USERNAME=$LIBEUFIN_NEXUS_USERNAME
+export LIBEUFIN_SANDBOX_PASSWORD=$LIBEUFIN_NEXUS_PASSWORD
 
 
 
@@ -32,7 +34,7 @@ until PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -
 done
 
 echo starting sandbox
-libeufin-sandbox serve --port 5016 &
+libeufin-sandbox serve --no-auth --port 5016 &
 
 echo check if sandbox is up
 until libeufin-cli sandbox check; do
@@ -48,6 +50,9 @@ if [ ! -f "/app/initdone" ]; then
     libeufin-cli sandbox ebicssubscriber create --host-id $EBICS_HOST_ID --partner-id $EBICS_PARTNER_ID --user-id $EBICS_USER_ID
 
 fi
+
+libeufin-cli sandbox ebicsbankaccount create --help
+
 
 # We actually do not need nexusserver, but the UI need the nexus server:
 echo ... start nexus
@@ -97,8 +102,8 @@ if [ ! -f "/app/initdone" ]; then
     ## pegging account
 
     echo ... create sanbox account 1
+
     libeufin-cli sandbox ebicsbankaccount create \
-        --currency EUR \
         --iban $IBAN \
         --bic $BIC \
         --person-name "pegging account" \
@@ -125,7 +130,6 @@ if [ ! -f "/app/initdone" ]; then
 
     echo ... create external account 2
     libeufin-cli sandbox ebicsbankaccount create \
-        --currency EUR \
         --iban $EXTERNAL_IBAN \
         --bic $EXTERNAL_BIC \
         --person-name "external account" \
@@ -150,7 +154,6 @@ if [ ! -f "/app/initdone" ]; then
 
     ## registered external account        
     libeufin-cli sandbox ebicsbankaccount create \
-        --currency EUR \
         --iban $REGISTERED_IBAN \
         --bic $REGISTERED_BIC \
         --person-name "registered external account" \
