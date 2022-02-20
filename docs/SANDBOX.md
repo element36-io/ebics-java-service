@@ -42,17 +42,20 @@ or in the `application-sandbox.yml` config file.
 
 Get latest images:
 
+```console
  docker-compose -f docker-compose-sandbox.yml pull
+``` 
 
 In the project root of ebics-java-service:
 
+```console
  docker-compose -f docker-compose-sandbox.yml up
+```
 
 After start, you should be able to open
 [Swagger](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/#/ebics-controller/getPaymentsUsingGET)
 and get the latest bank statements. Expect `[]` to be the result if you did
-not make any transactions.
-Also you my log into [Nexus](http://localhost:3000/home) with foo/superpassword to
+not make any transactions. Also you my log into [Nexus](http://localhost:3000/home) with foo/superpassword to
 see transactions initiated via the API.
 
 ### Change the setup of bank accounts
@@ -92,7 +95,8 @@ Set environment variables:
 Get Camt.053 message directly from the sandbox:
 
 ```console
- curl -d '{"iban":"DE18500105172929531881","type":53}' -H "Content-Type: application/json" -X POST $LIBEUFIN_SANDBOX_URL/admin/payments/camt
+ curl -d '{"iban":"DE18500105172929531881","type":53}' -H "Content-Type: application/json"  \
+  -X POST $LIBEUFIN_SANDBOX_URL/admin/payments/camt
 ```
 
 List connected bank accounts:
