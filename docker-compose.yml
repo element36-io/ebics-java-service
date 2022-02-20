@@ -22,7 +22,7 @@ services:
       # local dir: - ${DATADIR:?}/postgres:/var/lib/postgresql/data
 
   libeufin: 
-    image: e36io/libeufin:main
+    image: e36io/libeufin:updateLibeufin
     depends_on: 
       - postgres
     environment:
@@ -39,6 +39,10 @@ services:
     command: /app/scripts/init_libeufin_sandbox.sh
     tty: true
     stdin_open: true # without this node doesn't start; https://stackoverflow.com/questions/61857267/how-to-make-yarn-start-work-inside-docker-image-with-react-scripts-3-4-and-babel
+    expose:
+      - 5016
+      - 3000
+      - 5000
     ports:
       - "5016:5016" # sandbox 
       - "5000:5000" # nexus
@@ -55,6 +59,8 @@ services:
        - spring_profiles_active=sandbox
        - LIBEUFIN_SANDBOX_URL=http://libeufin:5016 # overwrite localhost in configs
        - LIBEUFIN_NEXUS_URL=http://libeufin:5000
+    expose:
+      - 8093
     ports:
       - "8093:8093"
 
