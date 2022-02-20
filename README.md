@@ -18,7 +18,9 @@ The picture below shows the bigger picture:
 
 ## Start the service & take a look at the API
 
-    docker run -p 8093:8093 e36io/ebics-service 
+```console
+    docker run -p 8093:8093 e36io/ebics-service
+```
 
 Open [Swagger](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/) in your
 browser and test the `simulate` service.  For other APIs you need to set up and connect to your
@@ -29,12 +31,16 @@ banks Ebics API.
 Development mode is default. Ebics-java-client does not connect to your bank but ebics documents
 and commands get logged.
 
+```console
     docker run -v $HOME/ebics./root/ebics -p 8093:8093 e36io/ebics-service 
+```
 
 Production mode (Spring `prod` profile) requires Ebics to be set up.
 :warning: This may trigger real payments from your bank account!
 
+```console
     docker run -v $HOME/ebics:/root/ebics --env spring.profiles.active=prod -p 8093:8093 e36io/ebics-service 
+```
 
 Again, open Open [Swagger](http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/)
 to test the API. All Ebics documents which are exchanged with the bank are stored in `HOME/ebics/client`.
