@@ -59,18 +59,21 @@ see transactions initiated via the API.
 
 Change the setup script `./scripts/init_libeuin_sandbox.sh` according to the documentation of libeufin.
 
-urge the backend and restart from scratch using using latest images called from the project-root:
+Purge the backend and restart from scratch using using latest images called from the project-root:
 
+```console
  git pull
  docker-compose -f docker-compose-sandbox.yml stop
  docker-compose -f docker-compose-sandbox.yml rm
  docker-compose -f docker-compose-sandbox.yml pull
  docker-compose -f docker-compose-sandbox.yml up
+```
 
-## Useful Curl statements 
+## Useful Curl statements
 
 Set environment variables:
 
+```console
  export LIBEUFIN_NEXUS_URL=http://localhost:5000
  export LIBEUFIN_NEXUS_USERNAME=foo
  export LIBEUFIN_NEXUS_PASSWORD=superpassword
@@ -84,18 +87,24 @@ Set environment variables:
  export EBICS_PARTNER_ID=e36
  export LIBEUFIN_NEXUS_USERNAME=foo
  export LIBEUFIN_NEXUS_PASSWORD=superpassword
+ ```
 
 Get Camt.053 message directly from the sandbox:
 
+```console
  curl -d '{"iban":"DE18500105172929531881","type":53}' -H "Content-Type: application/json" -X POST $LIBEUFIN_SANDBOX_URL/admin/payments/camt
+```
 
 List connected bank accounts:
 
+```console
  curl -u $LIBEUFIN_NEXUS_USERNAME:$LIBEUFIN_NEXUS_PASSWORD \
   $LIBEUFIN_NEXUS_URL/bank-accounts
+```
 
 Trigger transactions directly with the Nexus-API:
 
+```console
  curl -X POST -u $LIBEUFIN_NEXUS_USERNAME:$LIBEUFIN_NEXUS_PASSWORD \
  -d '{"iban":"CH1230116000289537312","bic":"HYPLCH22571","name":"test name","subject":"testsubject is here","amount":"EUR:12.21"}' -H "Content-Type: application/json" -X POST \
   $LIBEUFIN_NEXUS_URL/bank-accounts/CH1230116000289537320/payment-initiations 
@@ -109,12 +118,15 @@ Trigger transactions directly with the Nexus-API:
 
  curl -X POST -u $LIBEUFIN_NEXUS_USERNAME:$LIBEUFIN_NEXUS_PASSWORD \
    $LIBEUFIN_NEXUS_URL/bank-accounts/CH1230116000289537312/payment-initiations/2/submit
+```
 
 Read transactions from the Nexus API - first you need to fetch them,
 then you can show transactions:
 
+```console
  curl -X POST -u $LIBEUFIN_NEXUS_USERNAME:$LIBEUFIN_NEXUS_PASSWORD \
   $LIBEUFIN_NEXUS_URL/bank-accounts/CH2108307000289537320/fetch-transactions
 
  curl -u $LIBEUFIN_NEXUS_USERNAME:$LIBEUFIN_NEXUS_PASSWORD \
   $LIBEUFIN_NEXUS_URL/bank-accounts/CH2108307000289537320/transactions
+```
