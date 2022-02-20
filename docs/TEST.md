@@ -2,7 +2,7 @@
 
 ## Run unit tests
 
-![Coverage](.github/badges/jacoco.svg)
+![Coverage](../.github/badges/jacoco.svg)
 
 Run tests for the ebics-java-client on linux - it mounts sources into a docker container with java and the maven build tool - so you do not need to install java or gradle on your local machine:
 

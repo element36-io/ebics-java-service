@@ -12,8 +12,9 @@ Setting it up successfully means, that you can
 - Read daily statements including account balance and transactions of multiple accounts
 - Trigger payments from your bank account(s)
 
-The ebcis-java-service is just REST/Json facade for a command line tool written in Java (ebics-java-client).
-![Architecture](docs/components-libeufin.svg)
+The picture below shows the bigger picture:
+
+![Architecture](docs/components-cmd-line.svg)
 
 ## Start the service & take a look at the API
 
