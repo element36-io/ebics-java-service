@@ -30,6 +30,10 @@ services:
       - LIBEUFIN_SANDBOX_DB_CONNECTION=jdbc:postgresql://postgres:5432/libeufindb?user=pgrootuser&password=pgrootpassword
       - LIBEUFIN_NEXUS_DB_CONNECTION=jdbc:postgresql://postgres:5432/libeufindb?user=pgrootuser&password=pgrootpassword
       - LIBEUFIN_NEXUS_URL=http://localhost:5000/
+      - LIBEUFIN_SANDBOX_ADMIN_PASSWORD=superpassword
+      - LIBEUFIN_SANDBOX_USERNAME=admin
+      - LIBEUFIN_SANDBOX_PASSWORD=superpassword
+
       - EBICS_BASE_URL=http://localhost:5016/ebicsweb
       - POSTGRES_USER=pgrootuser
       - POSTGRES_PASSWORD=pgrootpassword
@@ -57,6 +61,9 @@ services:
        - spring_profiles_active=sandbox
        - LIBEUFIN_SANDBOX_URL=http://libeufin:5016 # overwrite localhost in configs
        - LIBEUFIN_NEXUS_URL=http://libeufin:5000
+       - LIBEUFIN_SANDBOX_ADMIN_PASSWORD=superpassword
+       - LIBEUFIN_SANDBOX_USERNAME=admin
+       - LIBEUFIN_SANDBOX_PASSWORD=superpassword       
     ports:
       - "8093:8093"
 

@@ -53,16 +53,18 @@ public class EbicsStatementServiceLibeufin implements EbicsStatementService {
     try {
 
       ResponseEntity<FetchTranactionsResponse> resp;
+      URI uri=new URI(
+        libeufinConfig.nexus_url
+            + "/bank-accounts/"
+            + appConfig.peggingIban
+            + "/fetch-transactions");
       resp =
           restTemplate.postForEntity(
-              new URI(
-                  libeufinConfig.nexus_url
-                      + "/bank-accounts/"
-                      + appConfig.peggingIban
-                      + "/fetch-transactions"),
+              uri,
               null,
               FetchTranactionsResponse.class);
 
+      this.log.debug(" call --> " + uri);
       this.log.debug(" respose --> " + resp.getBody().toString());
       if (resp.getStatusCode() != HttpStatus.OK)
         throw new RuntimeException("Error fetching transactions from sandbox");

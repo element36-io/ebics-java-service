@@ -29,7 +29,7 @@ public class Payment extends UnpegPayment {
   @NotBlank(message = "sourceIban cannot be null")
   private String sourceIban;
 
-  @ApiModelProperty(value = "Bic/Swift number of source (your) bank", example = "HYPLCH2270")
+  @ApiModelProperty(value = "Bic/Swift number of source (your) bank", example = "HYPLCH22XXX")
   @NotBlank(message = "sourceBic cannot be null")
   private String sourceBic;
 }

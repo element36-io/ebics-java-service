@@ -6,11 +6,11 @@
 set -e
 
 export IBAN=CH2108307000289537320
-export BIC=HYPLCH22570
+export BIC=HYPLCH22XXX
 export EXTERNAL_IBAN=CH1230116000289537312
-export EXTERNAL_BIC=HYPLCH22572
+export EXTERNAL_BIC=HYPLCH22XXX
 export REGISTERED_IBAN=CH1230116000289537313
-export REGISTERED_BIC=HYPLCH22573
+export REGISTERED_BIC=HYPLCH22XXX
 
 export CONNECTION_NAME=testconnection
 export SECRET=backupsecret
@@ -23,8 +23,6 @@ export EBICS_PARTNER_ID=e36
 export LIBEUFIN_NEXUS_USERNAME=foo
 export LIBEUFIN_NEXUS_PASSWORD=superpassword
 
-
-
 # wait for DB to be initialized
 until PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -c'\q'; do
   >&2 echo "Postgres is unavailable - sleeping"
@@ -32,7 +30,7 @@ until PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -
 done
 
 echo starting sandbox
-libeufin-sandbox serve --port 5016 &
+libeufin-sandbox serve --port 5016 --auth &
 
 echo check if sandbox is up
 until libeufin-cli sandbox check; do
@@ -81,7 +79,7 @@ if [ ! -f "/app/initdone" ]; then
             $CONNECTION_NAME
 
     echo ... backup
-    #  libeufin-cli  connections  export-backup--passphrase $SECRET   --output-file $BACKUP_FILE  $CONNECTION_NAME        
+    #  libeufin-cli  connections  export-backup --passphrase $SECRET   --output-file $BACKUP_FILE  $CONNECTION_NAME        
 
     # This syncronization happens through the INI, HIA, and finally, HPB message types
 
@@ -98,7 +96,6 @@ if [ ! -f "/app/initdone" ]; then
 
     echo ... create sanbox account 1
     libeufin-cli sandbox ebicsbankaccount create \
-        --currency EUR \
         --iban $IBAN \
         --bic $BIC \
         --person-name "pegging account" \
@@ -125,7 +122,6 @@ if [ ! -f "/app/initdone" ]; then
 
     echo ... create external account 2
     libeufin-cli sandbox ebicsbankaccount create \
-        --currency EUR \
         --iban $EXTERNAL_IBAN \
         --bic $EXTERNAL_BIC \
         --person-name "external account" \
@@ -150,7 +146,6 @@ if [ ! -f "/app/initdone" ]; then
 
     ## registered external account        
     libeufin-cli sandbox ebicsbankaccount create \
-        --currency EUR \
         --iban $REGISTERED_IBAN \
         --bic $REGISTERED_BIC \
         --person-name "registered external account" \

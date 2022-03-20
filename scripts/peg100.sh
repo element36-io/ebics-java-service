@@ -6,7 +6,7 @@ curl -X 'POST' \
   -H 'Content-Type: application/json' \
   -d '{
   "amount": 10000,
-  "clearingSystemMemberId": "HYPLCH2270",
+  "clearingSystemMemberId": "HYPLCH22XXX",
   "currency": "EUR",
   "msgId": "emtpy",
   "nationalPayment": true,
@@ -22,7 +22,7 @@ curl -X 'POST' \
   "receipientStreet": "Bahnmatt",
   "receipientStreetNr": "25",
   "receipientZip": "6340",
-  "sourceBic": "HYPLCH2273",
+  "sourceBic": "HYPLCH22XXX",
 
   "sourceIban": "CH1230116000289537313"
 
