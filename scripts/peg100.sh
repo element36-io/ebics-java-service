@@ -5,7 +5,7 @@ curl -X 'POST' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
-  "amount": 10000,
+  "amount": EUR:10000,
   "clearingSystemMemberId": "HYPLCH22XXX",
   "currency": "EUR",
   "msgId": "emtpy",

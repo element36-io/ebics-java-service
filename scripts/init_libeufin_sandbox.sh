@@ -15,8 +15,6 @@ export REGISTERED_BIC=HYPLCH22XXX
 export CONNECTION_NAME=testconnection
 export SECRET=backupsecret
 export BACKUP_FILE=/app/backupfile
-export ACCOUNT_NAME=accountname
-export LOCAL_ACCOUNT_NAME=localaccount
 export EBICS_USER_ID=e36
 export EBICS_HOST_ID=testhost
 export EBICS_PARTNER_ID=e36
@@ -39,13 +37,28 @@ until libeufin-cli sandbox check; do
 done
 
 if [ ! -f "/app/initdone" ]; then
+
     echo ... create hostid
     libeufin-cli sandbox ebicshost create --host-id $EBICS_HOST_ID
+    echo list
+    libeufin-cli sandbox ebicshost list
+
+    echo ... create user $LIBEUFIN_SANDBOX_URL 
+    libeufin-cli sandbox  --sandbox-url $LIBEUFIN_SANDBOX_URL/demobanks/default demobank register
 
     echo ... create sanbox subscribed user
-    libeufin-cli sandbox ebicssubscriber create --host-id $EBICS_HOST_ID --partner-id $EBICS_PARTNER_ID --user-id $EBICS_USER_ID
+    libeufin-cli sandbox \
+        --sandbox-url $LIBEUFIN_SANDBOX_URL/demobanks/default \
+        demobank new-ebicssubscriber \
+        --host-id $EBICS_HOST_ID --partner-id $EBICS_PARTNER_ID --user-id $EBICS_USER_ID \
+        --bank-account $IBAN        
 
 fi
+
+echo list ebicssubscriber
+libeufin-cli sandbox ebicssubscriber list
+echo list bankaccount
+libeufin-cli sandbox bankaccount list
 
 # We actually do not need nexusserver, but the UI need the nexus server:
 echo ... start nexus
@@ -60,7 +73,6 @@ echo base $EBICS_BASE_URL
 echo hostid $EBICS_HOST_ID
 echo partnerid $EBICS_PARTNER_ID
 echo userid $EBICS_USER_ID
-echo accountname  $LOCAL_ACCOUNT_NAME
 
 if [ ! -f "/app/initdone" ]; then
     sleep 3
@@ -99,10 +111,12 @@ if [ ! -f "/app/initdone" ]; then
         --iban $IBAN \
         --bic $BIC \
         --person-name "pegging account" \
-        --account-name $ACCOUNT_NAME"1" \
+        --account-name $IBAN \
         --ebics-host-id $EBICS_HOST_ID \
         --ebics-user-id $EBICS_USER_ID \
-        --ebics-partner-id $EBICS_PARTNER_ID         
+        --ebics-partner-id $EBICS_PARTNER_ID     
+
+    
 
     echo ... download
     libeufin-cli \
@@ -114,7 +128,7 @@ if [ ! -f "/app/initdone" ]; then
     libeufin-cli \
         connections \
         import-bank-account  \
-            --offered-account-id $ACCOUNT_NAME"1" \
+            --offered-account-id $IBAN \
             --nexus-bank-account-id $IBAN \
             $CONNECTION_NAME
 
@@ -125,7 +139,7 @@ if [ ! -f "/app/initdone" ]; then
         --iban $EXTERNAL_IBAN \
         --bic $EXTERNAL_BIC \
         --person-name "external account" \
-        --account-name $ACCOUNT_NAME"2" \
+        --account-name $EXTERNAL_IBAN \
         --ebics-host-id $EBICS_HOST_ID \
         --ebics-user-id $EBICS_USER_ID \
         --ebics-partner-id $EBICS_PARTNER_ID 
@@ -140,7 +154,7 @@ if [ ! -f "/app/initdone" ]; then
     libeufin-cli \
         connections \
         import-bank-account  \
-            --offered-account-id $ACCOUNT_NAME"2" \
+            --offered-account-id $EXTERNAL_IBAN \
             --nexus-bank-account-id $EXTERNAL_IBAN \
             $CONNECTION_NAME
 
@@ -149,7 +163,7 @@ if [ ! -f "/app/initdone" ]; then
         --iban $REGISTERED_IBAN \
         --bic $REGISTERED_BIC \
         --person-name "registered external account" \
-        --account-name $ACCOUNT_NAME"3" \
+        --account-name $REGISTERED_IBAN \
         --ebics-host-id $EBICS_HOST_ID \
         --ebics-user-id $EBICS_USER_ID \
         --ebics-partner-id $EBICS_PARTNER_ID 
@@ -164,7 +178,7 @@ if [ ! -f "/app/initdone" ]; then
     libeufin-cli \
         connections \
         import-bank-account  \
-            --offered-account-id $ACCOUNT_NAME"3" \
+            --offered-account-id $REGISTERED_IBAN \
             --nexus-bank-account-id $REGISTERED_IBAN \
             $CONNECTION_NAME
 
@@ -181,12 +195,21 @@ ls -la /app/initdone
 
 #  install versions according to LibFinEu/frontend/README.md
 
+echo list ebicssubscriber
+libeufin-cli sandbox ebicssubscriber list
+echo list bankaccount
+libeufin-cli sandbox bankaccount list
+echo list show-connection
+libeufin-cli connections show-connection 
+echo list list-connections
+libeufin-cli connections list-connections
+
 yarn --version
 npm --version 
 node --version
 cd /app/frontend/ 
 
-# read -t 10 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  $LIBEUFIN_NEXUS_USERNAME $LIBEUFIN_NEXUS_PASSWORD "
+read -t 10 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  $LIBEUFIN_NEXUS_USERNAME $LIBEUFIN_NEXUS_PASSWORD "
 #serve -s build
 yarn start
 

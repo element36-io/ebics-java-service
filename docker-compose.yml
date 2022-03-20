@@ -22,7 +22,7 @@ services:
       # local dir: - ${DATADIR:?}/postgres:/var/lib/postgresql/data
 
   libeufin: 
-    image: e36io/libeufin:updateLibeufin
+    image: e36io/libeufin:mergeLibeufin
     depends_on: 
       - postgres
     environment:
@@ -30,6 +30,8 @@ services:
       - LIBEUFIN_SANDBOX_DB_CONNECTION=jdbc:postgresql://postgres:5432/libeufindb?user=pgrootuser&password=pgrootpassword
       - LIBEUFIN_NEXUS_DB_CONNECTION=jdbc:postgresql://postgres:5432/libeufindb?user=pgrootuser&password=pgrootpassword
       - LIBEUFIN_NEXUS_URL=http://localhost:5000/
+      - LIBEUFIN_NEXUS_USERNAME=foo
+      - LIBEUFIN_NEXUS_PASSWORD=superpassword
       - LIBEUFIN_SANDBOX_ADMIN_PASSWORD=superpassword
       - LIBEUFIN_SANDBOX_USERNAME=admin
       - LIBEUFIN_SANDBOX_PASSWORD=superpassword
