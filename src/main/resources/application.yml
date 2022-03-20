@@ -26,7 +26,7 @@ ebics:
   outputDir: ${CASH36_EBICS_OUTPUTDIR:./out}
   peggingAccount: 
      iban: CH2108307000289537320
-     bic: HYPLCH2257B
+     bic: HYPLCH22570
   ignoreAccounts:
     # do not integrate information of these accounts into json responses
     #- "CH2108307000289537320"
