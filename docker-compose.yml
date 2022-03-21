@@ -22,7 +22,7 @@ services:
       # local dir: - ${DATADIR:?}/postgres:/var/lib/postgresql/data
 
   libeufin: 
-    image: e36io/libeufin:updateLibeufin
+    image: e36io/libeufin:mergeLibeufin
     depends_on: 
       - postgres
     environment:
@@ -30,6 +30,12 @@ services:
       - LIBEUFIN_SANDBOX_DB_CONNECTION=jdbc:postgresql://postgres:5432/libeufindb?user=pgrootuser&password=pgrootpassword
       - LIBEUFIN_NEXUS_DB_CONNECTION=jdbc:postgresql://postgres:5432/libeufindb?user=pgrootuser&password=pgrootpassword
       - LIBEUFIN_NEXUS_URL=http://localhost:5000/
+      - LIBEUFIN_NEXUS_USERNAME=foo
+      - LIBEUFIN_NEXUS_PASSWORD=superpassword
+      - LIBEUFIN_SANDBOX_ADMIN_PASSWORD=superpassword
+      - LIBEUFIN_SANDBOX_USERNAME=admin
+      - LIBEUFIN_SANDBOX_PASSWORD=superpassword
+
       - EBICS_BASE_URL=http://localhost:5016/ebicsweb
       - POSTGRES_USER=pgrootuser
       - POSTGRES_PASSWORD=pgrootpassword
@@ -52,15 +58,18 @@ services:
       - ./scripts:/app/scripts
   
   ebics-service: 
-    image: e36io/ebics-service:main
+    #image: e36io/ebics-service:updateLibeufin
+    build: 
+      context: .    
     depends_on: 
       - libeufin
     environment:
        - spring_profiles_active=sandbox
        - LIBEUFIN_SANDBOX_URL=http://libeufin:5016 # overwrite localhost in configs
        - LIBEUFIN_NEXUS_URL=http://libeufin:5000
-    expose:
-      - 8093
+       - LIBEUFIN_SANDBOX_ADMIN_PASSWORD=superpassword
+       - LIBEUFIN_SANDBOX_USERNAME=admin
+       - LIBEUFIN_SANDBOX_PASSWORD=superpassword       
     ports:
       - "8093:8093"
 

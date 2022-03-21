@@ -68,7 +68,7 @@ public class UnpegPayment {
   private String receipientCountry;
 
   @ApiModelProperty(value = "Optional clearing number may be required for some international  "+
-            "payments, see  https://wiki.xmldation.com/Support/ISO20022/General_Rules/Clearing_codes", example = "HYPLCH22")
+            "payments, see  https://wiki.xmldation.com/Support/ISO20022/General_Rules/Clearing_codes", example = "HYPLCH22XXX")
   // @NotBlank(message = "clearingSystemMemberId cannot be null") - only for
   // nationalPayment
   private String clearingSystemMemberId;

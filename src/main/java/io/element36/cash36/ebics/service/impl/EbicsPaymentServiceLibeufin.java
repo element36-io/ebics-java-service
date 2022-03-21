@@ -90,19 +90,22 @@ public class EbicsPaymentServiceLibeufin implements EbicsPaymentService {
     if (resp.getStatusCode() == HttpStatus.OK) {
       this.log.debug(" sending payment to backend ");
 
+      URI uri=new URI(
+        libeufinConfig.nexus_url
+            + "/bank-accounts/"
+            + sourceIban
+            + "/payment-initiations/"
+            + resp.getBody().getUuid()
+            + "/submit");
+
       ResponseEntity<String> submit =
           restTemplate.postForEntity(
-              new URI(
-                  libeufinConfig.nexus_url
-                      + "/bank-accounts/"
-                      + sourceIban
-                      + "/payment-initiations/"
-                      + resp.getBody().getUuid()
-                      + "/submit"),
+              uri,
               null,
               String.class);
 
-      this.log.debug(" result " + submit.toString());
+      this.log.debug(" --> call " + uri);
+      this.log.debug(" --> result " + submit.toString());
       if (submit.getStatusCode() != HttpStatus.OK) {
         throw new RuntimeException(
             "ERROR - payment prepared, but could not be submitted to sandbox: " + input.toString());

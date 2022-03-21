@@ -32,7 +32,7 @@ in the backend.
 ## Notes on the balance of the account
 
 The sandbox is not able to keep balances, so this is done in
-ebics-java-client. But after a restart of the service, the balance is reset
+ebics-java-service. But after a restart of the service, the balance is reset
 to the value configured (default: 0) in the  environment `ACCOUNT_BALANCE`
 or in the `application-sandbox.yml` config file.
 
@@ -42,14 +42,14 @@ or in the `application-sandbox.yml` config file.
 
 Get latest images:
 
-```console
- docker-compose -f docker-compose-sandbox.yml pull
-``` 
+```sh
+ docker-compose pull
+```
 
 In the project root of ebics-java-service:
 
-```console
- docker-compose -f docker-compose-sandbox.yml up
+```sh
+ docker-compose up
 ```
 
 After start, you should be able to open
@@ -64,19 +64,19 @@ Change the setup script `./scripts/init_libeuin_sandbox.sh` according to the doc
 
 Purge the backend and restart from scratch using using latest images called from the project-root:
 
-```console
+```sh
  git pull
- docker-compose -f docker-compose-sandbox.yml stop
- docker-compose -f docker-compose-sandbox.yml rm
- docker-compose -f docker-compose-sandbox.yml pull
- docker-compose -f docker-compose-sandbox.yml up
+ docker-compose  stop
+ docker-compose  rm
+ docker-compose  pull
+ docker-compose  up
 ```
 
 ## Useful Curl statements
 
 Set environment variables:
 
-```console
+```sh
  export LIBEUFIN_NEXUS_URL=http://localhost:5000
  export LIBEUFIN_NEXUS_USERNAME=foo
  export LIBEUFIN_NEXUS_PASSWORD=superpassword
@@ -94,21 +94,20 @@ Set environment variables:
 
 Get Camt.053 message directly from the sandbox:
 
-```console
- curl -d '{"iban":"DE18500105172929531881","type":53}' -H "Content-Type: application/json"  \
-  -X POST $LIBEUFIN_SANDBOX_URL/admin/payments/camt
+```sh
+ curl -d '{"iban":"DE18500105172929531881","type":53}' -H "Content-Type: application/json" -X POST $LIBEUFIN_SANDBOX_URL/admin/payments/camt
 ```
 
 List connected bank accounts:
 
-```console
+```sh
  curl -u $LIBEUFIN_NEXUS_USERNAME:$LIBEUFIN_NEXUS_PASSWORD \
   $LIBEUFIN_NEXUS_URL/bank-accounts
 ```
 
 Trigger transactions directly with the Nexus-API:
 
-```console
+ ```sh
  curl -X POST -u $LIBEUFIN_NEXUS_USERNAME:$LIBEUFIN_NEXUS_PASSWORD \
  -d '{"iban":"CH1230116000289537312","bic":"HYPLCH22571","name":"test name","subject":"testsubject is here","amount":"EUR:12.21"}' -H "Content-Type: application/json" -X POST \
   $LIBEUFIN_NEXUS_URL/bank-accounts/CH1230116000289537320/payment-initiations 
@@ -127,7 +126,7 @@ Trigger transactions directly with the Nexus-API:
 Read transactions from the Nexus API - first you need to fetch them,
 then you can show transactions:
 
-```console
+```sh
  curl -X POST -u $LIBEUFIN_NEXUS_USERNAME:$LIBEUFIN_NEXUS_PASSWORD \
   $LIBEUFIN_NEXUS_URL/bank-accounts/CH2108307000289537320/fetch-transactions
 
