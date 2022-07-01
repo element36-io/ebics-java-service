@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+
 curl -X 'POST' \
   'http://localhost:8093/ebics/api-v1/createOrder' \
   -H 'accept: */*' \

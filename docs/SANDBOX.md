@@ -110,13 +110,13 @@ Trigger transactions directly with the Nexus-API:
  ```sh
  curl -X POST -u $LIBEUFIN_NEXUS_USERNAME:$LIBEUFIN_NEXUS_PASSWORD \
  -d '{"iban":"CH1230116000289537312","bic":"HYPLCH22571","name":"test name","subject":"testsubject is here","amount":"EUR:12.21"}' -H "Content-Type: application/json" -X POST \
-  $LIBEUFIN_NEXUS_URL/bank-accounts/CH1230116000289537320/payment-initiations 
+  $LIBEUFIN_NEXUS_URL/bank-accounts/CH2108307000289537320/payment-initiations 
 
  curl -X POST -u $LIBEUFIN_NEXUS_USERNAME:$LIBEUFIN_NEXUS_PASSWORD \
-   $LIBEUFIN_NEXUS_URL/bank-accounts/CH1230116000289537320/payment-initiations/1/submit
+   $LIBEUFIN_NEXUS_URL/bank-accounts/CH2108307000289537320/payment-initiations/1/submit
 
  curl -X POST -u $LIBEUFIN_NEXUS_USERNAME:$LIBEUFIN_NEXUS_PASSWORD \
- -d '{"iban":"CH1230116000289537320","bic":"HYPLCH22571","name":"test name","subject":"testsubject is here","amount":"EUR:12.21"}' -H "Content-Type: application/json" -X POST \
+ -d '{"iban":"CH2108307000289537320","bic":"HYPLCH22571","name":"test name","subject":"testsubject is here","amount":"EUR:12.21"}' -H "Content-Type: application/json" -X POST \
   $LIBEUFIN_NEXUS_URL/bank-accounts/CH1230116000289537312/payment-initiations 
 
  curl -X POST -u $LIBEUFIN_NEXUS_USERNAME:$LIBEUFIN_NEXUS_PASSWORD \
