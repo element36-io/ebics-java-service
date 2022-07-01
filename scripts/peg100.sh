@@ -1,30 +1,31 @@
 #!/bin/bash
 
+
+
 curl -X 'POST' \
   'http://localhost:8093/ebics/api-v1/createOrder' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
-  "amount": 100,
-  "clearingSystemMemberId": "HYPLCH22",
+  "amount": EUR:10000,
+  "clearingSystemMemberId": "HYPLCH22XXX",
   "currency": "EUR",
   "msgId": "emtpy",
   "nationalPayment": true,
-  "ourReference": "empty",
+  "ourReference": "initial 10kEUR",
   "pmtInfId": "empty",
 
-  "purpose": "0x9A0cab4250613cb8437F06ecdEc64F4644Df4D87",
+  "purpose": "5FLSigC9HGRKVhB9FiEo4Y3koPsNmBmLJbpXg2mp1hXcS59Y",
   "receipientBankName": "Hypi Lenzburg AG",
   "receipientCity": "Baar",
   "receipientCountry": "CH",
-  "receipientIban": "CH1230116000289537313",
-
+  "receipientIban": "CH2108307000289537320",
   "receipientName": "element36 AG",
   "receipientStreet": "Bahnmatt",
   "receipientStreetNr": "25",
   "receipientZip": "6340",
-  "sourceBic": "HYPLCH22",
+  "sourceBic": "HYPLCH22XXX",
 
-  "sourceIban": "CH2108307000289537320"
+  "sourceIban": "CH1230116000289537313"
 
 }'

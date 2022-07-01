@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="198.20613mm"
+   height="120.26576mm"
+   viewBox="0 0 198.20613 120.26576"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="components-cmd-line.svg">
+  <defs
+     id="defs2">
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1699"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path1439"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#9a9a9a;fill-opacity:1;fill-rule:evenodd;stroke:#9a9a9a;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1434"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1329"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1325"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1321"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1287"
+       is_visible="true"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="TriangleOutM"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM">
+      <path
+         transform="scale(0.4)"
+         style="fill:#c8c8c8;fill-opacity:1;fill-rule:evenodd;stroke:#c8c8c8;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path2793"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="TriangleInM"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleInM">
+      <path
+         transform="scale(-0.4)"
+         style="fill:#c8c8c8;fill-opacity:1;fill-rule:evenodd;stroke:#c8c8c8;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path2784"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="TriangleOutS"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutS">
+      <path
+         transform="scale(0.2)"
+         style="fill:#c8c8c8;fill-opacity:1;fill-rule:evenodd;stroke:#c8c8c8;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path2796"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#c8c8c8;fill-opacity:1;fill-rule:evenodd;stroke:#c8c8c8;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2651"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:#c8c8c8;fill-opacity:1;fill-rule:evenodd;stroke:#c8c8c8;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2648"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="136.98243"
+     inkscape:cy="189.82509"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g1994"
+     showgrid="false"
+     inkscape:window-width="2505"
+     inkscape:window-height="1410"
+     inkscape:window-x="55"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-5.9852106,-43.167228)">
+    <g
+       id="g1994"
+       transform="translate(714.375,263.07143)">
+      <rect
+         ry="0.90960437"
+         rx="0.60743421"
+         y="-189.49417"
+         x="-665.55652"
+         height="17.216543"
+         width="27.846336"
+         id="rect1602-5"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#8c8c8c;stroke-width:0.23704158;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path989-9-0-8-0-5-9"
+         d="m -665.39124,-181.66456 -15.09698,0.0135"
+         style="fill:none;fill-opacity:1;stroke:#878787;stroke-width:0.45658827;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.46944427px;line-height:1.25;font-family:Rubik;-inkscape-font-specification:'Rubik, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-672.70129"
+         y="-186.63692"
+         id="text919-7"><tspan
+           sodipodi:role="line"
+           id="tspan917-5"
+           x="-672.70129"
+           y="-186.63692"
+           style="stroke-width:0.26458332">REST</tspan><tspan
+           sodipodi:role="line"
+           x="-672.70129"
+           y="-183.55011"
+           style="stroke-width:0.26458332"
+           id="tspan941">/JSON</tspan></text>
+      <rect
+         ry="0.90960437"
+         rx="0.60743421"
+         y="-190.31569"
+         x="-606.89374"
+         height="17.216543"
+         width="27.846334"
+         id="rect1602-5-8"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#8c8c8c;stroke-width:0.23704158;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#878787;stroke-width:0.5090003;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="path1231-2-1"
+         sodipodi:type="arc"
+         sodipodi:cx="-167.57988"
+         sodipodi:cy="622.0871"
+         sodipodi:rx="3.6796741"
+         sodipodi:ry="3.5750079"
+         sodipodi:start="0"
+         sodipodi:end="3.1053327"
+         sodipodi:open="true"
+         d="m -163.90021,622.0871 a 3.6796741,3.5750079 0 0 1 -3.61296,3.57442 3.6796741,3.5750079 0 0 1 -3.74397,-3.44482"
+         transform="matrix(-0.02492908,0.99968922,-0.99972485,-0.02345679,0,0)" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path989-9-0-8-0-5-9-2"
+         d="m -622.05282,-182.1169 -15.09698,0.0135"
+         style="fill:none;fill-opacity:1;stroke:#878787;stroke-width:0.45658827;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.46944427px;line-height:1.25;font-family:Rubik;-inkscape-font-specification:'Rubik, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-629.52551"
+         y="-183.82596"
+         id="text919-7-8"><tspan
+           sodipodi:role="line"
+           x="-629.52551"
+           y="-183.82596"
+           style="font-size:1.41111112px;stroke-width:0.26458332"
+           id="tspan941-3">EbicsPaymentService</tspan></text>
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path989-9-0-8-0-5-9-0"
+         d="m -607.29875,-182.24584 -5.37724,0.0135"
+         style="fill:none;fill-opacity:1;stroke:#878787;stroke-width:0.2724956;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <ellipse
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#878787;stroke-width:0.33848625;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="path973-3"
+         cx="-615.90948"
+         cy="-182.2523"
+         rx="2.9180582"
+         ry="3.1199522" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.46944427px;line-height:1.25;font-family:Rubik;-inkscape-font-specification:'Rubik, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-668.84875"
+         y="-200.13011"
+         id="text919-6"><tspan
+           sodipodi:role="line"
+           x="-668.84875"
+           y="-200.13011"
+           style="stroke-width:0.26458332"
+           id="tspan978-1">ebics-java-service</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.46944427px;line-height:1.25;font-family:Rubik;-inkscape-font-specification:'Rubik, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-593.33917"
+         y="-182.63889"
+         id="text919"><tspan
+           sodipodi:role="line"
+           x="-593.33917"
+           y="-182.63889"
+           style="stroke-width:0.26458332"
+           id="tspan978">EbicsPaymentService</tspan><tspan
+           sodipodi:role="line"
+           x="-593.33917"
+           y="-179.55208"
+           style="stroke-width:0.26458332"
+           id="tspan1062">Libeufin.java</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.46944427px;line-height:1.25;font-family:Rubik;-inkscape-font-specification:'Rubik, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-652.10535"
+         y="-182.58086"
+         id="text919-6-1"><tspan
+           sodipodi:role="line"
+           x="-652.10535"
+           y="-182.58086"
+           style="stroke-width:0.26458332"
+           id="tspan978-1-6">EbicsControler.java</tspan><tspan
+           sodipodi:role="line"
+           x="-652.10535"
+           y="-179.49405"
+           style="stroke-width:0.26458332"
+           id="tspan1855">Localhost:8093</tspan></text>
+      <rect
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#b3b3b3;stroke-width:0.33434796;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:1.33739178, 0.33434795;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1082"
+         width="114.97511"
+         height="83.687126"
+         x="-684.45239"
+         y="-198.19078"
+         rx="2.4288614"
+         ry="8.4830713" />
+      <rect
+         ry="0.90960437"
+         rx="0.60743421"
+         y="-146.93277"
+         x="-665.86365"
+         height="17.216543"
+         width="27.846334"
+         id="rect1602-5-8-0"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#8c8c8c;stroke-width:0.23704158;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.46944427px;line-height:1.25;font-family:Rubik;-inkscape-font-specification:'Rubik, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-652.90289"
+         y="-139.17496"
+         id="text1179"><tspan
+           sodipodi:role="line"
+           x="-652.90289"
+           y="-139.17496"
+           style="stroke-width:0.26458332"
+           id="tspan1925">Ebics-client</tspan></text>
+      <path
+         style="fill:#999999;stroke:#7d7d7d;stroke-width:0.36293635px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m -638.16743,-138.32706 c 27.37603,-0.12412 54.75155,-0.24823 82.12657,-0.37234"
+         id="path1285"
+         inkscape:connector-curvature="0"
+         inkscape:path-effect="#path-effect1287"
+         inkscape:original-d="m -638.16743,-138.32706 c 27.37603,-0.12438 54.75155,-0.2485 82.12657,-0.37234" />
+      <g
+         id="g1365"
+         transform="translate(44.719432,41.10626)">
+        <path
+           transform="matrix(0.01900623,0.99981937,-0.99980204,0.01989676,0,0)"
+           d="m -190.06893,611.36279 a 1.8322357,1.6993716 0 0 1 -1.79902,1.6991 1.8322357,1.6993716 0 0 1 -1.86425,-1.63749"
+           sodipodi:open="true"
+           sodipodi:end="3.1053327"
+           sodipodi:start="0"
+           sodipodi:ry="1.6993716"
+           sodipodi:rx="1.8322357"
+           sodipodi:cy="611.36279"
+           sodipodi:cx="-191.90117"
+           sodipodi:type="arc"
+           id="path1231-2-1-4-4"
+           style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#878787;stroke-width:0.20000003;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <ellipse
+           ry="1.5563948"
+           rx="1.509151"
+           transform="matrix(0.03169281,0.99949766,-0.99950894,0.03133486,0,0)"
+           cy="608.16382"
+           cx="-198.9146"
+           id="path973-3-7-2"
+           style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#878787;stroke-width:0.17192788;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.46944427px;line-height:1.25;font-family:Rubik;-inkscape-font-specification:'Rubik, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-644.51239"
+         y="-218.17247"
+         id="text1849"><tspan
+           sodipodi:role="line"
+           x="-644.51239"
+           y="-215.91533"
+           style="stroke-width:0.26458332"
+           id="tspan1851" /></text>
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#959595;stroke-width:0.15380265;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1919"
+         width="6.3944249"
+         height="5.7343574"
+         x="-655.78723"
+         y="-149.63535"
+         rx="0"
+         ry="0" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.46944427px;line-height:1.25;font-family:Rubik;-inkscape-font-specification:'Rubik, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-673.45941"
+         y="-148.22389"
+         id="text1179-8"><tspan
+           sodipodi:role="line"
+           x="-673.45941"
+           y="-148.22389"
+           style="font-size:1.41111112px;text-align:start;text-anchor:start;stroke-width:0.26458332"
+           id="tspan1955">Command-Line Interface</tspan></text>
+      <path
+         style="fill:none;stroke:#888888;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m -591.57624,-173.09801 -61.04316,23.43453"
+         id="path1973"
+         inkscape:connector-curvature="0" />
+      <rect
+         ry="0.90960437"
+         rx="0.60743421"
+         y="-145.91257"
+         x="-555.41382"
+         height="17.216543"
+         width="27.846334"
+         id="rect1602-5-8-0-3-3"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#8c8c8c;stroke-width:0.23700002;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:0.237, 0.711;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.46944427px;line-height:1.25;font-family:Rubik;-inkscape-font-specification:'Rubik, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-541.91852"
+         y="-138.95659"
+         id="text1179-2-7"><tspan
+           sodipodi:role="line"
+           x="-541.91852"
+           y="-138.95659"
+           style="stroke-width:0.26458332"
+           id="tspan1185-0-0">EBICS</tspan><tspan
+           sodipodi:role="line"
+           x="-541.91852"
+           y="-135.86978"
+           style="stroke-width:0.26458332"
+           id="tspan1239">Bank</tspan><tspan
+           sodipodi:role="line"
+           x="-541.91852"
+           y="-132.78297"
+           style="stroke-width:0.26458332"
+           id="tspan1241">Connector</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.46944427px;line-height:1.25;font-family:Rubik;-inkscape-font-specification:'Rubik, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-613.20648"
+         y="-161.08559"
+         id="text1018"><tspan
+           sodipodi:role="line"
+           x="-613.20648"
+           y="-161.08559"
+           style="text-align:start;text-anchor:start;fill:#999999;stroke-width:0.26458332"
+           id="tspan2015">Calls another (java) program</tspan><tspan
+           sodipodi:role="line"
+           x="-613.20648"
+           y="-157.99878"
+           style="text-align:start;text-anchor:start;fill:#999999;stroke-width:0.26458332"
+           id="tspan2019">via command line</tspan><tspan
+           sodipodi:role="line"
+           x="-613.20648"
+           y="-154.91197"
+           style="text-align:start;text-anchor:start;fill:#999999;stroke-width:0.26458332"
+           id="tspan2023">to talk to bank interface. </tspan><tspan
+           sodipodi:role="line"
+           x="-613.20648"
+           y="-151.82516"
+           style="text-align:start;text-anchor:start;fill:#999999;stroke-width:0.26458332"
+           id="tspan2027">Initial connection needs to</tspan><tspan
+           sodipodi:role="line"
+           x="-613.20648"
+           y="-148.73836"
+           style="text-align:start;text-anchor:start;fill:#999999;stroke-width:0.26458332"
+           id="tspan2031">be created via command line.</tspan></text>
+      <flowRoot
+         xml:space="preserve"
+         id="flowRoot2005"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333302px;line-height:1.25;font-family:Rubik;-inkscape-font-specification:'Rubik, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         transform="matrix(0.26458333,0,0,0.26458333,-708.38979,-256.9042)"><flowRegion
+           id="flowRegion2007"><rect
+             id="rect2009"
+             width="19.697975"
+             height="16.667517"
+             x="398.50519"
+             y="231.24045" /></flowRegion><flowPara
+           id="flowPara2011"></flowPara></flowRoot>      <circle
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#878787;stroke-width:0.34999999;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="path973"
+         cx="-683.94531"
+         cy="-181.67102"
+         r="3.1199522" />
+    </g>
+  </g>
+</svg>
