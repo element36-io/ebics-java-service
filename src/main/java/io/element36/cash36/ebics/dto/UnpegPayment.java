@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Digits;
+
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -11,7 +13,8 @@ import lombok.Getter;
 @Getter
 public class UnpegPayment {
 
-  @ApiModelProperty(value = "Amount - 1,1", example = "1.1")
+  @ApiModelProperty(value = "Amount - 1,1", example = "1.11 - min is 0.01; maximum is 999999999.99")
+  @Digits(integer = 9, fraction = 2)
   @NotNull(message = "amount cannot be null")
   private BigDecimal amount;
 
