@@ -11,6 +11,7 @@ plugins {
 	id "org.owasp.dependencycheck" 
 	id "jacoco"
     id 'checkstyle'
+    id("org.openrewrite.rewrite") version("5.36.0")
 }
 //apply from: "dependencyCheck.gradle"
 apply plugin: 'io.spring.dependency-management'
@@ -160,6 +161,7 @@ task generateSourcesForXsd() {
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
 }
+
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
 	    afterEvaluate {
@@ -171,5 +173,31 @@ jacocoTestReport {
         xml.required = false
         csv.required = true
     }
+}
+
+
+rewrite {
+    //activeRecipe("org.openrewrite.java.spring.boot2.UpgradeSpringBoot_2_7")
+    //activeRecipe("org.openrewrite.java.spring.boot2.UpgradeSpringBoot_2_6"
+    //activeRecipe("org.openrewrite.java.spring.boot2.UpgradeSpringBoot_2_5"
+    // 2.3
+    //activeRecipe("org.openrewrite.java.spring.framework.UpgradeSpringFramework_5_3")    
+    //activeRecipe("org.openrewrite.java.spring.boot2.UpgradeSpringBoot_2_3")
+    //activeRecipe("org.openrewrite.java.spring.data.UpgradeSpringData_2_3")
+    //activeRecipe("org.openrewrite.java.spring.boot2.MigrateRestClientBuilderCustomizerPackageName")
+    //activeRecipe("org.openrewrite.java.spring.boot2.SpringBootProperties_2_3")
+    //2.4
+    activeRecipe("org.openrewrite.java.spring.boot2.UpgradeSpringBoot_2_4")
+    activeRecipe("org.openrewrite.java.spring.framework.UpgradeSpringFramework_5_3")
+    activeRecipe("org.openrewrite.java.spring.boot2.SpringBoot2JUnit4to5Migration")
+    
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    rewrite("org.openrewrite.recipe:rewrite-spring:4.33.0")
 }
 
