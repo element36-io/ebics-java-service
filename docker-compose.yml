@@ -41,6 +41,7 @@ services:
       - POSTGRES_PASSWORD=pgrootpassword
       - POSTGRES_HOST=postgres
       - POSTGRES_DB=libeufindb
+      - DANGEROUSLY_DISABLE_HOST_CHECK=true
       
     command: /app/scripts/init_libeufin_sandbox.sh
     tty: true
@@ -51,9 +52,12 @@ services:
       - 5000
     ports:
       - "5016:5016" # sandbox 
-      - "5000:5000" # nexus
+      - "5001:5000" # nexus
       - "3000:3000" # ui - login: foo/superpassword
-
+    expose:
+      - 5016
+      - 3000
+      - 5001
     volumes:
       - ./scripts:/app/scripts
   
@@ -72,4 +76,5 @@ services:
        - LIBEUFIN_SANDBOX_PASSWORD=superpassword       
     ports:
       - "8093:8093"
-
+    expose:
+      - 8093      

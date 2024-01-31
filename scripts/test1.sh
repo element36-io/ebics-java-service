@@ -65,13 +65,12 @@ function statement() {
 	}'
  }
  
-#statement
-#from="CH1230116000289537313"; to="CH2108307000289537320"; amt="100";
-#send
-#from="CH1230116000289537312"; to="CH2108307000289537320"; amt="100";    
-#send
-#statement
-
+statement
+from="CH2108307000289537313"; to="CH2108307000289537320"; amt="100";
+send
+from="CH1230116000289537312"; to="CH2108307000289537320"; amt="100";
+send
+statement
 printf "\n --> from 20"
 #from="CH2108307000289537320"; to="CH2108307000289537312"; amt="100";
 #send
