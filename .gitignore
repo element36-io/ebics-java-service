@@ -38,3 +38,8 @@ node_modules
 .DS_Store
 /bin/
 src/main/resources/simulated-account-statements.zip-10
+x.log
+scripts/backupfile
+scripts/backupfile.sik
+scripts/client_private_key.pem
+scripts/client_public_key.pem
