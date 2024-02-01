@@ -21,6 +21,8 @@ COPY ./src /app/src
 ENV GENERATE_GIT_PROPERTIES="false"
 WORKDIR /app
 RUN gradle clean build bootJar -DGENERATE_GIT_PROPERTIES=$GENERATE_GIT_PROPERTIES
+
+
 #create runtime for jars
 FROM openjdk:18-jdk-alpine as runtime
 RUN mkdir /app

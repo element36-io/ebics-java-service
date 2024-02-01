@@ -46,10 +46,6 @@ services:
     command: /app/scripts/init_libeufin_sandbox.sh
     tty: true
     stdin_open: true # without this node doesn't start; https://stackoverflow.com/questions/61857267/how-to-make-yarn-start-work-inside-docker-image-with-react-scripts-3-4-and-babel
-    expose:
-      - 5016
-      - 3000
-      - 5000
     ports:
       - "5016:5016" # sandbox 
       - "5001:5000" # nexus
@@ -78,3 +74,27 @@ services:
       - "8093:8093"
     expose:
       - 8093      
+
+  pgadmin: 
+    # profiles:
+    #   - dev      
+    container_name: libfineugadmin
+    image: dpage/pgadmin4:7.6
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: root
+      MAX_LOGIN_ATTEMPTS: '15'  # Ensure this is a string, not a number
+      POSTGRES_USER: pgrootuser
+      POSTGRES_PASSWORD: pgrootpassword
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: libeufindb
+      DANGEROUSLY_DISABLE_HOST_CHECK: 'true'  # Ensure this is a string, not a boolean
+
+    depends_on: 
+      - postgres
+    volumes:
+      - /home/w/pgadmin:/var/lib/pgadmin:rw
+    user: root
+    ports:
+      - "53603:53603"
+      - "8081:80" #mapped on w.e36.io:35050; admin@example.com root; add server medi medi medi
