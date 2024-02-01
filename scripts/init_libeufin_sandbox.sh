@@ -226,16 +226,11 @@ libeufin-cli connections list-connections
 echo list show-connection
 libeufin-cli connections show-connection $CONNECTION_NAME  
 
-echo versions of yarn npm node
-yarn --version
-npm --version 
-node --version
-cd /app/frontend/ 
 
 # apt update --allow-releaseinfo-change
-apt-get install jq -y # qpdf xxd libxml2-utils openssl -y
-client_pr_key="${CLIENT_PR_KEY:-/app/scripts/client_private_key.pem}"
-client_pub_key="${CLIENT_PUB_KEY:-/app/scripts/client_public_key.pem}"
+# apt-get install jq -y # qpdf xxd libxml2-utils openssl -y
+# client_pr_key="${CLIENT_PR_KEY:-/app/scripts/client_private_key.pem}"
+# client_pub_key="${CLIENT_PUB_KEY:-/app/scripts/client_public_key.pem}"
 
 cat /app/scripts/backupfile | jq -r '.sigBlob' | openssl enc -d -base64 -A | openssl pkcs8 -inform DER -outform PEM -out $client_pr_key  -passin pass:$SECRET
 openssl rsa -pubout -in $client_pr_key -out $client_pub_key
@@ -252,12 +247,21 @@ PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$PO
 
 echo "key generation done"
 
+libeufin-cli accounts task-schedule --task-name=fetch-statement --task-type=fetch --task-cronspec="30 * * * *" --task-param-range-type=all --task-param-level=statement  $IBAN
+libeufin-cli accounts task-schedule --task-name=fetch-statement --task-type=fetch --task-cronspec="30 * * * *" --task-param-range-type=all --task-param-level=statement  $EXTERNAL_IBAN
+libeufin-cli accounts task-schedule --task-name=fetch-statement --task-type=fetch --task-cronspec="30 * * * *" --task-param-range-type=all --task-param-level=statement  $REGISTERED_IBAN
+
+echo " auto fetch regitered"
+
 # read -t 10 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  $LIBEUFIN_NEXUS_USERNAME $LIBEUFIN_NEXUS_PASSWORD "
 #serve -s build
 # /app/scripts/peg100.sh
 # /app/scripts/test1.sh
 echo "...starting yarn"
-
+echo versions of yarn npm node
 yarn --version
+npm --version 
+node --version
+cd /app/frontend/ 
 yarn --verbose start
 
