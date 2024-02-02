@@ -246,13 +246,13 @@ PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$PO
 
 echo "key generation done"
 
-libeufin-cli accounts task-schedule --task-name=fetch-statement --task-type=fetch --task-cronspec="30 * * * *" --task-param-range-type=all --task-param-level=statement  $IBAN
-libeufin-cli accounts task-schedule --task-name=fetch-statement --task-type=fetch --task-cronspec="30 * * * *" --task-param-range-type=all --task-param-level=statement  $EXTERNAL_IBAN
-libeufin-cli accounts task-schedule --task-name=fetch-statement --task-type=fetch --task-cronspec="30 * * * *" --task-param-range-type=all --task-param-level=statement  $REGISTERED_IBAN
+# libeufin-cli accounts task-schedule --task-name=fetch-statement --task-type=fetch --task-cronspec="30 * * * *" --task-param-range-type=all --task-param-level=statement  $IBAN
+# libeufin-cli accounts task-schedule --task-name=fetch-statement --task-type=fetch --task-cronspec="30 * * * *" --task-param-range-type=all --task-param-level=statement  $EXTERNAL_IBAN
+# libeufin-cli accounts task-schedule --task-name=fetch-statement --task-type=fetch --task-cronspec="30 * * * *" --task-param-range-type=all --task-param-level=statement  $REGISTERED_IBAN
 
 echo " auto fetch regitered"
 
-read -t 10 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  $LIBEUFIN_NEXUS_USERNAME $LIBEUFIN_NEXUS_PASSWORD " || true
+read -t 2 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  $LIBEUFIN_NEXUS_USERNAME $LIBEUFIN_NEXUS_PASSWORD " || true
 #serve -s build
 # /app/scripts/peg100.sh
 # /app/scripts/test1.sh
