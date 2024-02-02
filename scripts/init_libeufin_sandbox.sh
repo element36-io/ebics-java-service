@@ -227,23 +227,22 @@ echo list show-connection
 libeufin-cli connections show-connection $CONNECTION_NAME  
 
 
-# apt update --allow-releaseinfo-change
-# apt-get install jq -y # qpdf xxd libxml2-utils openssl -y
+apt update --allow-releaseinfo-change
+apt-get install -y jq qpdf xxd libxml2-utils openssl
+
 # client_pr_key="${CLIENT_PR_KEY:-/app/scripts/client_private_key.pem}"
 # client_pub_key="${CLIENT_PUB_KEY:-/app/scripts/client_public_key.pem}"
-
-cat /app/scripts/backupfile | jq -r '.sigBlob' | openssl enc -d -base64 -A | openssl pkcs8 -inform DER -outform PEM -out $client_pr_key  -passin pass:$SECRET
-openssl rsa -pubout -in $client_pr_key -out $client_pub_key
-echo "client pk exported to $client_pr_key public key to $client_pub_key "
-
+# cat /app/scripts/backupfile | jq -r '.sigBlob' | openssl enc -d -base64 -A | openssl pkcs8 -inform DER -outform PEM -out $client_pr_key  -passin pass:$SECRET
+# openssl rsa -pubout -in $client_pr_key -out $client_pub_key
+# echo "client pk exported to $client_pr_key public key to $client_pub_key "
+echo "get client private key"
 sql="SELECT \"encryptionPrivateKey\" from nexusebicssubscribers s where \"hostID\"='testhost'"
 # read hex key  | convert to binary | create pem
-PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -t -c "$sql" | xxd -r -p x.txt | openssl pkcs8 -topk8 -nocrypt -inform DER -out /app/scripts/client_encryptionPrivateKey.pem
-openssl rsa -in encryptionPrivateKey.pem -pubout -out /app/scripts/client_encryptionPublicKey.pem
-
+PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -t -c "$sql" | xxd -r -p | openssl pkcs8 -topk8 -nocrypt -inform DER -out /app/scripts/client_encryptionPrivateKey.pem
+openssl rsa -in /app/scripts/client_encryptionPrivateKey.pem -pubout -out /app/scripts/client_encryptionPublicKey.pem
+echo "get bank pub key"
 sql="SELECT \"bankAuthenticationPublicKey\" from nexusebicssubscribers s where \"hostID\"='testhost'"
-# read hex key  | convert to binary | create pem
-PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -t -c "$sql" | xxd -r -p x.txt | openssl pkcs8 -topk8 -nocrypt -inform DER -out /app/scripts/bank_authenticationPublicKey.pem
+PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -t -c "$sql" | xxd -r -p | openssl rsa -pubin -inform DER -outform PEM -out /app/scripts/pub_bank.pem
 
 echo "key generation done"
 
@@ -253,7 +252,7 @@ libeufin-cli accounts task-schedule --task-name=fetch-statement --task-type=fetc
 
 echo " auto fetch regitered"
 
-# read -t 10 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  $LIBEUFIN_NEXUS_USERNAME $LIBEUFIN_NEXUS_PASSWORD "
+read -t 10 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  $LIBEUFIN_NEXUS_USERNAME $LIBEUFIN_NEXUS_PASSWORD " || true
 #serve -s build
 # /app/scripts/peg100.sh
 # /app/scripts/test1.sh
