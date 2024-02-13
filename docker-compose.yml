@@ -56,6 +56,7 @@ services:
       - 5001
     volumes:
       - ./scripts:/app/scripts
+      - ./trace:/app/trace:rw
   
   ebics-service: 
     #image: e36io/ebics-service:updateLibeufin
@@ -75,6 +76,19 @@ services:
     expose:
       - 8093      
 
+  hyperfridge: 
+    # profiles:
+    #   - dev      
+    container_name: hyperfridge
+    image: e36io/hyperfridge-r0:latest
+    environment:
+      TEST: 'true'  # Ensure this is a string, not a boolean
+    volumes:
+      - ./scripts:/app/scripts:ro
+      - ./trace:/app/trace:ro
+      
+    
+  
   pgadmin: 
     # profiles:
     #   - dev      
