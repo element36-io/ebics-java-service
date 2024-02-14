@@ -36,11 +36,12 @@ echo ... start nexus
 libeufin-nexus serve --port 5000 --host 0.0.0.0 &
 
 echo starting sandbox
-libeufin-sandbox serve --port 5016 --auth &
+ libeufin-sandbox serve --port 5016 --auth &
+# libeufin-sandbox serve --port 5016  &
 
-echo check if sandbox is up
+echo "Check if sandbox is up"
 until libeufin-cli sandbox check; do
-  >&2 echo "Sandbox is unavailable - sleeping"
+  echo "Sandbox is unavailable - sleeping" >&2
   sleep 1
 done
 
@@ -54,6 +55,7 @@ if [ ! -f "/app/initdone" ]; then
     libeufin-cli sandbox ebicshost list
 
     echo ... create user $LIBEUFIN_SANDBOX_URL 
+    libeufin-cli sandbox --help
     libeufin-cli sandbox  --sandbox-url $LIBEUFIN_SANDBOX_URL/demobanks/default demobank register
 
 fi
@@ -262,5 +264,18 @@ yarn --version
 npm --version 
 node --version
 cd /app/frontend/ 
-yarn --verbose start
+
+# apt update --allow-releaseinfo-change
+apt-get install jq -y # qpdf xxd libxml2-utils openssl -y
+client_pr_key="${CLIENT_PR_KEY:-/app/scripts/client_private_key.pem}"
+client_pub_key="${CLIENT_PUB_KEY:-/app/scripts/client_public_key.pem}"
+
+cat /app/scripts/backupfile | jq -r '.sigBlob' | openssl enc -d -base64 -A | openssl pkcs8 -inform DER -outform PEM -out $client_pr_key  -passin pass:$SECRET
+openssl rsa -pubout -in $client_pr_key -out $client_pub_key
+echo "client pk exported to $client_pr_key public key to $client_pub_key "
+
+# read -t 10 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  $LIBEUFIN_NEXUS_USERNAME $LIBEUFIN_NEXUS_PASSWORD "
+#serve -s build
+yarn start
+
 

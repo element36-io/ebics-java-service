@@ -22,7 +22,9 @@ services:
       # local dir: - ${DATADIR:?}/postgres:/var/lib/postgresql/data
 
   libeufin: 
-    image: e36io/libeufin:mergeLibeufin
+    # image: e36io/libeufin:mergeLibeufin
+    build: 
+      context: /home/w/ghvlada/LibEuFin   
     depends_on: 
       - postgres
     environment:
