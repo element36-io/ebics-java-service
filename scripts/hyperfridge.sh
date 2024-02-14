@@ -2,7 +2,7 @@
 
 readonly_dir="${IN_DIR:-./trace}"
 work_dir="${WORK_DIR:-./hf}"
-processing_dir="${work_dir}/work"
+processing_dir="${work_dir}/processing"
 done_dir="${work_dir}/done"
 error_dir="${work_dir}/error"
 
@@ -25,7 +25,7 @@ process_file() {
     
     # Check exit code for errors
     if [ $exit_code -eq 0 ]; then
-        # Move file to done directory
+        # Move file to done directory"$filename"
         mv "$processing_dir/$filename" "$done_dir/$filename"
         echo "File $filename processed successfully."
     else
