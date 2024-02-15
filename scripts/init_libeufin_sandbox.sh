@@ -237,24 +237,32 @@ apt-get install -y jq qpdf xxd libxml2-utils openssl
 # cat /app/scripts/backupfile | jq -r '.sigBlob' | openssl enc -d -base64 -A | openssl pkcs8 -inform DER -outform PEM -out $client_pr_key  -passin pass:$SECRET
 # openssl rsa -pubout -in $client_pr_key -out $client_pub_key
 # echo "client pk exported to $client_pr_key public key to $client_pub_key "
-echo "get client private key"
+client_pr_key=${CLIENT_PR_KEY_OUT:-/app/keys/client_private_key.pem}
+client_pub_key=${CLIENT_PUB_KEY_OUT:-/app/keys/client_public_key.pem}
+bank_pub_key=${BANK_PUB_KEY_OUT:-/app/keys/bank_public_key.pem}
+
+echo "save keys to $client_pr_key $client_pub_key $bank_pub_key "
 sql="SELECT \"encryptionPrivateKey\" from nexusebicssubscribers s where \"hostID\"='testhost'"
 # read hex key  | convert to binary | create pem
-PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -t -c "$sql" | xxd -r -p | openssl pkcs8 -topk8 -nocrypt -inform DER -out /app/scripts/client_encryptionPrivateKey.pem
-openssl rsa -in /app/scripts/client_encryptionPrivateKey.pem -pubout -out /app/scripts/client_encryptionPublicKey.pem
+PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -t -c "$sql" | xxd -r -p | openssl pkcs8 -topk8 -nocrypt -inform DER -out $client_pr_key
+openssl rsa -in $client_pr_key -pubout -out $client_pub_key
 echo "get bank pub key"
 sql="SELECT \"bankAuthenticationPublicKey\" from nexusebicssubscribers s where \"hostID\"='testhost'"
-PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -t -c "$sql" | xxd -r -p | openssl rsa -pubin -inform DER -outform PEM -out /app/scripts/pub_bank.pem
-
+PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -t -c "$sql" | xxd -r -p | openssl rsa -pubin -inform DER -outform PEM -out $bank_pub_key
 echo "key generation done"
+# alternatively read keys from backup file
+# apt-get install jq -y # qpdf xxd libxml2-utils openssl -y
+# cat /app/scripts/backupfile | jq -r '.sigBlob' | openssl enc -d -base64 -A | openssl pkcs8 -inform DER -outform PEM -out $client_pr_key  -passin pass:$SECRET
+# openssl rsa -pubout -in $client_pr_key -out $client_pub_key
+# echo "client pk exported to $client_pr_key public key to $client_pub_key "
+
 
 # libeufin-cli accounts task-schedule --task-name=fetch-statement --task-type=fetch --task-cronspec="30 * * * *" --task-param-range-type=all --task-param-level=statement  $IBAN
 # libeufin-cli accounts task-schedule --task-name=fetch-statement --task-type=fetch --task-cronspec="30 * * * *" --task-param-range-type=all --task-param-level=statement  $EXTERNAL_IBAN
 # libeufin-cli accounts task-schedule --task-name=fetch-statement --task-type=fetch --task-cronspec="30 * * * *" --task-param-range-type=all --task-param-level=statement  $REGISTERED_IBAN
+# echo " auto fetch registered"
 
-echo " auto fetch regitered"
-
-read -t 2 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  $LIBEUFIN_NEXUS_USERNAME $LIBEUFIN_NEXUS_PASSWORD " || true
+read -t 10 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  $LIBEUFIN_NEXUS_USERNAME $LIBEUFIN_NEXUS_PASSWORD " || true
 #serve -s build
 # /app/scripts/peg100.sh
 # /app/scripts/test1.sh
@@ -264,15 +272,6 @@ yarn --version
 npm --version 
 node --version
 cd /app/frontend/ 
-
-# apt update --allow-releaseinfo-change
-apt-get install jq -y # qpdf xxd libxml2-utils openssl -y
-client_pr_key="${CLIENT_PR_KEY:-/app/scripts/client_private_key.pem}"
-client_pub_key="${CLIENT_PUB_KEY:-/app/scripts/client_public_key.pem}"
-
-cat /app/scripts/backupfile | jq -r '.sigBlob' | openssl enc -d -base64 -A | openssl pkcs8 -inform DER -outform PEM -out $client_pr_key  -passin pass:$SECRET
-openssl rsa -pubout -in $client_pr_key -out $client_pub_key
-echo "client pk exported to $client_pr_key public key to $client_pub_key "
 
 # read -t 10 -p "Setup & startup of nexus and sandbox complete, starting Libeufin react-ui UI on localhost:3000, login with:  $LIBEUFIN_NEXUS_USERNAME $LIBEUFIN_NEXUS_PASSWORD "
 #serve -s build

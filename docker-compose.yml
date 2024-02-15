@@ -44,6 +44,11 @@ services:
       - POSTGRES_HOST=postgres
       - POSTGRES_DB=libeufindb
       - DANGEROUSLY_DISABLE_HOST_CHECK=true
+    
+      # not used because they are default values
+      - CLIENT_PR_KEY_OUT=/app/keys/client_private_key.pem
+      - CLIENT_PUB_KEY_OUT=/app/keys/client_public_key.pem
+      - BANK_PUB_KEY_OUT=/app/keys/bank_public_key.pem
       
     command: /app/scripts/init_libeufin_sandbox.sh
     tty: true
@@ -57,7 +62,8 @@ services:
       - 3000
       - 5001
     volumes:
-      - ./scripts:/app/scripts
+      - ./scripts:/app/scripts:rw
+      - ./keys:/app/keys:rw
       - ./trace:/app/trace:rw
   
   ebics-service: 
@@ -84,18 +90,28 @@ services:
     container_name: hyperfridge
     # image: e36io/hyperfridge-r0:latest
     build: 
-      context: /home/w/workspace/hyperfridge-r0  
-    environment:
-      TEST: 'true'  # Ensure this is a string, not a boolean
+      context: /home/w/workspace/hyperfridge-r0
+    environment:   
+      # for watchdog.sh which generates a new proof in /app/out/ as soon as new file ebics file is dedected in /app/in/
+      - CLIENT_PR_KEY=/app/keys/client_private_key.pem
+      - CLIENT_PUB_KEY=/app/keys/client_public_key.pem
+      - BANK_PUB_KEY=/app/keys/bank_public_key.pem
+      - WITNESS_PUB_KEY=/data/pub_witness.pem
+      - WITNESS_PR_KEY=/data/witness.pem
+      - IN_DIR=/app/in/
+      - WORK_DIR=/app/work/
+      - OUT_DIR=/app/out/
+      - HOST_CMD=/app/host
+    command: /data/watchdog.sh
+    working_dir: /data
     volumes:
-      - ./scripts:/app/scripts:ro
-      - ./trace:/app/trace:ro
-      
-    
+      - ./work_out/:/app/out/:rw
+      - ./keys/:/app/keys/:ro
+      - ./trace:/app/in:ro
   
   pgadmin: 
-    # profiles:
-    #   - dev      
+    profiles:
+      - dev      
     container_name: libfineugadmin
     image: dpage/pgadmin4:7.6
     environment:

@@ -8,7 +8,7 @@
 # sudo docker run -it --entrypoint sh ebics
 # sudo docker run -v $HOME/ebics:/root/ebics ebics -cp "ebics-cli.jar:lib/*" org.kopi.ebics.client.EbicsClient --sta -o /root/ebics/out sta.txt 
 
-FROM gradle:6-jdk11-hotspot as build
+FROM gradle:7.3-jdk17 as build
 
 # build ebics-client jar and server jars;  
 RUN ls -la; mkdir /app;
