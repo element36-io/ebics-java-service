@@ -14,7 +14,8 @@ plugins {
 	id "org.owasp.dependencycheck" 
 	id "jacoco"
     id 'checkstyle'
-    id("org.openrewrite.rewrite") version("5.36.0")
+    id 'io.freefair.lombok' version '6.3.0-rc1'
+    // id("org.openrewrite.rewrite") version("5.36.0")
 }
 //apply from: "dependencyCheck.gradle"
 apply plugin: 'io.spring.dependency-management'
@@ -178,26 +179,3 @@ jacocoTestReport {
         csv.required = true
     }
 }
-
-
-rewrite {
-    //activeRecipe("org.openrewrite.java.spring.boot2.UpgradeSpringBoot_2_7")
-    //activeRecipe("org.openrewrite.java.spring.boot2.UpgradeSpringBoot_2_6"
-    //activeRecipe("org.openrewrite.java.spring.boot2.UpgradeSpringBoot_2_5"
-    // 2.3
-    //activeRecipe("org.openrewrite.java.spring.framework.UpgradeSpringFramework_5_3")    
-    //activeRecipe("org.openrewrite.java.spring.boot2.UpgradeSpringBoot_2_3")
-    //activeRecipe("org.openrewrite.java.spring.data.UpgradeSpringData_2_3")
-    //activeRecipe("org.openrewrite.java.spring.boot2.MigrateRestClientBuilderCustomizerPackageName")
-    //activeRecipe("org.openrewrite.java.spring.boot2.SpringBootProperties_2_3")
-    //2.4
-    activeRecipe("org.openrewrite.java.spring.boot2.UpgradeSpringBoot_2_4")
-    activeRecipe("org.openrewrite.java.spring.framework.UpgradeSpringFramework_5_3")
-    activeRecipe("org.openrewrite.java.spring.boot2.SpringBoot2JUnit4to5Migration")
-    
-}
-
-dependencies {
-    rewrite("org.openrewrite.recipe:rewrite-spring:4.33.0")
-}
-
