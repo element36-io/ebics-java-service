@@ -38,7 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Profile({"sandbox"})
 @Slf4j
-public class EbicsStatementServiceLibeufin implements EbicsStatementService {
+public class EbicsStatementServiceLibeufinR0 implements EbicsStatementService {
 
   @Autowired AppConfig appConfig;
 
