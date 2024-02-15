@@ -82,7 +82,9 @@ services:
     # profiles:
     #   - dev      
     container_name: hyperfridge
-    image: e36io/hyperfridge-r0:latest
+    # image: e36io/hyperfridge-r0:latest
+    build: 
+      context: /home/w/workspace/hyperfridge-r0  
     environment:
       TEST: 'true'  # Ensure this is a string, not a boolean
     volumes:

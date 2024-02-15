@@ -197,13 +197,6 @@ rewrite {
     
 }
 
-<<<<<<< Updated upstream
-=======
-repositories {
-    mavenCentral()
-}
->>>>>>> Stashed changes
-
 dependencies {
     rewrite("org.openrewrite.recipe:rewrite-spring:4.33.0")
 }
