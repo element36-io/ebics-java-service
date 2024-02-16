@@ -246,9 +246,12 @@ sql="SELECT \"encryptionPrivateKey\" from nexusebicssubscribers s where \"hostID
 # read hex key  | convert to binary | create pem
 PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -t -c "$sql" | xxd -r -p | openssl pkcs8 -topk8 -nocrypt -inform DER -out $client_pr_key
 openssl rsa -in $client_pr_key -pubout -out $client_pub_key
-echo "get bank pub key"
+echo "get bank pub auth key"
 sql="SELECT \"bankAuthenticationPublicKey\" from nexusebicssubscribers s where \"hostID\"='testhost'"
 PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -t -c "$sql" | xxd -r -p | openssl rsa -pubin -inform DER -outform PEM -out $bank_pub_key
+sql="SELECT \"bankEncryptionPublicKey\" from nexusebicssubscribers s where \"hostID\"='testhost'"
+PGPASSWORD=$POSTGRES_PASSWORD psql -d "$POSTGRES_DB" -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -t -c "$sql" | xxd -r -p | openssl rsa -pubin -inform DER -outform PEM -out $bank_pub_key-enc
+
 echo "key generation done"
 # alternatively read keys from backup file
 # apt-get install jq -y # qpdf xxd libxml2-utils openssl -y

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,7 +58,8 @@ public class EbicsController {
 
   @Autowired GeneratePaymentIds generatePaymentIds;
 
-  @Autowired EbicsStatementService ebicsStatementService;
+  @Autowired 
+  EbicsStatementService ebicsStatementService;
 
   @Autowired EbicsPaymentService ebicsPaymentService;
 

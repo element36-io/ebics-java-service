@@ -46,9 +46,9 @@ services:
       - DANGEROUSLY_DISABLE_HOST_CHECK=true
     
       # not used because they are default values
-      - CLIENT_PR_KEY_OUT=/app/keys/client_private_key.pem
-      - CLIENT_PUB_KEY_OUT=/app/keys/client_public_key.pem
-      - BANK_PUB_KEY_OUT=/app/keys/bank_public_key.pem
+      # - CLIENT_PR_KEY_OUT=/app/keys/client_private_key.pem
+      # - CLIENT_PUB_KEY_OUT=/app/keys/client_public_key.pem
+      # - BANK_PUB_KEY_OUT=/app/keys/bank_public_key.pem
       
     command: /app/scripts/init_libeufin_sandbox.sh
     tty: true
@@ -108,10 +108,12 @@ services:
       - ./work_out/:/app/out/:rw
       - ./keys/:/app/keys/:ro
       - ./trace:/app/in:ro
+      - /home/w/workspace/hyperfridge-r0/data/checkResponse.sh:/data/checkResponse.sh
+      - /home/w/workspace/hyperfridge-r0/data/watchdog.sh:/data/watchdog.sh
   
   pgadmin: 
-    profiles:
-      - dev      
+    # profiles:
+    #   - dev      
     container_name: libfineugadmin
     image: dpage/pgadmin4:7.6
     environment:
