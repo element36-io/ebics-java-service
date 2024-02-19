@@ -41,8 +41,14 @@ The successful setup is shown by:
 	2021-05-22 07:53:48,251  INFO - Configuration initialization
 	2021-05-22 07:53:48,254  INFO - Loading user 4444444
 	2021-05-22 07:53:48,355  INFO - The user 4444444 was loaded successfully
-	
-	
+
+### Set up docker based development environment and test 
+
+- Use docker compose rm/build/run
+- On Swagger: http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/#/ebics-controller/createPaymentOrderUsingPOST
+  - Create order just change the amount: http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/#/ebics-controller/createPaymentOrderUsingPOST
+  - Do fetch-transactions by calling this endpoint - you should see the above amount in there: http://localhost:8093/ebics/swagger-ui/?url=/ebics/v2/api-docs/#/ebics-controller/getPaymentsUsingGET
+
 ## FAQ
 
 ### Setup with your bank

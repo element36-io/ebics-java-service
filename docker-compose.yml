@@ -5,6 +5,7 @@ version: "3.2"
 
 services:
   postgres: 
+    container_name: pg
     image: postgres:11
     restart: always
     environment:
@@ -16,15 +17,13 @@ services:
       # - PGDATA="/var/lib/postgresql/data/pgdata"
    # ports:
      # - "5432:5432"  
-  #volumes:
-      #- ./init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
-      # GCP: - /mnt/stateful_partition/APP/postgres/db:/var/lib/postgresql/data/pgdata
-      # local dir: - ${DATADIR:?}/postgres:/var/lib/postgresql/data
 
   libeufin: 
+    container_name: libeufin
     # image: e36io/libeufin:mergeLibeufin
     build: 
-      context: /home/w/ghvlada/LibEuFin   
+      context: /home/w/ghvlada/LibEuFin #/media/w/second/x1/workspace/LibEuFin 
+#/home/w/ghvlada/LibEuFin   
     depends_on: 
       - postgres
     environment:
@@ -68,6 +67,7 @@ services:
   
   ebics-service: 
     #image: e36io/ebics-service:updateLibeufin
+    container_name: ebics
     build: 
       context: .    
     depends_on: 
@@ -87,7 +87,7 @@ services:
   hyperfridge: 
     # profiles:
     #   - dev      
-    container_name: hyperfridge
+    container_name: fridge
     # image: e36io/hyperfridge-r0:latest
     build: 
       context: /home/w/workspace/hyperfridge-r0
@@ -114,7 +114,7 @@ services:
   pgadmin: 
     # profiles:
     #   - dev      
-    container_name: libfineugadmin
+    container_name: dbadmin
     image: dpage/pgadmin4:7.6
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@example.com

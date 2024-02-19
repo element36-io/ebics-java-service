@@ -34,6 +34,12 @@ public class StatementDTO {
   @ApiModelProperty("IBAN of the account - in case you have more than one account at the bank")
   private String iban;
 
+  @ApiModelProperty("TransactionId of the EbicsRequest")
+  private String transactionId;
+
+  @ApiModelProperty("Download-URL of the Risk0-receipt. You will get a 404 if the receipt is not ready yet or if the receipt could not be generated.")
+  private String receiptUrl;
+
   @ApiModelProperty(
       "Closing booked balance (OPDB): https://subsembly.com/apidoc/sepa/Subsembly.Sepa.SepaBalanceType.html")
   private BigDecimal balanceOP;

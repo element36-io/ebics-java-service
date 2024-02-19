@@ -4,6 +4,12 @@ spring:
     name: cash36-ebics
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:dev}
+  # web:
+  #   resources:
+  #     static-locations: file:./work_out/
+  resources:
+    static-locations: file:/home/w/workspace/ebics-java-service/work_out/    
+
   output: 
     ansi: 
       enabled: ${CASH36_ANSI:ALWAYS}
@@ -34,9 +40,14 @@ ebics:
   proxy:
      # sends this ebics file when simulate is called
      statement: ${CASH36_EBICS_STATEMENT:simulated-account-statements.zip}
+
+
+
            
 logging:
   level:
-     org.springframework: WARN
-     io.element36: TRACE
-     ROOT: WARN      
+    org.springframework: WARN
+    org.springframework.boot: DEBUG
+    org.springframework.web: DEBUG
+    io.element36: TRACE
+    ROOT: WARN      

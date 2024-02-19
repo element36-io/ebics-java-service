@@ -82,8 +82,14 @@ public class EbicsStatementServiceLibeufin implements EbicsStatementService {
               entity,
               FetchTransactionsResponse.class);
 
-      this.log.debug(" call --> " + uri);
+      this.log.debug(" call     --> " + uri);
       this.log.debug(" response --> " + resp.getBody().toString());
+      this.log.debug(" response.header Transaction-ID --> " + resp.getHeaders().getFirst("Transaction-ID"));
+      String transactionId = resp.getHeaders().getFirst("Transaction-ID");
+      String receiptUrl="";
+      if (transactionId != null) {
+          receiptUrl="receipt_"+transactionId+".json";
+      }
       if (resp.getStatusCode() != HttpStatus.OK)
         throw new RuntimeException("Error fetching transactions from sandbox");
 
@@ -189,6 +195,8 @@ public class EbicsStatementServiceLibeufin implements EbicsStatementService {
       libeufinConfig.accountBalance = libeufinConfig.accountBalance.add(updateBalance);
 
       smtResult
+          .receiptUrl(receiptUrl)
+          .transactionId(transactionId)
           .balanceCL(libeufinConfig.accountBalance)
           .balanceCLCurrency(libeufinConfig.accountCurrency)
           .balanceCLDate(now)

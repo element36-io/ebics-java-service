@@ -34,8 +34,9 @@ public class SpringFoxConfig {
 
   private ApiInfo apiInfo() {
     return new ApiInfo(
-        "Rest Wrapper for ebics-java-client",
-        "Access your bank account based on EBICS inface over a simple REST-API.",
+        "Rest Wrapper for ebics-java-client with Zero-Knowledge proofs (risc0-receipts) ",
+        "Access your bank account based on EBICS inface over a simple REST-API. "+
+        "Access receipts via /ebics/receipt_(imageId)_(transactionId).json - transactionID is part of the bankstatements API. ",
         "API terms of service - see Apache 2.0 licence",
         "https://www.apache.org/licenses/LICENSE-2.0",
         new Contact("element36", "element36.io", "ask@element36.io"),
