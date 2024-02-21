@@ -45,3 +45,15 @@ scripts/hist.txt
 scratch
 trace
 work_out
+keys/bank_public_key.pem
+keys/bank_public_key.pem-enc
+keys/client_private_key.pem
+keys/client_public_key.pem
+keys/bank_public_key.pem
+keys/bank_public_key.pem-enc
+keys/client_private_key.pem
+keys/client_public_key.pem
+keys/bank_public_key.pem
+keys/bank_public_key.pem-enc
+keys/client_private_key.pem
+keys/client_public_key.pem

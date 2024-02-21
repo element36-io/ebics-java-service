@@ -20,10 +20,11 @@ services:
 
   libeufin: 
     container_name: libeufin
-    # image: e36io/libeufin:mergeLibeufin
-    build: 
-      context: /home/w/ghvlada/LibEuFin #/media/w/second/x1/workspace/LibEuFin 
-#/home/w/ghvlada/LibEuFin   
+    image: e36io/libeufin:hyperfridge
+    # local dev:
+    # build: 
+    #   context: /home/w/ghvlada/LibEuFin
+
     depends_on: 
       - postgres
     environment:
@@ -78,11 +79,14 @@ services:
        - LIBEUFIN_NEXUS_URL=http://libeufin:5000
        - LIBEUFIN_SANDBOX_ADMIN_PASSWORD=superpassword
        - LIBEUFIN_SANDBOX_USERNAME=admin
-       - LIBEUFIN_SANDBOX_PASSWORD=superpassword       
+       - LIBEUFIN_SANDBOX_PASSWORD=superpassword
+       - FRIDGE_OUT_DIR=file:/app/work_out/
     ports:
       - "8093:8093"
     expose:
       - 8093      
+    volumes:
+      - recipie-dir:/app/work_out/:rw
 
   hyperfridge: 
     # profiles:
@@ -105,15 +109,16 @@ services:
     command: /data/watchdog.sh
     working_dir: /data
     volumes:
-      - ./work_out/:/app/out/:rw
+      - recipie-dir:/app/out/:rw
       - ./keys/:/app/keys/:ro
       - ./trace:/app/in:ro
-      - /home/w/workspace/hyperfridge-r0/data/checkResponse.sh:/data/checkResponse.sh
-      - /home/w/workspace/hyperfridge-r0/data/watchdog.sh:/data/watchdog.sh
+      # for DEV
+      # - /home/w/workspace/hyperfridge-r0/data/checkResponse.sh:/data/checkResponse.sh
+      # - /home/w/workspace/hyperfridge-r0/data/watchdog.sh:/data/watchdog.sh
   
   pgadmin: 
-    # profiles:
-    #   - dev      
+    profiles:
+      - dev      
     container_name: dbadmin
     image: dpage/pgadmin4:7.6
     environment:
@@ -134,3 +139,5 @@ services:
     ports:
       - "53603:53603"
       - "8081:80" #mapped on w.e36.io:35050; admin@example.com root; add server medi medi medi
+volumes:
+  recipie-dir:      

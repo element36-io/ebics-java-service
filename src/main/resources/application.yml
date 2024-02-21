@@ -7,8 +7,9 @@ spring:
   # web:
   #   resources:
   #     static-locations: file:./work_out/
-  resources:
-    static-locations: file:/home/w/workspace/ebics-java-service/work_out/    
+  web:
+    resources:
+      static-locations: ${FRIDGE_OUT_DIR:file:./work_out/}    
 
   output: 
     ansi: 
